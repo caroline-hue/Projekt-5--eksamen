@@ -68,8 +68,8 @@
         <ul>
           <li><a href="../om-nikolai.html">Om Nicolai</a></li>
           <li>
-            <button class="nav__mobile-toggle" aria-expanded="false">Behandlinger ▾</button>
-            <ul>
+            <button class="nav__mobile-toggle" aria-expanded="false" aria-controls="mobile-dd-behandlinger">Behandlinger ▾</button>
+            <ul id="mobile-dd-behandlinger">
               <li><a href="../behandlinger/rygsmerter.html">Rygsmerter</a></li>
               <li><a href="../behandlinger/skulder-nakke.html">Skulder og nakke</a></li>
               <li><a href="../behandlinger/kaebe-hoved.html">Kæbe og hoved</a></li>
@@ -128,7 +128,7 @@
       </div>
 
       <fieldset class="consult-toggle" role="radiogroup" aria-labelledby="consult-legend">
-        <legend id="consult-legend"><h2>Vælg konsultationslængde</h2></legend>
+        <legend id="consult-legend">Vælg konsultationslængde</legend>
         <p class="field__help">Nicolai anbefaler 60 min til første besøg — du får undersøgelse og behandling i samme session. Vælg 30 min kun hvis du har én fokuseret problemstilling.</p>
 
         <label class="consult-toggle__option">
