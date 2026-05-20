@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trin 3 af 5 — Vælg ledig dato og tid til din konsultation.">
+  <title>Trin 3: Vælg dato og tid · Book tid · Grocott Fysioterapi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&family=Mulish:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="flow-page">
+  <a href="#main" class="skip-link">Spring til indhold</a>
+
+  <header class="nav" role="banner">
+    <div class="nav__inner container">
+      <a href="../" class="nav__logo" aria-label="Grocott Fysioterapi forside">
+        <span class="nav__logo-text">Grocott Fysioterapi & Sundhedshus</span>
+      </a>
+      <nav class="nav__links" aria-label="Hovedmenu">
+        <ul>
+          <li class="nav__item nav__item--dropdown">
+            <button class="nav__link" aria-expanded="false" aria-controls="dd-behandlinger">
+              Behandlinger <span class="nav__chevron" aria-hidden="true">▾</span>
+            </button>
+            <div id="dd-behandlinger" class="nav__dropdown" hidden>
+              <ul>
+                <li><a href="../behandlinger/rygsmerter.html">Rygsmerter</a></li>
+                <li><a href="../behandlinger/skulder-nakke.html">Skulder og nakke</a></li>
+                <li><a href="../behandlinger/kaebe-hoved.html">Kæbe og hoved</a></li>
+                <li><a href="../behandlinger/knae-hofter.html">Knæ og hofter</a></li>
+                <li><a href="../behandlinger/fod.html">Fod-problematikker</a></li>
+                <li><a href="../behandlinger/massage.html">Massage</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="../stubs/holdtraening.html" class="nav__link">Holdtræning</a></li>
+          <li><a href="../om-nikolai.html" class="nav__link">Om Nicolai</a></li>
+          <li><a href="../stubs/erhvervsaftaler.html" class="nav__link">Erhvervsaftaler</a></li>
+          <li class="nav__item nav__item--dropdown">
+            <button class="nav__link" aria-expanded="false" aria-controls="dd-praktisk">
+              Praktisk <span class="nav__chevron" aria-hidden="true">▾</span>
+            </button>
+            <div id="dd-praktisk" class="nav__dropdown" hidden>
+              <ul>
+                <li><a href="../stubs/priser.html">Priser</a></li>
+                <li><a href="../stubs/praktisk-information.html">Praktisk information</a></li>
+                <li><a href="../stubs/privatlivspolitik.html">Privatlivspolitik</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="nav__ctas">
+        <a href="../klient/login.html" class="btn btn--secondary btn--on-dark">Jeg er allerede klient</a>
+        <a href="trin-1.html" class="btn btn--primary">Book første tid</a>
+      </div>
+      <button class="nav__burger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Åbn menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div id="mobile-nav" class="nav__mobile" hidden>
+      <button class="nav__close" aria-label="Luk menu">✕</button>
+      <nav aria-label="Mobilmenu">
+        <ul>
+          <li><a href="../om-nikolai.html">Om Nicolai</a></li>
+          <li>
+            <button class="nav__mobile-toggle" aria-expanded="false">Behandlinger ▾</button>
+            <ul>
+              <li><a href="../behandlinger/rygsmerter.html">Rygsmerter</a></li>
+              <li><a href="../behandlinger/skulder-nakke.html">Skulder og nakke</a></li>
+              <li><a href="../behandlinger/kaebe-hoved.html">Kæbe og hoved</a></li>
+              <li><a href="../behandlinger/knae-hofter.html">Knæ og hofter</a></li>
+              <li><a href="../behandlinger/fod.html">Fod-problematikker</a></li>
+              <li><a href="../behandlinger/massage.html">Massage</a></li>
+            </ul>
+          </li>
+          <li><a href="../stubs/holdtraening.html">Holdtræning</a></li>
+          <li><a href="../stubs/erhvervsaftaler.html">Erhvervsaftaler</a></li>
+          <li><a href="../stubs/priser.html">Priser</a></li>
+          <li><a href="../stubs/praktisk-information.html">Praktisk information</a></li>
+          <li><a href="../stubs/privatlivspolitik.html">Privatlivspolitik</a></li>
+          <li><a href="../klient/login.html">Jeg er allerede klient</a></li>
+        </ul>
+      </nav>
+      <a href="trin-1.html" class="btn btn--primary">Book første tid</a>
+    </div>
+  </header>
+
+  <main id="main" class="flow-main">
+    <div class="flow-card">
+
+      <ol class="stepper" aria-label="Booking trin">
+        <li class="stepper__step stepper__step--done">
+          <span class="stepper__circle" aria-hidden="true">✓</span>
+          <span class="stepper__label">Introduktion</span>
+        </li>
+        <li class="stepper__step stepper__step--done">
+          <span class="stepper__circle" aria-hidden="true">✓</span>
+          <span class="stepper__label">Symptomer</span>
+        </li>
+        <li class="stepper__step stepper__step--active" aria-current="step">
+          <span class="stepper__circle" aria-hidden="true">3</span>
+          <span class="stepper__label">Kalender</span>
+        </li>
+        <li class="stepper__step">
+          <span class="stepper__circle" aria-hidden="true">4</span>
+          <span class="stepper__label">Oplysninger</span>
+        </li>
+        <li class="stepper__step">
+          <span class="stepper__circle" aria-hidden="true">5</span>
+          <span class="stepper__label">Bekræft</span>
+        </li>
+      </ol>
+
+      <h1>Vælg dato og tid</h1>
+
+      <label class="switch">
+        <input type="checkbox" name="akut">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+        <span class="switch__label">Jeg har brug for en akuttid <span class="caption">(+300 kr.)</span></span>
+      </label>
+
+      <fieldset class="consult-toggle consult-toggle--inline" role="radiogroup" aria-labelledby="length-legend">
+        <legend id="length-legend" class="sr-only">Konsultationslængde</legend>
+        <label class="consult-toggle__pill">
+          <input type="radio" name="length" value="60" checked>
+          <span>60 minutter ★</span>
+        </label>
+        <label class="consult-toggle__pill">
+          <input type="radio" name="length" value="30">
+          <span>30 minutter</span>
+        </label>
+      </fieldset>
+
+      <section class="calendar" aria-labelledby="calendar-title">
+        <header class="calendar__nav">
+          <button type="button" aria-label="Forrige måned">‹</button>
+          <h2 id="calendar-title">Maj 2026</h2>
+          <button type="button" aria-label="Næste måned">›</button>
+        </header>
+        <table class="calendar__grid" role="grid" aria-labelledby="calendar-title">
+          <thead>
+            <tr>
+              <th scope="col">Man</th>
+              <th scope="col">Tir</th>
+              <th scope="col">Ons</th>
+              <th scope="col">Tor</th>
+              <th scope="col">Fre</th>
+              <th scope="col">Lør</th>
+              <th scope="col">Søn</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button type="button" class="date-cell">4</button></td>
+              <td><button type="button" class="date-cell date-cell--selected" aria-pressed="true">5</button></td>
+              <td><button type="button" class="date-cell">6</button></td>
+              <td><button type="button" class="date-cell">7</button></td>
+              <td><button type="button" class="date-cell">8</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">9</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">10</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <h3>Ledige tider — tirsdag 5. maj 2026</h3>
+      <ul class="time-slots">
+        <li><button type="button" class="time-slot">09:00</button></li>
+        <li><button type="button" class="time-slot time-slot--selected" aria-pressed="true">10:00</button></li>
+        <li><button type="button" class="time-slot">13:00</button></li>
+        <li><button type="button" class="time-slot">14:30</button></li>
+        <li><button type="button" class="time-slot">16:00</button></li>
+      </ul>
+
+      <div class="booking-summary" aria-live="polite">
+        <strong>Tir 5. maj · 10:00 · 60 min · 650 kr.</strong>
+      </div>
+
+      <div class="flow-card__actions">
+        <a href="trin-2.html" class="btn btn--secondary">← Tilbage</a>
+        <a href="trin-4.html" class="btn btn--primary">Udfyld dine oplysninger →</a>
+      </div>
+
+      <aside class="flow-card__phone-fallback">
+        <p>Er du i tvivl og har brug for vejledning?</p>
+        <a href="tel:+4560866770" class="btn btn--phone">📞 Ring til mig: +45 60 86 67 70</a>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__grid">
+      <div class="footer__col">
+        <h2 class="footer__heading">Navigation</h2>
+        <ul>
+          <li><a href="../">Forside</a></li>
+          <li><a href="../om-nikolai.html">Om Nicolai</a></li>
+          <li><a href="../stubs/holdtraening.html">Holdtræning</a></li>
+          <li><a href="../stubs/erhvervsaftaler.html">Erhvervsaftaler</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__heading">Kontakt</h2>
+        <address>
+          Langeskov Centret 1, butik 3<br>5550 Langeskov<br>
+          <a href="tel:+4560866770">+45 60 86 67 70</a><br>
+          <a href="mailto:kontakt@grocott.dk">kontakt@grocott.dk</a>
+        </address>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__heading">Information</h2>
+        <ul>
+          <li><a href="../stubs/priser.html">Priser</a></li>
+          <li><a href="../stubs/praktisk-information.html">Praktisk info</a></li>
+          <li><a href="../stubs/privatlivspolitik.html">Privatlivspolitik</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__heading">Åbningstider</h2>
+        <ul class="hours">
+          <li><span>Man–Fre</span><span>08:00–20:00</span></li>
+          <li><span>Lørdag</span><span>09:00–14:00</span></li>
+          <li><span>Søndag</span><span>Lukket</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__bar">
+      <p>© 2026 Grocott Fysioterapi &amp; Sundhedshus · CVR XX XX XX XX</p>
+    </div>
+  </footer>
+
+  <a href="tel:+4560866770" class="fab" aria-label="Ring til Nicolai">
+    <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
+      <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/>
+    </svg>
+  </a>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
