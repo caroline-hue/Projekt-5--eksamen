@@ -1515,7 +1515,7 @@ p:last-child { margin-block-end: 0; }
   justify-content: center;
   padding: var(--space-24) var(--space-16);
   background: var(--white);
-  border: 1.5px solid var(--border-light);
+  border: 2px solid var(--border-light);
   border-radius: var(--radius-card);
   text-align: center;
   font-weight: 700;
@@ -1530,15 +1530,82 @@ p:last-child { margin-block-end: 0; }
   outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* Symptom-sub: cream-bg højlys-container (Figma trin-2) */
 .symptom-sub {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-8);
-  margin-block-start: var(--space-16);
-  border: 1px solid var(--border-light);
+  display: block;
+  background: #F5EDE0;
+  border: none;
   border-radius: var(--radius-card);
   padding: var(--space-16);
+  margin-block-end: var(--space-24);
+  grid-column: unset;
+}
+.symptom-sub__title {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-dark);
+  margin-block-end: var(--space-12, 12px);
+  padding: 0;
+}
+.symptom-sub__options {
+  display: flex;
+  gap: var(--space-12, 12px);
+}
+.symptom-sub__options .symptom-grid__option { flex: 1; }
+.symptom-sub__options .symptom-grid__option span {
+  min-height: 0;
+  padding: var(--space-12, 12px) var(--space-16);
+  font-weight: 400;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+/* Info-card: behandling-info (Figma trin-2) */
+.info-card {
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-card);
+  padding: var(--space-24);
+  margin-block-end: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12, 12px);
+}
+.info-card__title {
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  margin-block-end: 0;
+  color: var(--text-dark);
+}
+.info-card__body {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-block-end: 0;
+}
+.info-card .btn { align-self: flex-start; }
+
+@media (max-width: 767px) {
+  .symptom-grid { grid-template-columns: 1fr 1fr; gap: var(--space-12, 12px); }
+  .symptom-grid__option span {
+    font-size: 16px;
+    padding: 18px var(--space-8);
+    min-height: 64px;
+    line-height: 1.6;
+  }
+  .symptom-sub { padding: var(--space-12, 12px); }
+  .symptom-sub__title { font-size: 16px; }
+  .symptom-sub__options { flex-direction: column; gap: var(--space-8); }
+  .symptom-sub__options .symptom-grid__option span { font-size: 16px; padding: var(--space-12, 12px) 14px; }
+  .info-card { padding: 18px; }
+  .info-card__title { font-size: 22px; }
+  .info-card__body { font-size: 16px; line-height: 1.6; }
+  .info-card .btn { align-self: stretch; }
 }
 
 /* ====================================================================
@@ -2444,6 +2511,38 @@ section[aria-labelledby="behandlinger-title"].section--light {
   margin-block-start: var(--space-16);
 }
 
+/* Desktop-kun inline CTA (skjules på mobil hvor bottom-nav overtager) */
+@media (max-width: 767px) {
+  .flow-card__actions--desktop { display: none; }
+}
+
+/* Sticky bottom-nav (Forrige + Næste) — kun på mobil, trin 2-5 */
+.flow-bottom-nav { display: none; }
+@media (max-width: 767px) {
+  .flow-bottom-nav {
+    display: flex;
+    gap: var(--space-12, 12px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--white);
+    border-top: 1px solid var(--border-light-figma);
+    padding: var(--space-16) var(--space-24) var(--space-24);
+    width: 100%;
+  }
+  .flow-bottom-nav .btn {
+    flex: 1;
+    min-height: 56px;
+    padding-inline: var(--space-8);
+  }
+  /* Plads til sticky bottom-nav så indhold ikke skjules bag den */
+  .flow-page:has(.flow-bottom-nav) { padding-bottom: 104px; }
+  /* FAB rykkes op over bottom-nav så ikke overlapper */
+  .flow-page:has(.flow-bottom-nav) .fab { bottom: 112px; }
+}
+
 .flow-card__phone-fallback {
   margin-block-start: var(--space-32);
   padding-block-start: var(--space-24);
@@ -2841,7 +2940,7 @@ section[aria-labelledby="behandlinger-title"].section--light {
   .flow-main { padding: var(--space-16); }
 
   .symptom-grid { grid-template-columns: repeat(2, 1fr); }
-  .symptom-sub { grid-template-columns: repeat(2, 1fr); }
+  /* .symptom-sub er nu display:block med .symptom-sub__options som flex-container */
 
   /* Behandlings-sider: check-grid stacker til 1-kol, cross-link card får tightere padding */
   .symptom-checks { grid-template-columns: 1fr; }
@@ -2865,7 +2964,7 @@ section[aria-labelledby="behandlinger-title"].section--light {
 }
 
 @media (max-width: 479.98px) {
-  .symptom-grid { grid-template-columns: 1fr; }
+  /* .symptom-grid bevarer 2-kol (matcher Figma mobil 390px). 1-kol var for aggressivt. */
   .calendar__grid th { font-size: 11px; padding: 4px; }
   .date-cell { width: 36px; height: 36px; font-size: 14px; }
 }
