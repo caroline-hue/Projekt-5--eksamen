@@ -2344,6 +2344,74 @@ section[aria-labelledby="behandlinger-title"].section--light {
     transition: transform 0.2s;
   }
 
+  /* Burger-dropdown (CSS-only via :focus-within — JS-toggle wires senere på samme HTML).
+     Når burger eller noget i .nav__mobile har focus, vises dropdown'en. Tap udenfor → blur → luk.
+     Overstyrer [hidden] og de eksisterende aria-expanded display-regler. */
+  .nav__mobile {
+    position: absolute;
+    inset: 100% 0 auto 0;
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - var(--nav-height));
+    padding: var(--space-24) var(--space-24) var(--space-32);
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    border-block-start: 1px solid var(--border-dark);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    z-index: 150;
+    overflow-y: auto;
+    flex-direction: column;
+    gap: var(--space-16);
+    display: none;
+  }
+  /* Vis dropdown'en når burger eller mobile-nav-indhold har focus.
+     !important er nødvendigt for at overstyre browserens [hidden]-default
+     ([hidden] { display: none } har høj-prioriteret cascade ved tag-attribute-selector).
+     Louise's JS vil senere toggle [hidden] direkte — denne CSS giver et fungerende
+     CSS-only fallback (tap burger → fokus åbner panel; tap udenfor → blur lukker). */
+  .nav:focus-within .nav__mobile,
+  .nav:focus-within .nav__mobile[hidden] {
+    display: flex !important;
+  }
+  /* Skjul den interne luk-knap — der er ingen JS til at lukke, tap udenfor lukker via blur */
+  .nav__mobile .nav__close { display: none; }
+  /* Submenu (Behandlinger ▾): vis altid mens panel er åbent — JS toggler aria-expanded senere */
+  .nav__mobile-toggle[aria-expanded="false"] + ul,
+  .nav__mobile-toggle[aria-expanded="true"] + ul {
+    display: block;
+  }
+  /* Light-on-dark typografi i panelet (bg er nu mørk, ikke hvid) */
+  .nav__mobile nav ul { gap: var(--space-8); }
+  .nav__mobile a,
+  .nav__mobile-toggle {
+    color: var(--text-primary);
+    font-size: 18px;
+    padding-block: var(--space-12, 12px);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .nav__mobile a:hover,
+  .nav__mobile a:focus-visible,
+  .nav__mobile-toggle:focus-visible { color: var(--accent); text-decoration: none; }
+  .nav__mobile-toggle + ul {
+    padding-inline-start: var(--space-16);
+    padding-block-start: var(--space-4);
+    margin: 0;
+  }
+  .nav__mobile-toggle + ul a {
+    font-size: 16px;
+    color: var(--text-secondary);
+    padding-block: var(--space-8);
+    min-height: 40px;
+  }
+  /* Den synlige bottom-CTA i panelet — fyldt orange pill */
+  .nav__mobile .btn--primary {
+    margin-block-start: var(--space-16);
+    align-self: stretch;
+    text-align: center;
+  }
+
   .section { padding: var(--space-48) 0; }
   /* Container-gutter på 24px (matcher Figma's mobile-padding) — gælder alle sektioner */
   .container { padding-inline: var(--space-24); }
