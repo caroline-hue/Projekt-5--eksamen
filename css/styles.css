@@ -78,7 +78,7 @@
   --max-width:     1440px;
   --content-width: 1200px;
   --mobile-width:  390px;
-  --nav-height:    64px;
+  --nav-height:    86px;
 }
 
 /* ====================================================================
@@ -278,13 +278,16 @@ p:last-child { margin-block-end: 0; }
   text-decoration: none;
 }
 
+/* Sekundær på mørk baggrund: cream-fyldt pill (Figma) — ikke outlined */
 .btn--secondary.btn--on-dark {
-  color: var(--text-primary);
-  border-color: var(--border-light-figma);
+  background: var(--bg-light);
+  color: var(--text-dark);
+  border-color: var(--bg-light);
 }
 .btn--secondary.btn--on-dark:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--text-dark);
 }
 
 .btn--ghost {
@@ -298,6 +301,31 @@ p:last-child { margin-block-end: 0; }
   text-decoration: none;
 }
 
+/* Outline pill (Figma: pris "Se alle priser", rute-CTA) — transparent med dark border */
+.btn--outline {
+  background: transparent;
+  color: var(--text-dark);
+  border-color: var(--text-dark);
+}
+.btn--outline:hover {
+  background: var(--text-dark);
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* Dark filled pill (Figma: "Tjek din forsikringsdækning") */
+.btn--dark {
+  background: var(--text-dark);
+  color: var(--text-primary);
+  border-color: var(--text-dark);
+}
+.btn--dark:hover {
+  background: var(--bg-dark);
+  border-color: var(--bg-dark);
+  color: var(--white);
+  text-decoration: none;
+}
+
 .btn--phone {
   background: var(--bg-dark);
   color: var(--text-primary);
@@ -305,6 +333,22 @@ p:last-child { margin-block-end: 0; }
 .btn--phone:hover {
   background: var(--text-dark);
 }
+
+/* Orange phone-pill — bruges i "Usikker? Bare ring"-bandet (Figma) */
+.btn--phone-accent {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-size: 18px;
+  padding: 18px 40px;
+  min-height: 56px;
+  font-weight: 800;
+}
+.btn--phone-accent:hover {
+  background: var(--accent-hover);
+  color: var(--white);
+  text-decoration: none;
+}
+.btn--phone-accent svg { flex-shrink: 0; }
 
 .btn--mitid {
   background: #000;
@@ -341,13 +385,43 @@ p:last-child { margin-block-end: 0; }
 }
 
 .nav__logo {
-  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: var(--text-primary);
   font-family: 'Sen', sans-serif;
   font-weight: 800;
   font-size: 18px;
   text-decoration: none;
+  line-height: 1.1;
 }
-.nav__logo:hover { text-decoration: none; color: var(--accent); }
+.nav__logo:hover { text-decoration: none; color: var(--text-primary); }
+.nav__logo:hover .nav__logo-icon { transform: translateX(2px); }
+
+.nav__logo-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.nav__logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.nav__logo-text strong {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.nav__logo-text small {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
 
 .nav__links ul {
   display: flex;
@@ -458,7 +532,7 @@ p:last-child { margin-block-end: 0; }
 .nav__mobile-toggle + ul a { font-size: 18px; }
 
 /* ====================================================================
-   07. Footer
+   07. Footer (Figma: dark, brand-col + 3 link-kolonner + bottom-bar)
    ==================================================================== */
 .footer {
   background: var(--bg-dark);
@@ -468,47 +542,58 @@ p:last-child { margin-block-end: 0; }
 
 .footer__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
   gap: var(--space-32);
   margin-block-end: var(--space-48);
+}
+
+.footer__col--brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.footer__logo-pill {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: var(--space-16) var(--space-24);
+  background: var(--bg-light);
+  color: var(--text-dark);
+  border-radius: var(--radius-card);
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  opacity: 0.85;
+}
+.footer__cvr {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.footer__tagline {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 280px;
 }
 
 .footer__heading {
   font-family: 'Sen', sans-serif;
   font-weight: 700;
   font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--accent);
-  margin-block-end: var(--space-16);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-24);
 }
 
-.footer__col ul { display: flex; flex-direction: column; gap: var(--space-8); }
-.footer__col a {
+.footer__col ul { display: flex; flex-direction: column; gap: var(--space-16); }
+.footer__col a, .footer__col li {
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
 }
-.footer__col a:hover { color: var(--accent); }
+.footer__col a:hover { color: var(--accent); text-decoration: none; }
 
-.footer__col address {
-  font-style: normal;
-  color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.footer .hours {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.footer .hours li {
-  display: flex;
-  justify-content: space-between;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
+.footer__contact li { line-height: 1.4; }
 
 .footer__bar {
   border-top: 1px solid var(--border-dark);
@@ -519,6 +604,11 @@ p:last-child { margin-block-end: 0; }
   font-size: 13px;
   margin: 0;
 }
+.footer__bar a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.footer__bar a:hover { color: var(--accent); }
 
 /* ====================================================================
    08. Cards
@@ -530,23 +620,90 @@ p:last-child { margin-block-end: 0; }
   overflow: hidden;
 }
 
+.card--treatment {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 .card--treatment .card__image {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 320 / 200;
   object-fit: cover;
 }
 
-.card--treatment .card__body { padding: var(--space-24); }
-.card--treatment .card__title { margin-block: var(--space-8); }
+.card--treatment .card__body {
+  padding: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  flex: 1;
+}
+.card--treatment .card__title { margin-block: var(--space-4) 0; }
+.card--treatment .card__body p { margin: 0; }
 .card--treatment .card__link {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   color: var(--accent-text-on-light);
   font-weight: 700;
-  margin-block-start: var(--space-16);
+  margin-block-start: auto;
+  padding-block-start: var(--space-8);
 }
 .card--treatment .card__link:hover { gap: 8px; transition: gap 0.2s; text-decoration: underline; }
+
+/* Behandlinger horizontal scroll-row (Figma: 4 synlige, swipe sidelæns) */
+.behandlinger__lead {
+  margin-block-end: var(--space-32);
+  color: var(--text-dark);
+  max-width: 840px;
+}
+.behandlinger-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-block-end: var(--space-16);
+}
+.behandlinger-scroll::-webkit-scrollbar { height: 8px; }
+.behandlinger-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  margin-inline: var(--space-24);
+}
+.behandlinger-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-light-figma);
+  border-radius: 4px;
+}
+.behandlinger-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 280px;
+  gap: var(--space-24);
+  padding-inline: max(24px, calc((100% - 1200px) / 2));
+  padding-block: var(--space-8);
+  margin: 0;
+}
+.behandlinger-row > li {
+  scroll-snap-align: start;
+  display: flex;
+}
+.behandlinger-row > li > .card { width: 100%; }
+
+.behandlinger__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-block-start: var(--space-16);
+  margin-block-end: 0;
+}
+.behandlinger__hint svg {
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 .card--testimonial {
   padding: var(--space-24);
@@ -566,6 +723,76 @@ p:last-child { margin-block-end: 0; }
   flex-direction: column;
 }
 .card--testimonial figcaption strong { font-weight: 700; }
+
+/* Anmeldelser-sektion (Figma): white cards med horizontal divider mellem quote og forfatter */
+.reviews-header {
+  margin-block-end: var(--space-32);
+}
+.reviews-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: 14px;
+  margin: 0;
+}
+.reviews-rating .stars {
+  color: #E8960E;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.reviews-rating .rating-meta {
+  color: var(--text-dark);
+}
+.reviews-grid { gap: var(--space-24); }
+
+.review-card {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  padding: var(--space-32);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.review-card__stars {
+  color: #E8960E;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-block-end: var(--space-16);
+}
+.review-card blockquote {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-dark);
+  padding-block-end: var(--space-24);
+  border-block-end: 1px solid var(--border-light-figma);
+}
+.review-card blockquote p { margin: 0; }
+.review-card figcaption {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding-block-start: var(--space-16);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.review-card__name {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.review-card__name::after {
+  content: " ·";
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-inline-start: var(--space-8);
+}
+
+.reviews-footnote {
+  margin-block-start: var(--space-24);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
 
 /* ====================================================================
    09. Form fields + checkbox + radio
@@ -868,8 +1095,9 @@ p:last-child { margin-block-end: 0; }
 }
 
 /* ====================================================================
-   15. Pris row
+   15. Pris row / Pris & forsikring sektion
    ==================================================================== */
+/* Original pris-row (bruges på stubs/priser.html) */
 .pris-rows { display: flex; flex-direction: column; }
 .pris-row {
   display: flex;
@@ -879,6 +1107,93 @@ p:last-child { margin-block-end: 0; }
 }
 .pris-row:last-child { border-bottom: none; }
 .pris-row span:last-child { font-weight: 700; }
+
+/* Landing Pris-grid (Figma) — 2-kol med pris-list venstre, forsikring-card højre */
+.pris-grid {
+  display: grid;
+  grid-template-columns: 560fr 640fr;
+  gap: var(--space-32);
+  margin-block-start: var(--space-32);
+  align-items: start;
+}
+
+.pris-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.pris-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-24) var(--space-32);
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-card);
+  font-family: 'Mulish', sans-serif;
+}
+.pris-card__label { font-size: 18px; color: var(--text-dark); font-weight: 400; }
+.pris-card__amount { font-size: 18px; color: var(--text-dark); font-weight: 700; }
+
+.pris-note {
+  margin-block: var(--space-16) 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.pris-cta {
+  width: 100%;
+  margin-block-start: var(--space-24);
+}
+
+/* Forsikrings-card (Figma): WHITE boxed card med border, indeholder titel/tekst/logos/eyebrow/CTA */
+.forsikring-card {
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-card);
+  padding: var(--space-32);
+}
+.forsikring-card h3 {
+  margin-block-end: var(--space-16);
+}
+.forsikring-card > p {
+  color: var(--text-secondary);
+  margin-block-end: var(--space-24);
+}
+.forsikring-logos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-16);
+  padding: 0;
+  margin: 0 0 var(--space-24);
+  list-style: none;
+}
+.forsikring-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-8);
+  background: var(--bg-light);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  min-height: 56px;
+  text-align: center;
+}
+.forsikring-eyebrow {
+  font-family: 'Mulish', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-text-on-light);
+  margin: 0 0 var(--space-16);
+}
+.forsikring-cta {
+  width: 100%;
+}
 
 /* ====================================================================
    16. Step (timeline element)
@@ -1180,6 +1495,7 @@ p:last-child { margin-block-end: 0; }
 /* ====================================================================
    18. Sections (hero, CTA-band, map-block, video-block, cross-links)
    ==================================================================== */
+/* Standard hero (bruges på behandlinger m.m.) — fullbleed photo */
 .section--hero {
   background-color: var(--bg-photo);
   background-image: linear-gradient(rgba(28, 12, 6, 0.6), rgba(28, 12, 6, 0.6));
@@ -1189,35 +1505,272 @@ p:last-child { margin-block-end: 0; }
 }
 .section--hero h1 { max-width: 720px; }
 .section--hero .hero__lead { max-width: 600px; }
+
+/* Landing-hero (Figma): lys baggrund, 2-kolonne 560/570, foto til højre */
+.section--hero-landing {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  padding-block: var(--space-48);
+}
+.section--hero-landing .container {
+  display: grid;
+  grid-template-columns: 560fr 570fr;
+  gap: var(--space-64);
+  align-items: center;
+  max-width: 1280px;
+}
+.section--hero-landing h1 {
+  font-size: 42px;
+  line-height: 1.2;
+  max-width: 560px;
+  margin-block-start: var(--space-24);
+}
+.section--hero-landing .hero__lead {
+  max-width: 520px;
+  color: var(--text-dark);
+}
+
+/* Hero-logo (stor variant øverst i text col) */
+.hero__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-16);
+  color: var(--text-dark);
+}
+.hero__logo-icon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+.hero__logo-text {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Sen', sans-serif;
+  line-height: 1.1;
+}
+.hero__logo-text strong {
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+}
+.hero__logo-text small {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-block-start: 2px;
+}
+
+/* Hero-foto: 570x620 ratio (Figma), fast højde for at undgå at hero bliver for stor */
+.hero__image {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  aspect-ratio: 570 / 620;
+  max-height: 620px;
+}
+.hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .hero__ctas {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-16);
   margin-block: var(--space-24);
 }
+
+/* Rating på lys baggrund (landing) — inline tekst, gule stjerner, ingen pill-bg */
 .hero__rating {
   display: inline-flex;
   align-items: center;
   gap: var(--space-8);
-  padding: var(--space-8) var(--space-16);
+  color: var(--text-dark);
+  font-size: 14px;
+  margin-block-start: 0;
+}
+.hero__rating .stars {
+  color: #E8960E;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.hero__rating .rating-meta {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+/* Hero på mørk baggrund (overskriver landing-styles) */
+.section--hero .hero__rating {
   background: rgba(255, 255, 255, 0.1);
+  padding: var(--space-8) var(--space-16);
   border-radius: var(--radius-btn);
   color: var(--text-primary);
-  font-weight: 700;
 }
 
 .cta-band {
   text-align: center;
   padding-block: var(--space-32);
 }
-.cta-band h2 { margin-block-end: var(--space-8); color: var(--text-on-accent); }
+.cta-band h2 { margin-block-end: var(--space-8); }
 .cta-band p { margin-block-end: var(--space-24); }
+
+/* CTA-band "Usikker? Bare ring." — DARK med orange phone-pill (Figma) */
+.section--cta-ring {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  text-align: center;
+}
+.section--cta-ring h2 { color: var(--text-primary); }
+.section--cta-ring .cta-band p {
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* Mød Nicolai-sektion: H2 ovenover 2-kol layout */
+.moed-section .moed-heading {
+  margin-block-end: var(--space-48);
+}
+.moed-section .video-block {
+  aspect-ratio: 5 / 4;
+}
+.moed-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+}
+.moed-body h3 { margin-block-end: var(--space-16); }
+.moed-body .moed-intro p { margin-block-end: var(--space-16); }
+
+/* Insurance pill-badge: "Dækket af de fleste sundhedsforsikringer →" */
+.insurance-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: 10px 20px;
+  background: var(--bg-light);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-btn);
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.insurance-pill:hover {
+  border-color: var(--accent);
+  background: var(--white);
+  text-decoration: none;
+}
+.insurance-pill::after {
+  content: "→";
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* Nested step-row i Mød Nicolai (3 kort i bredden) */
+.moed-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-24);
+}
+.moed-steps .step { gap: var(--space-8); }
+.moed-steps .step__number {
+  width: 32px;
+  height: 32px;
+  font-size: 15px;
+}
+.moed-steps .step h4 {
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+  margin-block-start: var(--space-8);
+  color: var(--text-dark);
+}
+.moed-steps .step p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-block-start: var(--space-4);
+}
 
 .map-block img {
   width: 100%;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
+
+/* Find vej til klinikken — fullbleed map venstre, info-kolonne højre (Figma 720/720) */
+.section--find {
+  padding: 0;
+  background: var(--bg-light);
+}
+.find-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 400px;
+}
+.find-map {
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.find-map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.find-info {
+  padding: var(--space-32) var(--space-64);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--white);
+}
+.find-info h2 { margin-block-end: var(--space-16); }
+.find-address {
+  font-style: normal;
+  color: var(--text-dark);
+  font-size: 16px;
+  margin-block-end: var(--space-24);
+  line-height: 1.6;
+}
+.find-cta {
+  align-self: flex-start;
+}
+.find-divider {
+  border: none;
+  border-block-start: 1px solid var(--border-light-figma);
+  margin-block: var(--space-32);
+}
+.find-hours-heading {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  margin-block-end: var(--space-16);
+}
+.find-hours {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  font-size: 16px;
+}
+.find-hours li {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: var(--space-16);
+  color: var(--text-dark);
+}
+.find-hours li span:last-child { color: var(--text-secondary); }
 
 .video-block {
   position: relative;
