@@ -2393,6 +2393,46 @@ p:last-child { margin-block-end: 0; }
   }
   .behandlinger__hint { font-size: 13px; }
 
+  /* Pris & forsikring (Figma 77:76 — 390×1072): stack pris-list over forsikring-card, 2x2 logos */
+  .pris-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+    margin-block-start: var(--space-24);
+  }
+  .pris-card { padding: var(--space-16) var(--space-24); }
+  .pris-cta { width: 100%; }
+  .forsikring-card { padding: var(--space-24); }
+  .forsikring-logos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-12, 12px);
+  }
+
+  /* CTA-band "Usikker? Bare ring." (Figma 77:111 — 390×314): centered pill + tightere tekst */
+  .section--cta-ring { padding-block: var(--space-48); }
+  .cta-band h2 { margin-block-end: var(--space-16); }
+  .cta-band p { font-size: 16px; margin-block-end: var(--space-24); }
+  .section--cta-ring .btn--phone-accent {
+    width: auto;
+    max-width: 100%;
+  }
+
+  /* Find vej (Figma 77:118 — 390×658): kort over info, full-bleed, hours som 2-kol tabel */
+  .find-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .find-map { aspect-ratio: 342 / 200; max-height: 240px; }
+  .find-info { padding: var(--space-32) var(--space-24); align-items: stretch; }
+  .find-cta { align-self: stretch; text-align: center; }
+  .find-divider { margin-block: var(--space-24); }
+  .find-info .find-hours { gap: var(--space-8); }
+  .find-info .find-hours li {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: var(--space-16);
+  }
+  .find-info .find-hours li span:first-child { margin-right: 0; }
+
   .stepper__label { display: none; }
 
   .flow-card { padding: var(--space-24); }
