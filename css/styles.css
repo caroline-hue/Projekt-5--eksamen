@@ -2335,7 +2335,8 @@ p:last-child { margin-block-end: 0; }
   }
 
   .section { padding: var(--space-48) 0; }
-  .container { padding-inline: var(--space-16); }
+  /* Container-gutter på 24px (matcher Figma's mobile-padding) — gælder alle sektioner */
+  .container { padding-inline: var(--space-24); }
 
   .grid--2col, .grid--3col, .grid--4col, .grid--5col {
     grid-template-columns: 1fr;
@@ -2351,31 +2352,40 @@ p:last-child { margin-block-end: 0; }
   .footer__heading { margin-block-end: var(--space-16); }
   .footer__col ul { gap: var(--space-12, 12px); }
 
-  /* Hero landing (Figma 73:19 — 390×1124): single-column stack med foto sidst */
-  .section--hero-landing { padding-block: var(--space-32) var(--space-48); }
+  /* Hero landing (Figma 73:19 — 390×1124): Logo → Photo → H1 → Lead → CTAs → Rating
+     display:contents på .hero__content gør at children flytter op i container-layoutet,
+     så vi kan interleave .hero__image mellem logo og h1 via `order` uden at røre HTML. */
+  .section--hero-landing { padding-block: var(--space-32) var(--space-48); background: var(--bg-light); }
   .section--hero-landing .container {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-24);
     max-width: 100%;
   }
-  .section--hero-landing .hero__content { order: 1; }
+  .section--hero-landing .hero__content { display: contents; }
+  .section--hero-landing .hero__logo { order: 1; }
   .section--hero-landing .hero__image {
     order: 2;
-    aspect-ratio: 342 / 240;
+    aspect-ratio: 342 / 381;
     max-height: none;
   }
-  .section--hero-landing .hero__logo-img { height: 64px; }
   .section--hero-landing h1 {
+    order: 3;
     font-size: 30px;
     line-height: 1.25;
-    margin-block-start: var(--space-16);
+    margin-block: 0;
   }
-  .section--hero-landing .hero__lead { font-size: 16px; max-width: 100%; }
-  .hero__ctas { flex-direction: column; gap: var(--space-16); margin-block: var(--space-24); }
+  .section--hero-landing .hero__lead { order: 4; font-size: 16px; max-width: 100%; margin: 0; }
+  .section--hero-landing .hero__ctas { order: 5; }
+  .section--hero-landing .hero__rating { order: 6; }
+  .section--hero-landing .hero__logo-img { height: 64px; }
+  .hero__ctas { flex-direction: column; gap: var(--space-16); margin: 0; }
   .hero__ctas .btn { width: 100%; justify-content: center; }
   .hero__rating { flex-wrap: wrap; row-gap: var(--space-4); }
 
-  /* Moed-sektion (Figma 76:16 — 390×1000): H2 → video → body → stepper, alle 1-kol */
+  /* Moed-sektion (Figma 76:16 — 390×1000): HVID bg, H2 → video → body → stepper, alle 1-kol.
+     "Fra første besøg"-stepper får cream-bg som visuel ø adskilt fra den hvide moed-area. */
+  .moed-section { background: var(--white); }
   .moed-section .container { max-width: 100%; }
   .moed-section .grid--2col {
     grid-template-columns: 1fr;
@@ -2384,20 +2394,47 @@ p:last-child { margin-block-end: 0; }
   .moed-section .moed-heading { margin-block-end: var(--space-24); }
   .moed-section .video-block { aspect-ratio: 16 / 10; }
   .moed-body { gap: var(--space-32); }
+  .moed-stepper {
+    background: var(--bg-light);
+    border-radius: var(--radius-card);
+    padding: var(--space-24);
+    margin-inline: calc(var(--space-8) * -1);
+  }
   .moed-steps { grid-template-columns: 1fr; gap: var(--space-24); }
 
-  /* Anmeldelser (Figma 76:46 — 390×562): stack 3 white review-cards, mindre padding */
-  .reviews-grid { gap: var(--space-16); }
+  /* Anmeldelser (Figma 76:46 — 390×562): cream bg, HORISONTAL SCROLL af review-cards
+     (matcher behandlinger-pattern); fullbleed via negativ margin på containerens padding. */
+  .reviews-header { padding-inline: 0; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 80%;
+    gap: var(--space-16);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-inline: var(--space-24);
+    margin-inline: calc(var(--space-24) * -1);
+    padding-block: var(--space-8);
+  }
+  .reviews-grid > .review-card {
+    scroll-snap-align: start;
+    width: 100%;
+    margin: 0;
+  }
   .review-card { padding: var(--space-24); }
   .review-card blockquote { font-size: 16px; padding-block-end: var(--space-16); }
   .review-card figcaption { padding-block-start: var(--space-12, 12px); }
   .reviews-footnote { font-size: 12px; }
 
-  /* Behandlinger (Figma 76:69 — 390×763): horisontal scroll bevares, mindre card-peek */
+  /* Behandlinger (Figma 76:69 — 390×763): horisontal scroll med 24px gutters,
+     første card aligner med H2 (begge 24px fra venstre kant). */
   .behandlinger__lead { margin-block-end: var(--space-24); }
   .behandlinger-row {
     grid-auto-columns: 260px;
-    padding-inline: var(--space-16);
+    padding-inline: var(--space-24);
     gap: var(--space-16);
   }
   .behandlinger__hint { font-size: 13px; }
@@ -2431,14 +2468,23 @@ p:last-child { margin-block-end: 0; }
     max-width: 100%;
   }
 
-  /* Find vej (Figma 77:118 — 390×658): kort over info, full-bleed, hours som 2-kol tabel */
+  /* Find vej (Figma 77:118 — 390×658): HVID bg, kort over info, 24px gutters, hours som 2-kol */
+  .section--find { background: var(--white); }
   .find-grid {
     grid-template-columns: 1fr;
     min-height: 0;
+    gap: var(--space-24);
+    padding-inline: var(--space-24);
+    padding-block: var(--space-48);
   }
-  .find-map { aspect-ratio: 342 / 200; max-height: 240px; }
-  .find-info { padding: var(--space-32) var(--space-24); align-items: stretch; }
-  .find-cta { align-self: stretch; text-align: center; }
+  .find-map {
+    aspect-ratio: 342 / 200;
+    max-height: 240px;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+  .find-info { padding: 0; background: transparent; align-items: stretch; }
+  .find-cta { align-self: flex-start; text-align: center; }
   .find-divider { margin-block: var(--space-24); }
   .find-info .find-hours { gap: var(--space-8); }
   .find-info .find-hours li {
