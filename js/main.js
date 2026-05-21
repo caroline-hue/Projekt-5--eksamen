@@ -171,8 +171,13 @@ const BOOKING_KEY = 'grocott-booking';
  *
  * IMPLEMENTÉR HER:
  */
-// TODO: function symptomGrid() { ... }
-
+function symptomGrid() {
+  const inputs = $$('input[name="symptom"]');
+  inputs.forEach(input => input.addEventListener('click', handleSymptom));
+}
+function handleSymptom(e) {
+  const valgt = e.target.value;
+}
 
 /* ============================================================
    08. BOOKING TRIN 3 — kalender render + dato/tid
