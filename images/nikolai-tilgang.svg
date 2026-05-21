@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172 172" width="172" height="172" role="img" aria-label="Foto: Nikolai">
-  <rect width="172" height="172" fill="#F8F4EE"/>
-  <text x="50%" y="50%" font-family="Mulish, sans-serif" font-size="16" font-weight="700" fill="#1C2630" text-anchor="middle" dominant-baseline="middle">Foto: Nikolai</text>
-  <text x="50%" y="158" font-family="Mulish, sans-serif" font-size="12" fill="#1C2630" text-anchor="middle" opacity="0.5">172x172 placeholder</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 280" width="488" height="280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Foto: Nikolai">
+  <rect width="488" height="280" fill="transparent"/>
+  <rect x="2" y="2" width="484" height="276" fill="none" stroke="#C5B8A8" stroke-width="2" stroke-dasharray="8 8" rx="14"/>
+  <text x="50%" y="50%" font-family="Mulish, sans-serif" font-size="20" font-weight="700" fill="#B84E10" text-anchor="middle" dominant-baseline="middle">Foto: Nikolai</text>
+  <text x="50%" y="260" font-family="Mulish, sans-serif" font-size="12" fill="#8A9EAD" text-anchor="middle">488x280 placeholder</text>
 </svg>
