@@ -177,6 +177,18 @@ function symptomGrid() {
 }
 function handleSymptom(e) {
   const valgt = e.target.value;
+  updateBookingState({ symptom: valgt });
+  const INFO = {
+    rygsmerter: 'Jeg finder årsagen til dine rygsmerter og behandler dem.',
+    'skulder-nakke': 'Spændinger og smerter i skuldre og nakke.',
+    'kaebe-hoved': 'Kæbeled, spændingshovedpine og migræne-relaterede smerter.',
+    'knae-hofter': 'Slidgigt, løbeskader og smerter i knæ og hofter.',
+    fod: 'Fodsmerter og indlægssåler.',
+    massage: 'Afspændende og smertelindrende massage.'
+  };
+  const card = $('.info-card');
+  card.hidden = false;
+  card.textContent = INFO[valgt];
   const sub = $('.symptom-sub');
   if (valgt === 'fod') {
     sub.hidden = false;
@@ -364,7 +376,7 @@ ready(() => {
   // Side-specifik:
   // const path = window.location.pathname;
   // if (path.endsWith('trin-1.html'))       consultToggle();
-  // if (path.endsWith('trin-2.html'))       symptomGrid();
+  if (path.endsWith('trin-2.html'))       symptomGrid();
   // if (path.endsWith('trin-3.html'))     { renderCalendar(2026, 4); consultToggle(); }
   // if (path.endsWith('trin-4.html'))     { formValidation(); cprModal(); }
   // if (path.endsWith('trin-5.html'))       renderConfirmation();
