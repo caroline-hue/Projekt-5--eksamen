@@ -178,6 +178,7 @@ function symptomGrid() {
 }
 function handleSymptom(e) {
   const valgt = e.target.value;
+  sidstValgt = valgt;
   updateBookingState({ symptom: valgt });
   const INFO = {
     rygsmerter: 'Jeg finder årsagen til dine rygsmerter og behandler dem.',
