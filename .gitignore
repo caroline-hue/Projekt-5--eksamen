@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Build (intet build-step, men for fremtidssikring)
+node_modules/
+dist/
+.cache/
+
+# Audit-outputs (kun screenshots committes)
+docs/audits/*.json

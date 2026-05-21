@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Komponentbibliotek og design tokens for Grocott Fysioterapi sitet.">
+  <title>Designsystem · Grocott Fysioterapi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&family=Mulish:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Spring til indhold</a>
+
+  <header class="nav" role="banner">
+    <div class="nav__inner container">
+      <a href="/" class="nav__logo" aria-label="Grocott Fysioterapi forside">
+        <picture>
+          <source media="(max-width: 767px)" srcset="images/logo-mobile.png">
+          <img src="images/logo-desktop.png" alt="Grocott Fysioterapi &amp; Sundhedshus" class="nav__logo-img">
+        </picture>
+      </a>
+      <nav class="nav__links" aria-label="Hovedmenu">
+        <ul>
+          <li class="nav__item nav__item--dropdown">
+            <button class="nav__link" aria-expanded="false" aria-controls="dd-behandlinger">
+              Behandlinger <span class="nav__chevron" aria-hidden="true">▾</span>
+            </button>
+            <div id="dd-behandlinger" class="nav__dropdown">
+              <ul>
+                <li><a href="behandlinger/rygsmerter.html">Rygsmerter</a></li>
+                <li><a href="behandlinger/skulder-nakke.html">Skulder og nakke</a></li>
+                <li><a href="behandlinger/kaebe-hoved.html">Kæbe og hoved</a></li>
+                <li><a href="behandlinger/knae-hofter.html">Knæ og hofter</a></li>
+                <li><a href="behandlinger/fod.html">Fod-problematikker</a></li>
+                <li><a href="behandlinger/massage.html">Massage</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="stubs/holdtraening.html" class="nav__link">Holdtræning</a></li>
+          <li><a href="om-nikolai.html" class="nav__link">Om Nicolai</a></li>
+          <li><a href="stubs/erhvervsaftaler.html" class="nav__link">Erhvervsaftaler</a></li>
+          <li class="nav__item nav__item--dropdown">
+            <button class="nav__link" aria-expanded="false" aria-controls="dd-praktisk">
+              Praktisk <span class="nav__chevron" aria-hidden="true">▾</span>
+            </button>
+            <div id="dd-praktisk" class="nav__dropdown">
+              <ul>
+                <li><a href="stubs/priser.html">Priser</a></li>
+                <li><a href="stubs/praktisk-information.html">Praktisk information</a></li>
+                <li><a href="stubs/privatlivspolitik.html">Privatlivspolitik</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="nav__ctas">
+        <a href="klient/login.html" class="btn btn--secondary btn--on-dark">Jeg er allerede klient</a>
+        <a href="booking/trin-1.html" class="btn btn--primary">Book første tid</a>
+      </div>
+      <button class="nav__burger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Åbn menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div id="mobile-nav" class="nav__mobile" hidden>
+      <button class="nav__close" aria-label="Luk menu">✕</button>
+      <nav aria-label="Mobilmenu">
+        <ul>
+          <li><a href="om-nikolai.html">Om Nicolai</a></li>
+          <li>
+            <button class="nav__mobile-toggle" aria-expanded="false" aria-controls="mobile-dd-behandlinger">Behandlinger ▾</button>
+            <ul id="mobile-dd-behandlinger">
+              <li><a href="behandlinger/rygsmerter.html">Rygsmerter</a></li>
+              <li><a href="behandlinger/skulder-nakke.html">Skulder og nakke</a></li>
+              <li><a href="behandlinger/kaebe-hoved.html">Kæbe og hoved</a></li>
+              <li><a href="behandlinger/knae-hofter.html">Knæ og hofter</a></li>
+              <li><a href="behandlinger/fod.html">Fod-problematikker</a></li>
+              <li><a href="behandlinger/massage.html">Massage</a></li>
+            </ul>
+          </li>
+          <li><a href="stubs/holdtraening.html">Holdtræning</a></li>
+          <li><a href="stubs/erhvervsaftaler.html">Erhvervsaftaler</a></li>
+          <li><a href="stubs/priser.html">Priser</a></li>
+          <li><a href="stubs/praktisk-information.html">Praktisk information</a></li>
+          <li><a href="stubs/privatlivspolitik.html">Privatlivspolitik</a></li>
+          <li><a href="klient/login.html">Jeg er allerede klient</a></li>
+        </ul>
+      </nav>
+      <a href="booking/trin-1.html" class="btn btn--primary">Book første tid</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="section section--light">
+      <div class="container">
+        <h1>Grocott Fysioterapi — Designsystem</h1>
+        <p class="hero__lead">Komponentbibliotek bygget med CSS custom properties. Alle komponenter henter farve, typografi og spacing fra tokens i <code>:root</code>, så ændringer i tokens automatisk propagerer.</p>
+      </div>
+    </section>
+
+    <section class="section ds-section" aria-labelledby="ds-buttons">
+      <div class="container">
+        <h2 id="ds-buttons">01 — Buttons</h2>
+        <div class="ds-row">
+          <h3>Button / Primary</h3>
+          <div class="ds-preview">
+            <button class="btn btn--primary">Default</button>
+            <button class="btn btn--primary" data-state="hover">Hover</button>
+          </div>
+        </div>
+        <div class="ds-row">
+          <h3>Button / Secondary (lys surface)</h3>
+          <div class="ds-preview">
+            <button class="btn btn--secondary">Default</button>
+            <button class="btn btn--secondary" data-state="hover">Hover</button>
+          </div>
+        </div>
+        <div class="ds-row ds-row--dark">
+          <h3>Button / Secondary (mørk surface)</h3>
+          <div class="ds-preview">
+            <button class="btn btn--secondary btn--on-dark">Default</button>
+            <button class="btn btn--secondary btn--on-dark" data-state="hover">Hover</button>
+          </div>
+        </div>
+        <div class="ds-row">
+          <h3>Button / Ghost accent</h3>
+          <div class="ds-preview">
+            <button class="btn btn--ghost">Modtag engangskode på SMS</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ds-section" aria-labelledby="ds-nav">
+      <div class="container">
+        <h2 id="ds-nav">02 — Navigation</h2>
+        <p>Desktop nav (1440 bred) + Mobile nav (390 bred) er implementeret i <code>&lt;header class="nav"&gt;</code> på alle sider. Se denne sides nav for live-eksempel.</p>
+      </div>
+    </section>
+
+    <section class="section ds-section" aria-labelledby="ds-cards">
+      <div class="container">
+        <h2 id="ds-cards">03 — Cards</h2>
+        <div class="ds-row">
+          <h3>Card / Treatment (320 bred)</h3>
+          <div class="ds-preview">
+            <article class="card card--treatment" style="max-width:320px">
+              <img src="images/card-rygsmerter.svg" alt="" class="card__image">
+              <div class="card__body">
+                <span class="badge badge--outline">Behandling</span>
+                <h4 class="card__title">Rygsmerter</h4>
+                <p>Jeg finder årsagen — ikke bare symptomet.</p>
+                <p class="caption">Fra 400 kr.</p>
+                <a href="#" class="card__link">Læs mere <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="ds-row">
+          <h3>Card / Testimonial (420 bred)</h3>
+          <div class="ds-preview">
+            <figure class="card card--testimonial" style="max-width:420px">
+              <div class="card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★★★★★</span></div>
+              <blockquote><p>"Nicolai forstod mit problem på 5 minutter."</p></blockquote>
+              <figcaption><strong>Mette K.</strong><span class="caption">Google-anmeldelse</span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ds-section" aria-labelledby="ds-forms">
+      <div class="container">
+        <h2 id="ds-forms">04 — Forms</h2>
+        <div class="ds-row">
+          <h3>Input / Text Field — 4 states</h3>
+          <div class="ds-preview ds-preview--stacked">
+            <div class="field"><label>Default</label><input type="text" placeholder="Placeholder"></div>
+            <div class="field"><label>Focus</label><input type="text" data-state="focus" placeholder="Skriv her..."></div>
+            <div class="field"><label>Filled</label><input type="text" value="Caroline Amundsen"></div>
+            <div class="field field--error"><label>Error</label><input type="email" value="caroline@" aria-invalid="true" aria-describedby="ds-err"><p id="ds-err" class="field__error" role="alert">Indtast en gyldig e-mail med @</p></div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <h3>Checkbox</h3>
+          <div class="ds-preview ds-preview--stacked">
+            <label class="checkbox"><input type="checkbox"><span class="checkbox__mark"></span><span>Jeg er medlem af sygesikring Danmark</span></label>
+            <label class="checkbox"><input type="checkbox" checked><span class="checkbox__mark"></span><span>Jeg accepterer privatlivspolitikken *</span></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ds-section" aria-labelledby="ds-fab">
+      <div class="container">
+        <h2 id="ds-fab">05 — FAB / Phone (Mobile 56×56)</h2>
+        <p>FAB-knappen vises kun på mobile breakpoint (&lt;768px) i nederste højre hjørne — den er aktiv på denne side, scroll til mobil-view for at se.</p>
+      </div>
+    </section>
+
+    <section class="section ds-section" aria-labelledby="ds-badge">
+      <div class="container">
+        <h2 id="ds-badge">06 — Badge</h2>
+        <div class="ds-preview">
+          <span class="badge badge--outline">Outline (kategori)</span>
+          <span class="badge badge--filled">★ Anbefalet</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ds-section" aria-labelledby="ds-pris">
+      <div class="container">
+        <h2 id="ds-pris">07 — Pris Row</h2>
+        <div class="ds-preview ds-preview--stacked" style="max-width:560px">
+          <div class="pris-row"><span>30 min konsultation</span><span>400 kr.</span></div>
+          <div class="pris-row"><span>60 min konsultation</span><span>650 kr.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ds-section ds-section--dark" aria-labelledby="ds-footer-col">
+      <div class="container">
+        <h2 id="ds-footer-col">08 — Footer Column (220 bred, mørk surface)</h2>
+        <div class="ds-preview">
+          <div class="footer__col" style="max-width:220px">
+            <h3 class="footer__heading">Kontakt</h3>
+            <address>Langeskov Centret 1<br>5550 Langeskov<br>+45 60 86 67 70</address>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ds-section" aria-labelledby="ds-step">
+      <div class="container">
+        <h2 id="ds-step">09 — Step (timeline-element)</h2>
+        <div class="ds-preview" style="max-width:180px">
+          <div class="step"><span class="step__number">1</span><h3>Første besøg</h3><p>Nicolai lytter til dine symptomer.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ds-section" aria-labelledby="ds-stepper">
+      <div class="container">
+        <h2 id="ds-stepper">10 — Stepper</h2>
+        <h3>Booking-flow (5 trin)</h3>
+        <ol class="stepper" aria-label="Booking trin demo">
+          <li class="stepper__step stepper__step--done"><span class="stepper__circle" aria-hidden="true">✓</span><span class="stepper__label">Intro</span></li>
+          <li class="stepper__step stepper__step--done"><span class="stepper__circle" aria-hidden="true">✓</span><span class="stepper__label">Symptom</span></li>
+          <li class="stepper__step stepper__step--active" aria-current="step"><span class="stepper__circle" aria-hidden="true">3</span><span class="stepper__label">Tid</span></li>
+          <li class="stepper__step"><span class="stepper__circle" aria-hidden="true">4</span><span class="stepper__label">Oplysninger</span></li>
+          <li class="stepper__step"><span class="stepper__circle" aria-hidden="true">5</span><span class="stepper__label">Bekræft</span></li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__grid">
+      <div class="footer__col footer__col--brand">
+        <span class="footer__logo-pill">Grocott Fysioterapi</span>
+        <p class="footer__cvr">CVR: XX XX XX XX</p>
+        <p class="footer__tagline">Personlig fysioterapi i Langeskov.<br>Ingen autopilot, ingen standardsvar.</p>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__heading">Navigation</h2>
+        <ul>
+          <li><a href="index.html#behandlinger-title">Behandlinger</a></li>
+          <li><a href="om-nikolai.html">Om Nicolai</a></li>
+          <li><a href="stubs/priser.html">Priser</a></li>
+          <li><a href="index.html#find-title">Kontakt</a></li>
+          <li><a href="booking/trin-1.html">Book tid</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__heading">Kontakt</h2>
+        <ul class="footer__contact">
+          <li><a href="tel:+4560866770">+45 60 86 67 70</a></li>
+          <li><a href="mailto:info@grocottfys.dk">info@grocottfys.dk</a></li>
+          <li>Langeskov Centret 1</li>
+          <li>5550 Langeskov</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__heading">Information</h2>
+        <ul>
+          <li><a href="stubs/privatlivspolitik.html">Privatlivspolitik</a></li>
+          <li><a href="stubs/privatlivspolitik.html#cookies">Cookie-indstillinger</a></li>
+          <li><a href="stubs/praktisk-information.html">Forsikringsoversigt</a></li>
+          <li><a href="stubs/privatlivspolitik.html#gdpr">GDPR</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__bar">
+      <p>© 2026 Grocott Fysioterapi · <a href="stubs/privatlivspolitik.html">Privatlivspolitik</a> · <a href="stubs/privatlivspolitik.html#cookies">Cookies</a></p>
+    </div>
+  </footer>
+
+  <a href="tel:+4560866770" class="fab" aria-label="Ring til Nicolai">
+    <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="currentColor">
+      <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/>
+    </svg>
+  </a>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
