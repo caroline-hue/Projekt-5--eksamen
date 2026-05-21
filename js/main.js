@@ -177,7 +177,14 @@ function symptomGrid() {
 }
 function handleSymptom(e) {
   const valgt = e.target.value;
+  const sub = $('.symptom-sub');
+  if (valgt === 'fod') {
+    sub.hidden = false;
+  } else {
+    sub.hidden = true;
+  }
 }
+
 
 /* ============================================================
    08. BOOKING TRIN 3 — kalender render + dato/tid
