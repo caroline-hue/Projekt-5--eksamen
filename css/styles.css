@@ -2340,7 +2340,16 @@ p:last-child { margin-block-end: 0; }
   .grid--2col, .grid--3col, .grid--4col, .grid--5col {
     grid-template-columns: 1fr;
   }
-  .footer__grid { grid-template-columns: 1fr; gap: var(--space-32); }
+  /* Footer (Figma 256:868 — 390×794): 4-kol grid → 1-kol stack, mindre padding-block */
+  .footer { padding: var(--space-48) 0 var(--space-24); }
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+    margin-block-end: var(--space-32);
+  }
+  .footer__logo-img { height: 36px; }
+  .footer__heading { margin-block-end: var(--space-16); }
+  .footer__col ul { gap: var(--space-12, 12px); }
 
   /* Hero landing (Figma 73:19 — 390×1124): single-column stack med foto sidst */
   .section--hero-landing { padding-block: var(--space-32) var(--space-48); }
@@ -2392,6 +2401,12 @@ p:last-child { margin-block-end: 0; }
     gap: var(--space-16);
   }
   .behandlinger__hint { font-size: 13px; }
+  /* WCAG 2.5.5 — sikr 44×44 touch-target på "Læs mere →"-link i kort */
+  .card--treatment .card__link {
+    min-height: 44px;
+    align-items: center;
+    padding-block-start: var(--space-12, 12px);
+  }
 
   /* Pris & forsikring (Figma 77:76 — 390×1072): stack pris-list over forsikring-card, 2x2 logos */
   .pris-grid {
