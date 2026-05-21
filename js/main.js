@@ -171,6 +171,7 @@ const BOOKING_KEY = 'grocott-booking';
  *
  * IMPLEMENTÉR HER:
  */
+let sidstValgt = null; 
 function symptomGrid() {
   const inputs = $$('input[name="symptom"]');
   inputs.forEach(input => input.addEventListener('click', handleSymptom));
