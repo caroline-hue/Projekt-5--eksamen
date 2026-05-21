@@ -2214,9 +2214,9 @@ section[aria-labelledby="behandlinger-title"].section--light {
   margin-block-end: var(--space-32);
 }
 
-/* --- 1. HERO (Figma 328:2481): 2-col, content left + photo right, light bg --- */
+/* --- 1. HERO (Figma 328:2481): 2-col, content left + photo right, HVID bg --- */
 .section--hero-behandling {
-  background: var(--bg-light);
+  background: var(--white);
   color: var(--text-dark);
   padding-block: var(--space-64) var(--space-48);
 }
@@ -2248,9 +2248,8 @@ section[aria-labelledby="behandlinger-title"].section--light {
 .hero-behandling__media {
   border-radius: var(--radius-card);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
   aspect-ratio: 624 / 380;
-  background: var(--bg-light);
+  background: var(--bg-light);  /* lyser igennem hvis foto-SVG'en bruger transparent fill */
 }
 .hero-behandling__media img {
   width: 100%;
@@ -2378,7 +2377,6 @@ section[aria-labelledby="behandlinger-title"].section--light {
   padding: var(--space-32);
   background: var(--bg-light);
   border-radius: var(--radius-card);
-  border-left: 4px solid var(--accent);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2402,7 +2400,6 @@ section[aria-labelledby="behandlinger-title"].section--light {
   background: var(--bg-light);
   border-radius: var(--radius-card);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
   display: flex;
   align-items: center;
   justify-content: center;
