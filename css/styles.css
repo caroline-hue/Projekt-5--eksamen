@@ -1985,9 +1985,19 @@ p:last-child { margin-block-end: 0; }
   margin-inline: auto;
 }
 
-/* Mød Nicolai-sektion: H2 ovenover 2-kol layout (Figma 1312 content width) */
+/* Mød Nicolai-sektion: HVID bg (Figma 26:2 viser hvid sektion, ikke cream),
+   H2 ovenover 2-kol layout (Figma 1312 content width) */
+.moed-section {
+  background: var(--white);
+}
 .moed-section .container {
   max-width: 1280px;
+}
+
+/* Landing-page "Behandlinger" sektion: HVID bg (Figma viser hvid på desktop også) —
+   scoped via aria-labelledby så andre .section--light forbliver cream */
+section[aria-labelledby="behandlinger-title"].section--light {
+  background: var(--white);
 }
 .moed-section .moed-heading {
   margin-block-end: var(--space-48);
@@ -2383,9 +2393,8 @@ p:last-child { margin-block-end: 0; }
   .hero__ctas .btn { width: 100%; justify-content: center; }
   .hero__rating { flex-wrap: wrap; row-gap: var(--space-4); }
 
-  /* Moed-sektion (Figma 76:16 — 390×1000): HVID bg, H2 → video → body → stepper, alle 1-kol.
-     "Fra første besøg"-stepper får cream-bg som visuel ø adskilt fra den hvide moed-area. */
-  .moed-section { background: var(--white); }
+  /* Moed-sektion (Figma 76:16 — 390×1000): H2 → video → body → stepper, alle 1-kol.
+     Bg er hvid (defineret i hoved-CSS), stepper får cream-bg som visuel ø. */
   .moed-section .container { max-width: 100%; }
   .moed-section .grid--2col {
     grid-template-columns: 1fr;
@@ -2482,6 +2491,11 @@ p:last-child { margin-block-end: 0; }
     max-height: 240px;
     border-radius: var(--radius-card);
     overflow: hidden;
+    /* Section er hvid på mobil — override desktop's bg-light så placeholder-SVG'en
+       (nu med transparent fill) matcher section-bg. */
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-card);
   }
   .find-info { padding: 0; background: transparent; align-items: stretch; }
   .find-cta { align-self: flex-start; text-align: center; }
