@@ -329,29 +329,324 @@ Showcase af alle 11 komponentsektioner — bevis til mundtlig eksamen.
 
 ## 8. JavaScript-skeleton plan
 
-`js/main.js` leveres med 13 navngivne TODO-blokke. Hver indeholder:
+> **Hvem skriver hvad:** HTML + CSS er Carolines del (færdig). JS er Louises del.
+> Dette afsnit er hendes arbejdsdokument — alt herunder kan implementeres uden
+> at røre HTML-struktur eller eksisterende CSS-tokens.
+
+`js/main.js` leveres som en tom skeleton med navngivne TODO-blokke. Hver blok indeholder:
 - DOM-selectorer (klar til `document.querySelector()`)
 - A11y-krav (`aria-*`, fokus, tastatur)
-- sessionStorage-skema hvor relevant
+- sessionStorage-schema hvor relevant
 - Mock-data hvor backend ellers ville være
 - Pseudo-kode i kommentarer
 
-**De 13 TODO-blokke:**
-1. `navDropdown()` — Behandlinger + Praktisk dropdown
-2. `mobileBurger()` — Toggle full-screen overlay
-3. `accordionOnlyOne()` (optional)
-4. `getBookingState()` / `updateBookingState()` — sessionStorage helpers
-5. `renderStepper()` — auto-detect current page
-6. `consultToggle()` — trin 1+3
-7. `symptomGrid()` — trin 2 + conditional sub-grid
-8. `renderCalendar()` — trin 3 (kompleksitet: høj)
-9. `formValidation()` — trin 4 ud over native
-10. `cprModal()` — open/close + focus-trap + ESC
-11. `renderConfirmation()` — trin 5
-12. `addToCalendar()` — .ics generation
-13. `mockEKLogin()` — pre-fyldte felter
+### 8.1 Fil-ejerskab & afgrænsning
 
-**SessionStorage schema (key: `grocott-booking`):**
+| Fil | Louises rolle | Carolines rolle |
+|---|---|---|
+| `js/main.js` | **Ejer 100%** — alt JS her | Rører ikke |
+| `css/styles.css` | Tilføjer KUN i sektion `25. JS State Classes` (sidst i filen) | Ejer resten |
+| `index.html` + alle øvrige `.html` | Må tilføje `id`, `data-js-*`, `aria-*`, `hidden` på eksisterende elementer | Ejer struktur + tekst |
+| `images/`, `README.md` | Læser | Ejer |
+| `docs/` | Læser specen som reference | Ejer |
+
+**Princip:** Hvis Louise har brug for en ny HTML-hook (fx en wrapper-div eller et id), tilføjer hun det selv — men ændrer ikke layout, klasser eller tekstindhold. Hvis hun har brug for et nyt komponent-design, skal Caroline lave det først.
+
+### 8.2 Naming conventions (merge-safe)
+
+For at undgå konflikter når Caroline arbejder videre på sider parallelt:
+
+**CSS state classes — kun Louise bruger disse, og kun i sektion `25. JS State Classes`:**
+
+| Klasse | Brug |
+|---|---|
+| `.is-active` | Markeret/valgt element (kalendercelle, time-slot, current step utover stepper) |
+| `.is-hidden` | JS-skjult element (alternativ til `hidden`-attribut hvor animation skal layeres) |
+| `.is-loading` | Asynkron state (knap mens .ics genereres) |
+| `.has-error` | Form-felt med valideringsfejl |
+| `body.has-open-menu` | Mobile burger-menu åben (låser body-scroll) |
+| `body.has-open-modal` | Modal åben (låser body-scroll) |
+| `body.has-open-dropdown` | Desktop nav-dropdown åben (dimmer baggrund) |
+
+**Foretrukken approach for toggles:** Skift `aria-expanded` / `aria-pressed` / `hidden` attributter — IKKE klasser. CSS er allerede styled mod `[aria-expanded="true"]` og `[hidden]`. Dette giver gratis a11y.
+
+**Data attributter — Louises hooks:** Prefix alle JS-hooks med `data-js-*` så Caroline kan se på et øjeblik at det er JS-territorium.
+```html
+<button data-js-modal-trigger="cpr-info">…</button>
+<td data-js-calendar-cell data-date="2026-05-05">…</td>
+```
+
+**Funktions- og variabel-naming:**
+- Wrap ALT i én IIFE for at undgå global pollution: `(() => { … })();`
+- Konstanter: `SCREAMING_SNAKE_CASE` med `GR_` prefix (`GR_BOOKING_KEY`, `GR_MOCK_SLOTS`)
+- Init-funktioner: `init` prefix (`initNavDropdown`, `initBurgerMenu`, `initCalendar`)
+- Helper-funktioner: camelCase, intet prefix (`getBookingState`, `renderCalendar`)
+- Globale mock-data: ét namespace-objekt `GR_MOCK = { slots: {…}, user: {…} }`
+- Ingen `var` — kun `const` (default) eller `let` hvor reassignment kræves
+
+**Filtypografi:**
+- Behold sektion-overskrifter (`/* === 01. UTILS === */`) som de er
+- Ny mock-data-blok placeres i sektion `00. MOCK DATA` øverst, før utils
+
+### 8.3 Globale komponenter (alle 25 sider)
+
+Disse funktioner kører på hver side. De er allerede skitseret i `js/main.js` blokke 01-03.
+
+#### 8.3.1 `initNavDropdown()` — desktop dropdowns (Behandlinger + Praktisk)
+
+**HTML der allerede findes (alle sider):**
+```html
+<button class="nav__link" aria-expanded="false" aria-controls="dd-behandlinger">
+  Behandlinger <span class="nav__chevron" aria-hidden="true">▾</span>
+</button>
+<div id="dd-behandlinger" class="nav__dropdown"> … </div>
+```
+
+**Krav:**
+- CSS åbner allerede dropdown ved `:hover` og `:focus-within` — JS er progressive enhancement
+- Klik på button → toggle `aria-expanded` true/false
+- `Esc` lukker alle åbne dropdowns + returnerer fokus til button
+- Klik udenfor `.nav__dropdown` lukker
+- Når mindst én dropdown er åben: sæt `body.has-open-dropdown` (CSS dimmer baggrund — Louise tilføjer denne CSS-regel i sektion 25)
+- Pile-tasterne ↑/↓ inde i et åbent dropdown skal navigere mellem links (WCAG 2.1.1)
+
+**Selectorer:** `$$('.nav__item--dropdown > .nav__link')`, `$$('.nav__dropdown')`
+
+#### 8.3.2 `initBurgerMenu()` — mobile menu (<768px)
+
+**HTML findes allerede:**
+```html
+<button class="nav__burger" aria-expanded="false" aria-controls="mobile-nav">…</button>
+<div id="mobile-nav" class="nav__mobile" hidden>…</div>
+```
+
+**Krav:**
+- Klik på `.nav__burger` → toggle `aria-expanded` + fjern/sæt `hidden` på `#mobile-nav`
+- Sæt `body.has-open-menu` (CSS låser scroll: `overflow: hidden`)
+- `Esc` lukker + returnerer fokus til burger
+- Klik på `.nav__close` eller på et nav-link → lukker
+- **Fokus-fælde** (WCAG 2.4.3): Tab cykler kun inden for `#mobile-nav` mens åben
+- Nestede knapper `.nav__mobile-toggle` (Behandlinger inde i mobile-menu) skal også toggle deres `aria-expanded` (CSS viser/skjuler `<ul>` allerede)
+- Ved resize til ≥768px: luk automatisk
+
+#### 8.3.3 `initFabScroll()` — sticky telefon-knap
+
+**HTML findes allerede på alle sider:**
+```html
+<a href="tel:+4560866770" class="fab" aria-label="Ring til Nicolai">…</a>
+```
+
+**Krav (NICE-TO-HAVE — kan udelades hvis tid mangler):**
+- Skjul FAB indtil bruger har scrollet forbi hero (eller >300px)
+- Brug `IntersectionObserver` på hero-sektionen, IKKE `scroll`-listener
+- Tilføj `.is-hidden` til FAB indtil observer fyrer
+- Smooth fade-in transition (CSS — Louise tilføjer i sektion 25)
+
+#### 8.3.4 `initSmoothScroll()` — interne anchor-links
+
+**Eksisterende anchors i footer:** `#behandlinger-title`, `#find-title`
+
+**Krav:**
+- CSS `scroll-behavior: smooth` på `html` virker out-of-the-box → JS er **kun** nødvendigt hvis vi skal:
+  - Justere offset pga. sticky nav (CSS `scroll-margin-top: 80px` håndterer dette allerede)
+  - Sætte fokus på destination (a11y-best practice: fokus følger scroll til landmark)
+- **Anbefalet minimum:** Lyt på alle `a[href^="#"]` clicks → efter scroll, kald `.focus({ preventScroll: true })` på destination
+
+#### 8.3.5 `initSkipLink()` — fokus-management
+
+**HTML:** `<a href="#main" class="skip-link">Spring til indhold</a>` på alle sider.
+
+**Krav:** Skip-link virker out-of-the-box. **NICE-TO-HAVE:** Tilføj `tabindex="-1"` på `<main>` dynamisk, så fokus faktisk lander dér og skærmlæser annoncerer landmark.
+
+### 8.4 Landing page (`index.html`) — sektion for sektion
+
+Landing page består af 9 sektioner. Her er JS-behov for hver:
+
+#### 8.4.1 Section 0: Navigation
+Se 8.3.1 (dropdown) + 8.3.2 (burger). **Ingen sidespecifik JS.**
+
+#### 8.4.2 Section 1: Hero
+**HTML:**
+```html
+<section class="section section--hero-landing">
+  <div class="hero__content">
+    <h1>Smerter, der holder dig fra det, du holder af?</h1>
+    <div class="hero__ctas">
+      <a href="booking/trin-1.html" class="btn btn--primary">Book første tid</a>
+      <a href="klient/login.html" class="btn btn--secondary">Jeg er allerede klient</a>
+    </div>
+    <p class="hero__rating">…4,8 på Google · 30+ anmeldelser</p>
+  </div>
+  <div class="hero__image"><img src="images/hero-photo.svg" alt="…"></div>
+</section>
+```
+
+**JS-behov:**
+- **Ingen påkrævet** — alle CTAs er `<a>` links med rigtige hrefs.
+- **NICE-TO-HAVE:** Animér rating-tal fra 0 → 4.8 (krav: respekter `prefers-reduced-motion`).
+
+#### 8.4.3 Section 2: Mød din fysioterapeut (video-block)
+**HTML:**
+```html
+<div class="video-block">
+  <img src="images/video-thumbnail.svg" alt="Video: Nicolai fortæller om sin tilgang">
+  <button class="video-block__play" aria-label="Afspil video — Nicolai introducerer sig selv (60 sekunder)">
+    <span aria-hidden="true">▶</span>
+  </button>
+</div>
+```
+
+**Ny JS-funktion: `initVideoPlayer()`**
+
+**Krav:**
+- Klik på `.video-block__play` → skift `.video-block` ud med `<iframe>` (YouTube eller Vimeo) eller HTML5 `<video>` med `autoplay`
+- Lazy loading — embed indlæses FØRST efter klik (privacy + perf)
+- A11y: efter swap, sæt fokus på iframe og annoncér via `aria-live`-region
+- Brug en `data-js-video-id` på knappen til at angive video-ID (Caroline kan udfylde senere — Louise hardkoder mock indtil videre)
+- Mock-data: `data-js-video-id="dQw4w9WgXcQ"` (Caroline supplerer den rigtige)
+
+**Selectorer:** `$$('.video-block')`, `$('.video-block__play', block)`
+
+#### 8.4.4 Section 3: Anmeldelser (reviews)
+**HTML:** 3 statiske `.review-card` + en footnote der allerede siger:
+> *↻ Live anmeldelser hentes via Elfsight Google Reviews-widget i den endelige løsning*
+
+**Ny JS-funktion: `initReviewsWidget()` (NICE-TO-HAVE)**
+
+**Krav:**
+- **Beslutning:** På grund af MVP-scope og privacy holdes de statiske kort som default. JS er kun forbered-hook.
+- Hvis tid: indlæs Elfsight script `<script src="https://elfsightcdn.com/platform.js" async></script>` og swap `.reviews-grid` indhold med `<div class="elfsight-app-XXXXX"></div>`
+- Husk: Elfsight er en 3.-parts widget — kræver cookie-consent (link den til `privatlivspolitik#cookies`)
+- **Fallback:** Hvis script ikke loader inden 3 sekunder → behold statiske kort, log fejl
+- Hvis du ikke implementerer det: behold de statiske kort. Footnoten skal i så fald **slettes** før aflevering.
+
+#### 8.4.5 Section 5: Behandlinger (horizontal scroll)
+**HTML:**
+```html
+<div class="behandlinger-scroll" role="region" aria-label="Liste af behandlinger — scroll horisontalt">
+  <ol class="behandlinger-row">
+    <li><article class="card card--treatment">…</article></li>
+    × 6 kort
+  </ol>
+</div>
+<p class="behandlinger__hint">Swipe eller scroll sidelæns for at se alle behandlinger</p>
+```
+
+**Ny JS-funktion: `initBehandlingerScroll()`**
+
+**Krav (CSS scroll-snap virker uden JS — dette er forbedringer):**
+- **Prev/Next-knapper** (NICE-TO-HAVE): Tilføj 2 `<button>` over scrolleren ved load: `← Forrige / Næste →`
+  - Klik → `.behandlinger-scroll.scrollBy({ left: ±cardWidth, behavior: 'smooth' })`
+  - Disable prev når `scrollLeft === 0`, disable next når slut nået
+  - Skjul på mobile (`<768px` — swipe er bedre dér)
+- **Keyboard:** Når en `.card--treatment` har fokus, ←/→ flytter til forrige/næste kort + scroller den ind
+- **Progress dots** (NICE-TO-HAVE): Vis `IntersectionObserver`-baseret indikator under: `● ○ ○ ○ ○ ○`
+- **Hint-fjernelse:** Når brugeren har scrollet, fjern `.behandlinger__hint` (eller fade ud) — så hintet ikke vedbliver
+
+**Selectorer:** `$('.behandlinger-scroll')`, `$$('.card--treatment', scroller)`, `$('.behandlinger__hint')`
+
+#### 8.4.6 Section 6: Pris & forsikring
+**HTML:**
+```html
+<aside class="forsikring-card">
+  <h3>Du betaler måske ikke selv</h3>
+  …
+  <a href="#" class="btn btn--dark forsikring-cta">Tjek din forsikringsdækning →</a>
+</aside>
+```
+
+**Ny JS-funktion: `initInsuranceModal()`**
+
+**Krav:**
+- Klik på `.forsikring-cta` → åbn modal med liste af understøttede forsikringer + tlf til klinikken
+- Genbrug `cprModal()`-mønstret (focus-trap, Esc, backdrop-click)
+- Modal-HTML tilføjes af Louise med `<dialog>` element (native browser-support, ingen polyfill)
+- **Mock-data (hardkod i funktionen):**
+  ```js
+  const GR_INSURANCE = [
+    'Falck Healthcare', 'Mølholm', 'Tryg', 'Topdanmark',
+    'PFA', 'Codan', 'Skandia', 'Sygeforsikringen "danmark"'
+  ];
+  ```
+- **VIGTIGT:** Skift `href="#"` til `href="javascript:void(0)"` undgås — i stedet tilføj `data-js-insurance-trigger` og lad CSS style det som button (eller skift til `<button class="btn btn--dark">`)
+
+#### 8.4.7 Section 7: CTA-band "Usikker? Bare ring"
+**HTML:** `<a href="tel:+4560866770" class="btn btn--phone-accent">…</a>`
+
+**JS-behov:** **Ingen.** `tel:` link virker out-of-the-box.
+
+#### 8.4.8 Section 8: Find vej (kort)
+**HTML:**
+```html
+<div class="find-map">
+  <img src="images/map-placeholder.svg" alt="Kort: Langeskov Centret 1, 5550 Langeskov">
+</div>
+```
+
+**Ny JS-funktion: `initMapEmbed()` (NICE-TO-HAVE)**
+
+**Krav:**
+- **Default:** Behold statisk SVG (privacy: ingen Google Maps tracking ved load)
+- Hvis tid: klik på kortet → swap til OpenStreetMap iframe eller Google Maps embed
+- Brug `<iframe loading="lazy">` — indlæses kun ved interaktion
+- Tilføj `data-js-map-trigger` på `.find-map`
+- Husk cookie-consent ved Google Maps (link til `privatlivspolitik#cookies`)
+
+#### 8.4.9 Section 9: Footer
+**JS-behov:** Footer-anchor-links (`#behandlinger-title`, `#find-title`) håndteres af `initSmoothScroll()` (se 8.3.4).
+
+### 8.5 JS-behov pr. side (andre sider)
+
+| Side | Globale (8.3) | Sidespecifik JS |
+|---|---|---|
+| `index.html` | ✓ | Se 8.4 (video, scroll-enhance, insurance modal, map) |
+| `om-nikolai.html` | ✓ | `initVideoPlayer()` — se 8.4.3 |
+| `design-system.html` | ✓ | Ingen (komponent-showcase) |
+| `behandlinger/*.html` (6 sider) | ✓ | Accordion (FAQ) bruger `<details>` — kun `accordionOnlyOne()` (8.6 blok 3) er nødvendig hvis vi vil have kun ét åbent ad gangen |
+| `booking/trin-1.html` | ✓ | `getBookingState`, `updateBookingState`, `renderStepper`, `consultToggle` |
+| `booking/trin-2.html` | ✓ | `renderStepper`, `symptomGrid` |
+| `booking/trin-3.html` | ✓ | `renderStepper`, `consultToggle`, `renderCalendar`, `selectDate`, `selectTime`, `updateBookingSummary` (akut-switch) |
+| `booking/trin-4.html` | ✓ | `renderStepper`, `formValidation`, `cprModal` |
+| `booking/trin-5.html` | ✓ | `renderStepper`, `renderConfirmation`, `addToCalendar`, `clearBookingState` |
+| `klient/login.html` | ✓ | `mockEKLogin` (intet stepper på login) |
+| `klient/vaelg.html` | ✓ | `renderStepper`, `symptomGrid` |
+| `klient/kalender.html` | ✓ | `renderStepper`, `renderCalendar`, `selectDate`, `selectTime` |
+| `klient/bekraeft.html` | ✓ | `renderStepper`, `mockEKLogin` (pre-fyld), `formValidation` |
+| `klient/booket.html` | ✓ | `renderStepper`, `renderConfirmation`, `addToCalendar` |
+| `stubs/*.html` (6 sider) | ✓ | Ingen sidespecifik |
+
+### 8.6 De 13 TODO-blokke i `js/main.js` (booking + EK + globale)
+
+| # | Funktion | Bruges på |
+|---|---|---|
+| 1 | `initNavDropdown()` | Alle 25 sider |
+| 2 | `initBurgerMenu()` | Alle 25 sider |
+| 3 | `accordionOnlyOne()` *(optional)* | 6 behandlinger |
+| 4 | `getBookingState()` / `updateBookingState()` / `clearBookingState()` | Booking trin 1-5 |
+| 5 | `renderStepper()` | Booking trin 1-5 + EK 4 sider |
+| 6 | `consultToggle()` | Booking trin 1 + 3 |
+| 7 | `symptomGrid()` | Booking trin 2 + EK vælg |
+| 8 | `renderCalendar()` + `selectDate()` + `selectTime()` + `updateBookingSummary()` | Booking trin 3 + EK kalender |
+| 9 | `formValidation()` | Booking trin 4 + EK bekraeft |
+| 10 | `cprModal()` | Booking trin 4 |
+| 11 | `renderConfirmation()` | Booking trin 5 + EK booket |
+| 12 | `addToCalendar()` (.ics) | Booking trin 5 + EK booket |
+| 13 | `mockEKLogin()` | klient/login.html + klient/bekraeft.html |
+
+**Nye landing-funktioner (tilføjes efter blokkene ovenfor):**
+
+| # | Funktion | Bruges på |
+|---|---|---|
+| 14 | `initVideoPlayer()` | index.html + om-nikolai.html |
+| 15 | `initBehandlingerScroll()` | index.html |
+| 16 | `initInsuranceModal()` | index.html |
+| 17 | `initFabScroll()` *(optional)* | Alle sider |
+| 18 | `initSmoothScroll()` | Alle sider |
+| 19 | `initReviewsWidget()` *(optional)* | index.html |
+| 20 | `initMapEmbed()` *(optional)* | index.html |
+
+### 8.7 SessionStorage schema (key: `grocott-booking`)
+
 ```js
 {
   consultationLength: '30' | '60',
@@ -365,7 +660,60 @@ Showcase af alle 11 komponentsektioner — bevis til mundtlig eksamen.
 }
 ```
 
-Estimeret JS-arbejde for studerende: ~11-14 timer.
+**Sekundær key (EK-flow):** `grocott-user`
+```js
+{
+  name: string, email: string, phone: string,
+  cpr: string  // sidste 4 cifre maskeret, kun til vis-ikke-send
+}
+```
+
+### 8.8 Router-pattern for entry point
+
+I bunden af `js/main.js` (eksisterer allerede som kommentar) bruges denne pattern:
+
+```js
+ready(() => {
+  // Globale (alle sider)
+  initNavDropdown();
+  initBurgerMenu();
+  initSmoothScroll();
+  initFabScroll();
+
+  // Side-specifik (route via pathname)
+  const path = location.pathname;
+
+  if (path === '/' || path.endsWith('index.html')) {
+    initVideoPlayer();
+    initBehandlingerScroll();
+    initInsuranceModal();
+    initReviewsWidget?.();
+    initMapEmbed?.();
+  }
+  if (path.endsWith('om-nikolai.html'))         initVideoPlayer();
+  if (path.includes('/behandlinger/'))          accordionOnlyOne();
+  if (document.body.classList.contains('flow-page')) renderStepper();
+  if (path.endsWith('trin-1.html'))             consultToggle();
+  if (path.endsWith('trin-2.html'))             symptomGrid();
+  if (path.endsWith('trin-3.html'))           { renderCalendar(2026, 4); consultToggle(); }
+  if (path.endsWith('trin-4.html'))           { formValidation(); cprModal(); }
+  if (path.endsWith('trin-5.html'))             renderConfirmation();
+  if (path.includes('/klient/'))                mockEKLogin();
+});
+```
+
+**Hvorfor pathname-routing:** Vi har ét bundle (`js/main.js`) for hele sitet. Routing pr. side undgår at unødvendige selectorer fejler i konsollen.
+
+### 8.9 Estimeret indsats
+
+| Bucket | Timer |
+|---|---|
+| Setup + naming + globale (8.3) | 2-3 |
+| Landing page enhancements (8.4) | 3-4 |
+| Booking-flow JS (blokke 4-12) | 6-8 |
+| EK-flow (blok 13 + genbrug) | 1-2 |
+| QA: keyboard, screenreader, edge cases | 2-3 |
+| **Total** | **14-20 timer** |
 
 ---
 
