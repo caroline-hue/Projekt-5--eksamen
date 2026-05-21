@@ -649,7 +649,7 @@ p:last-child { margin-block-end: 0; }
   flex: 1;
 }
 .card--treatment .card__title { margin-block: var(--space-4) 0; }
-.card--treatment .card__body p { margin: 0; }
+.card--treatment .card__body p { margin: 0; color: var(--text-secondary); }
 .card--treatment .card__link {
   display: inline-flex;
   align-items: center;
@@ -664,7 +664,7 @@ p:last-child { margin-block-end: 0; }
 /* Behandlinger horizontal scroll-row (Figma: 4 synlige, swipe sidelæns) */
 .behandlinger__lead {
   margin-block-end: var(--space-32);
-  color: var(--text-dark);
+  color: var(--text-secondary);
   max-width: 840px;
 }
 .behandlinger-scroll {
@@ -1570,7 +1570,7 @@ p:last-child { margin-block-end: 0; }
 }
 .section--hero-landing .hero__lead {
   max-width: 520px;
-  color: var(--text-dark);
+  color: var(--text-secondary);
 }
 
 /* Hero-logo (stor variant øverst i text col) */
@@ -2002,7 +2002,10 @@ p:last-child { margin-block-end: 0; }
   gap: var(--space-32);
 }
 .moed-body h3 { margin-block-end: var(--space-16); }
-.moed-body .moed-intro p { margin-block-end: var(--space-16); }
+.moed-body .moed-intro p {
+  margin-block-end: var(--space-16);
+  color: var(--text-secondary);
+}
 
 /* Insurance pill-badge: "Dækket af de fleste sundhedsforsikringer →" */
 .insurance-pill {
