@@ -1001,6 +1001,39 @@ p:last-child { margin-block-end: 0; }
   border-radius: 4px;
 }
 
+/* Accordion card-variant (Figma 267:28 — om-nikolai kurser) */
+.kurser-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.accordion__item--card {
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-card);
+  padding: var(--space-16) var(--space-24);
+}
+.accordion__item--card .accordion__head {
+  font-family: 'Mulish', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.accordion__item--card .accordion__icon {
+  font-size: 20px;
+  color: var(--text-secondary);
+  font-family: 'Sen', sans-serif;
+  transition: transform 0.2s;
+}
+.accordion__item--card[open] .accordion__icon {
+  transform: rotate(90deg);
+  color: var(--accent);
+}
+.accordion__item--card .accordion__body {
+  padding-block: var(--space-16) var(--space-8);
+}
+.accordion__item--card .accordion__body .dot-list { margin: 0; }
+
 /* ====================================================================
    12. Modal / Popover
    ==================================================================== */
@@ -1608,6 +1641,329 @@ p:last-child { margin-block-end: 0; }
   padding: var(--space-8) var(--space-16);
   border-radius: var(--radius-btn);
   color: var(--text-primary);
+}
+
+/* Om Nicolai-hero: foto venstre, tekst højre (Figma 266:513) */
+.section--hero-om {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  padding-block: var(--space-48);
+}
+.section--hero-om .container {
+  display: grid;
+  grid-template-columns: 560fr 640fr;
+  gap: var(--space-64);
+  align-items: center;
+  max-width: 1280px;
+}
+.om-hero__photo {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  aspect-ratio: 560 / 518;
+  background: var(--bg-photo);
+}
+.om-hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.om-hero__text { max-width: 640px; }
+.om-hero__text .eyebrow {
+  margin-block-end: var(--space-24);
+}
+.om-hero__text h1 {
+  font-size: 52px;
+  line-height: 1.2;
+  margin-block-end: var(--space-32);
+}
+.om-hero__text p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-block-end: var(--space-16);
+  color: var(--text-dark);
+}
+.om-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  margin-block-start: var(--space-32);
+}
+
+/* Hør mig fortælle — stor centreret video-player */
+.section--video-hero {
+  background: var(--bg-light);
+  padding-block: var(--space-64);
+}
+.section--video-hero h2 {
+  text-align: center;
+  margin-block-end: var(--space-16);
+}
+.section--video-hero .video-hero__lead {
+  text-align: center;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin-inline: auto;
+  margin-block-end: var(--space-32);
+}
+.section--video-hero .video-block {
+  max-width: 960px;
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-dark);
+}
+
+/* Min tilgang til behandling — 3 approach-cards med orange ikon */
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-24);
+  margin-block-start: var(--space-32);
+}
+.approach-card {
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-card);
+  padding: var(--space-32);
+}
+.approach-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-size: 20px;
+  font-weight: 800;
+  margin-block-end: var(--space-16);
+}
+.approach-card h3 {
+  font-size: 20px;
+  margin-block-end: var(--space-8);
+}
+.approach-card p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Dit første besøg — 3 mini-step cards (mere kompakt end approach) */
+.visit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-24);
+  margin-block-start: var(--space-32);
+}
+.visit-card {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+.visit-card__dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.visit-card h3 {
+  font-size: 18px;
+  margin-block-end: var(--space-4);
+}
+.visit-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Min baggrund — horizontal timeline med scroll */
+.timeline-scroll {
+  overflow-x: auto;
+  margin-block-start: var(--space-32);
+  padding-block: var(--space-16);
+  -webkit-overflow-scrolling: touch;
+}
+.timeline {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  min-width: 2200px;
+  padding-block: var(--space-48);
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  inset-inline: 60px;
+  top: 130px;
+  height: 2px;
+  background: var(--border-light-figma);
+}
+.timeline-event {
+  position: relative;
+  width: 300px;
+  flex-shrink: 0;
+  padding-inline: var(--space-16);
+}
+.timeline-event__year {
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-dark);
+  margin-block-end: var(--space-32);
+  display: block;
+}
+.timeline-event__dot {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 4px solid var(--bg-light);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.timeline-event__desc {
+  margin-block-start: var(--space-24);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.timeline-hint {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-block-start: var(--space-16);
+}
+
+/* Anmeldelser med Google-avatar style (om-nikolai) */
+.review-grid--google { gap: var(--space-24); }
+.review-card--google {
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-card);
+  padding: var(--space-32);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.review-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+}
+.review-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Sen', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.review-card__author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.review-card__author-name {
+  font-weight: 700;
+  color: var(--text-dark);
+  font-size: 15px;
+}
+.review-card__author-date {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+.review-card--google .review-card__stars { margin: 0; }
+.review-card--google blockquote {
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+.review-card--google blockquote p { margin: 0; }
+.review-card__source-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.review-card__source-label::before {
+  content: "G";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+  color: white;
+  font-weight: 800;
+  font-size: 10px;
+}
+
+.reviews-header-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  margin-block-end: var(--space-32);
+}
+.reviews-header-inline h2 { margin: 0; }
+
+/* Det jeg behandler — chip-cloud med arrow-pills */
+.chip-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  margin-block-start: var(--space-24);
+  padding: 0;
+  list-style: none;
+}
+.chip-cloud a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: 10px 24px 10px 20px;
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-btn);
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.chip-cloud a::before {
+  content: "→";
+  color: var(--accent);
+  font-weight: 800;
+}
+.chip-cloud a:hover {
+  border-color: var(--accent);
+  background: var(--white);
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
 .cta-band {

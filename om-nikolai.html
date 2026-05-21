@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mød Nicolai Grocott, autoriseret fysioterapeut i Langeskov. Læs om hans tilgang til behandling og baggrund.">
+  <meta name="description" content="Mød Nicolai Grocott — autoriseret fysioterapeut i Langeskov. Læs om hans tilgang til behandling, baggrund og uddannelse.">
   <title>Om Nicolai · Grocott Fysioterapi</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,11 @@
   <header class="nav" role="banner">
     <div class="nav__inner container">
       <a href="/" class="nav__logo" aria-label="Grocott Fysioterapi forside">
-        <span class="nav__logo-text">Grocott Fysioterapi & Sundhedshus</span>
+        <img src="images/logo.svg" alt="" class="nav__logo-icon" width="36" height="36">
+        <span class="nav__logo-text">
+          <strong>Grocott Fysioterapi</strong>
+          <small>&amp; Sundhedshus</small>
+        </span>
       </a>
       <nav class="nav__links" aria-label="Hovedmenu">
         <ul>
@@ -92,133 +96,302 @@
 
   <main id="main">
 
-    <!-- Hero (2-col: portræt + tekst) -->
-    <section class="section section--hero section--dark" aria-labelledby="om-hero-title">
-      <div class="container grid grid--2col">
-        <img src="images/nikolai-hero.svg" alt="Portræt af Nicolai Grocott, autoriseret fysioterapeut">
-        <div>
-          <p class="eyebrow">OM NICOLAI</p>
+    <!-- Section 1: Hero — portræt venstre, tekst højre (Figma 266:513) -->
+    <section class="section section--hero-om" aria-labelledby="om-hero-title">
+      <div class="container">
+        <div class="om-hero__photo">
+          <img src="images/nikolai-hero.svg" alt="Portræt af Nicolai Grocott, autoriseret fysioterapeut">
+        </div>
+        <div class="om-hero__text">
+          <p class="eyebrow">Autoriseret fysioterapeut</p>
           <h1 id="om-hero-title">Nicolai Grocott</h1>
-          <p class="hero__subtitle">Autoriseret fysioterapeut · Langeskov</p>
-          <p>Med 10+ års erfaring og specialer i kroniske smerter og idrætsfysioterapi hjælper jeg dig med at komme tilbage til det, du holder af.</p>
-          <a href="booking/trin-1.html" class="btn btn--primary">Book første tid</a>
+          <p>Sidder du med rygsmerter, nakkegener eller skuldersmerter du ikke ved hvad er — det er præcis dig jeg er her for.</p>
+          <p>Jeg er fysioterapeut i Langeskov — tæt på dig på Fyn. Hos mig er der ingen autopilot og ingen standardbehandlinger.</p>
+          <div class="om-hero__ctas">
+            <a href="booking/trin-1.html" class="btn btn--primary">Book første tid</a>
+            <a href="tel:+4560866770" class="btn btn--secondary">Ring direkte</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Video — FØRSTE efter hero (manuel fix fra spec) -->
-    <section class="section section--dark" aria-labelledby="video-title">
+    <!-- Section 2: Hør mig fortælle — stor centreret video (Figma 269:10) -->
+    <section class="section section--video-hero" aria-labelledby="video-title">
       <div class="container">
         <h2 id="video-title">Hør mig fortælle</h2>
-        <div class="video-block video-block--centered">
-          <img src="images/video-thumbnail.svg" alt="Video: Nicolai fortæller om sin behandlingstilgang">
-          <button class="video-block__play" aria-label="Afspil video">▶</button>
+        <p class="video-hero__lead">Hvad kan du forvente når du booker første tid? Hør hvad jeg gør — og hvorfor.</p>
+        <div class="video-block">
+          <img src="images/video-thumbnail.svg" alt="">
+          <button class="video-block__play" aria-label="Afspil video — Nicolai introducerer sig selv og sin tilgang" type="button">
+            <span aria-hidden="true">▶</span>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- Min tilgang -->
+    <!-- Section 3: Min tilgang til behandling — 3 approach-cards (Figma 266:527) -->
     <section class="section section--light" aria-labelledby="tilgang-title">
       <div class="container">
         <h2 id="tilgang-title">Min tilgang til behandling</h2>
-        <div class="grid grid--3col">
-          <div class="step"><span class="step__number">1</span><h3>Tid til dig</h3><p>Fuld konsultation, ikke samlebåndsbehandling.</p></div>
-          <div class="step"><span class="step__number">2</span><h3>Årsag, ikke symptom</h3><p>Vi finder årsagen, ikke bare behandler smerten.</p></div>
-          <div class="step"><span class="step__number">3</span><h3>Smertefri på den lange bane</h3><p>Mål er varig bedring, ikke kortvarig lindring.</p></div>
+        <div class="approach-grid">
+          <article class="approach-card">
+            <span class="approach-card__icon" aria-hidden="true">◎</span>
+            <h3>Tid til dig</h3>
+            <p>Du er mere end dine rygsmerter eller nakkegener. Vi taler om hverdagen og dine mål, så vi finder en løsning der faktisk holder.</p>
+          </article>
+          <article class="approach-card">
+            <span class="approach-card__icon" aria-hidden="true">◈</span>
+            <h3>Årsag, ikke symptom</h3>
+            <p>Jeg finder ikke bare dér det gør ondt. Jeg finder ud af hvorfor — og giver dig redskaberne til selv at holde dig smertefri.</p>
+          </article>
+          <article class="approach-card">
+            <span class="approach-card__icon" aria-hidden="true">◉</span>
+            <h3>Smertefri på den lange bane</h3>
+            <p>Mit mål er ikke at du booker næste tid. Det er at du ikke har brug for den.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Sådan foregår et forløb -->
-    <section class="section" aria-labelledby="forloeb-title">
+    <!-- Section 4: Dit første besøg hos mig — 3 step-cards (Figma 269:16) -->
+    <section class="section" aria-labelledby="visit-title">
       <div class="container">
-        <h2 id="forloeb-title">Sådan foregår et forløb hos mig</h2>
-        <ol class="step-list step-list--horizontal">
-          <li class="step"><span class="step__number">1</span><h3>Undersøgelse</h3><p>Grundig anamnese og funktionel undersøgelse.</p></li>
-          <li class="step"><span class="step__number">2</span><h3>Diagnose &amp; plan</h3><p>Vi lægger en plan sammen.</p></li>
-          <li class="step"><span class="step__number">3</span><h3>Behandling</h3><p>Manuelle teknikker, øvelser, gradueret belastning.</p></li>
-          <li class="step"><span class="step__number">4</span><h3>Selvhjælp</h3><p>Du forlader klinikken med konkrete værktøjer.</p></li>
+        <h2 id="visit-title">Dit første besøg hos mig</h2>
+        <div class="visit-grid">
+          <div class="visit-card">
+            <span class="visit-card__dot" aria-hidden="true"></span>
+            <div>
+              <h3>Undersøgelse</h3>
+              <p>Grundig anamnese og funktionel test af det område der gør ondt.</p>
+            </div>
+          </div>
+          <div class="visit-card">
+            <span class="visit-card__dot" aria-hidden="true"></span>
+            <div>
+              <h3>Forklaring og plan</h3>
+              <p>Jeg forklarer hvad jeg finder — og vi laver en plan sammen.</p>
+            </div>
+          </div>
+          <div class="visit-card">
+            <span class="visit-card__dot" aria-hidden="true"></span>
+            <div>
+              <h3>Behandling</h3>
+              <p>Manuelle teknikker, øvelser og konkrete værktøjer du tager med hjem.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Min baggrund — horizontal timeline (Figma 267:2) -->
+    <section class="section section--light" aria-labelledby="baggrund-title">
+      <div class="container">
+        <h2 id="baggrund-title">Min baggrund</h2>
+        <p>Jeg startede som badmintontræner og endte som autoriseret fysioterapeut i Langeskov. Undervejs har jeg specialiseret mig i skulder, nakke, hovedpine, kæbe og idrætsskader.</p>
+      </div>
+      <div class="timeline-scroll" role="region" aria-label="Karriere-tidslinje — scroll horisontalt">
+        <ol class="timeline">
+          <li class="timeline-event">
+            <span class="timeline-event__year">~2009</span>
+            <span class="timeline-event__dot" aria-hidden="true"></span>
+            <p class="timeline-event__desc">Elite badmintontræner, Aalborg Trænerakademi</p>
+          </li>
+          <li class="timeline-event">
+            <span class="timeline-event__year">2009–2012</span>
+            <span class="timeline-event__dot" aria-hidden="true"></span>
+            <p class="timeline-event__desc">Idræt og Sundhed, SDU (2,5 år)</p>
+          </li>
+          <li class="timeline-event">
+            <span class="timeline-event__year">2012</span>
+            <span class="timeline-event__dot" aria-hidden="true"></span>
+            <p class="timeline-event__desc">Færdiguddannet fysioterapeut</p>
+          </li>
+          <li class="timeline-event">
+            <span class="timeline-event__year">2012–2018</span>
+            <span class="timeline-event__dot" aria-hidden="true"></span>
+            <p class="timeline-event__desc">Roskilde + Kerteminde Kommuner (socialpsykiatri)</p>
+          </li>
+          <li class="timeline-event">
+            <span class="timeline-event__year">2018</span>
+            <span class="timeline-event__dot" aria-hidden="true"></span>
+            <p class="timeline-event__desc">Selvstændig, indlejer hos Din Fysioterapi i Vissenbjerg</p>
+          </li>
+          <li class="timeline-event">
+            <span class="timeline-event__year">I dag</span>
+            <span class="timeline-event__dot" aria-hidden="true"></span>
+            <p class="timeline-event__desc">Grocott Fysioterapi i Langeskov Centret</p>
+          </li>
         </ol>
       </div>
-    </section>
-
-    <!-- Min baggrund -->
-    <section class="section section--light" aria-labelledby="baggrund-title">
-      <div class="container grid grid--2col">
-        <div>
-          <h2 id="baggrund-title">Min baggrund</h2>
-          <h3>Uddannelse</h3>
-          <ul class="dot-list">
-            <li><strong>2016</strong> · Fysioterapeut, UC Syddanmark</li>
-            <li><strong>2018</strong> · Idrætsfysioterapeut-certificering</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Kurser &amp; certifikater</h3>
-          <ul class="dot-list">
-            <li>McKenzie metode niveau A &amp; B</li>
-            <li>Dry needling / akupunktur</li>
-            <li>Kinetic Control bevægekontrol-system</li>
-            <li>Akut idrætsskade-håndtering</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials — identisk med index.html section 4 -->
-    <section class="section" aria-labelledby="testimonials-title">
       <div class="container">
-        <h2 id="testimonials-title">Rigtige klienter. Rigtige resultater.</h2>
-        <div class="grid grid--3col">
-          <figure class="card card--testimonial">
-            <div class="card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★★★★★</span></div>
-            <blockquote><p>"Nicolai forstod mit problem på 5 minutter. Efter 3 behandlinger var smerterne væk."</p></blockquote>
-            <figcaption><strong>Mette K.</strong><span class="caption">Google-anmeldelse</span></figcaption>
+        <p class="timeline-hint">← scroll horisontalt for mere →</p>
+      </div>
+    </section>
+
+    <!-- Section 6: Mine kurser og videreuddannelse — accordion (Figma 267:28) -->
+    <section class="section" aria-labelledby="kurser-title">
+      <div class="container">
+        <h2 id="kurser-title">Mine kurser og videreuddannelse</h2>
+        <p>Jeg holder mig opdateret inden for de tilstande jeg behandler — rygsmerter, nakkesmerter, skulder, knæ og kæbe. Fold ud for detaljer.</p>
+        <div class="kurser-accordion" style="margin-block-start: var(--space-32);">
+          <details class="accordion__item accordion__item--card">
+            <summary class="accordion__head">
+              Skulder, nakke og hovedpine
+              <span class="accordion__icon" aria-hidden="true">›</span>
+            </summary>
+            <div class="accordion__body">
+              <ul class="dot-list">
+                <li>McKenzie-metoden niveau A &amp; B</li>
+                <li>Cervikogen hovedpine — diagnostik og behandling</li>
+                <li>Skulder-rehabilitering efter operation</li>
+                <li>Kæbeleds-dysfunktion (TMD)</li>
+              </ul>
+            </div>
+          </details>
+          <details class="accordion__item accordion__item--card">
+            <summary class="accordion__head">
+              Idrætsfysioterapi
+              <span class="accordion__icon" aria-hidden="true">›</span>
+            </summary>
+            <div class="accordion__body">
+              <ul class="dot-list">
+                <li>Idrætsfysioterapeut-certificering (DSO)</li>
+                <li>Akut idrætsskade-håndtering</li>
+                <li>Genoptræning efter korsbåndsskade</li>
+              </ul>
+            </div>
+          </details>
+          <details class="accordion__item accordion__item--card">
+            <summary class="accordion__head">
+              Ryg og bækken
+              <span class="accordion__icon" aria-hidden="true">›</span>
+            </summary>
+            <div class="accordion__body">
+              <ul class="dot-list">
+                <li>Manuel terapi ryg/bækken</li>
+                <li>Bækkenløsnings-behandling</li>
+                <li>Lumbal stabilisering</li>
+              </ul>
+            </div>
+          </details>
+          <details class="accordion__item accordion__item--card">
+            <summary class="accordion__head">
+              Andre kurser
+              <span class="accordion__icon" aria-hidden="true">›</span>
+            </summary>
+            <div class="accordion__body">
+              <ul class="dot-list">
+                <li>Dry needling / akupunktur</li>
+                <li>Kinetic Control bevægekontrol-system</li>
+                <li>Ledmobilisering Maitland</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Anmeldelser — Google-style cards (Figma 271:2) -->
+    <section class="section section--light" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="reviews-header-inline">
+          <h2 id="testimonials-title">Rigtige klienter. Rigtige resultater.</h2>
+          <p class="reviews-rating">
+            <span class="stars" aria-hidden="true">★ ★ ★ ★ ★</span>
+            <span class="rating-meta">4,8 · Google Anmeldelser</span>
+            <span class="sr-only">4,8 ud af 5 stjerner på Google</span>
+          </p>
+        </div>
+        <div class="grid grid--3col review-grid--google">
+          <figure class="review-card--google">
+            <header class="review-card__author">
+              <span class="review-card__avatar" aria-hidden="true">J</span>
+              <span class="review-card__author-info">
+                <span class="review-card__author-name">Jacob Asmussen</span>
+                <span class="review-card__author-date">for 2 måneder siden</span>
+              </span>
+            </header>
+            <div class="review-card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
+            <blockquote><p>Allerede efter én behandling mærkede jeg en tydelig forskel — og nu har jeg ikke længere hovedpine.</p></blockquote>
+            <p class="review-card__source-label">Posted on Google</p>
           </figure>
-          <figure class="card card--testimonial">
-            <div class="card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★★★★★</span></div>
-            <blockquote><p>"Endelig en fysioterapeut der ikke bare giver mig en standardøvelse."</p></blockquote>
-            <figcaption><strong>Jens B.</strong><span class="caption">Google-anmeldelse</span></figcaption>
+          <figure class="review-card--google">
+            <header class="review-card__author">
+              <span class="review-card__avatar" aria-hidden="true">H</span>
+              <span class="review-card__author-info">
+                <span class="review-card__author-name">Heidi M. Kristens</span>
+                <span class="review-card__author-date">for 3 måneder siden</span>
+              </span>
+            </header>
+            <div class="review-card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
+            <blockquote><p>Nicolai har en lidt anden tilgang end jeg har prøvet før. Det har været effektivt og en stor AHA-oplevelse.</p></blockquote>
+            <p class="review-card__source-label">Posted on Google</p>
           </figure>
-          <figure class="card card--testimonial">
-            <div class="card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★★★★★</span></div>
-            <blockquote><p>"Den bedste fysioterapeut jeg har været hos i 20 år."</p></blockquote>
-            <figcaption><strong>Anne L.</strong><span class="caption">Google-anmeldelse</span></figcaption>
+          <figure class="review-card--google">
+            <header class="review-card__author">
+              <span class="review-card__avatar" aria-hidden="true">J</span>
+              <span class="review-card__author-info">
+                <span class="review-card__author-name">June</span>
+                <span class="review-card__author-date">for 5 måneder siden</span>
+              </span>
+            </header>
+            <div class="review-card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
+            <blockquote><p>Jeg har altid følt mig mødt, hørt og forstået i forhold til mine smerter og årsagerne bag.</p></blockquote>
+            <p class="review-card__source-label">Posted on Google</p>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- Usikker? Bare ring — identisk med index.html section 7 -->
-    <section class="section section--accent" aria-labelledby="ring-title">
+    <!-- Section 8: Det jeg behandler — chip-cloud (Figma 271:39) -->
+    <section class="section" aria-labelledby="behandler-title">
+      <div class="container">
+        <h2 id="behandler-title">Det jeg behandler</h2>
+        <ul class="chip-cloud">
+          <li><a href="behandlinger/rygsmerter.html">Rygsmerter</a></li>
+          <li><a href="behandlinger/skulder-nakke.html">Skulder og nakke</a></li>
+          <li><a href="behandlinger/kaebe-hoved.html">Hovedpine</a></li>
+          <li><a href="behandlinger/knae-hofter.html">Knæ og hofter</a></li>
+          <li><a href="behandlinger/fod.html">Fod-problematikker</a></li>
+          <li><a href="behandlinger/massage.html">Massage</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 9: CTA-band "Usikker? Bare ring." — kopi fra landing -->
+    <section class="section section--cta-ring" aria-labelledby="ring-title">
       <div class="container cta-band">
         <h2 id="ring-title">Usikker? Bare ring.</h2>
-        <p>Ring og spørg hvad som helst. Nicolai tager telefonen.</p>
-        <a href="tel:+4560866770" class="btn btn--phone" aria-label="Ring til Nicolai på +45 60 86 67 70">+45 60 86 67 70</a>
+        <p>Jeg svarer ofte selv på telefonen — også uden for åbningstid. Ring og spørg hvad som helst.</p>
+        <a href="tel:+4560866770" class="btn btn--phone-accent" aria-label="Ring til Nicolai på +45 60 86 67 70">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="currentColor">
+            <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/>
+          </svg>
+          +45 60 86 67 70
+        </a>
       </div>
     </section>
 
-    <!-- Find os — identisk med index.html section 8 -->
-    <section class="section section--light" aria-labelledby="find-title">
-      <div class="container grid grid--2col">
-        <div class="map-block">
+    <!-- Section 10: Find vej til klinikken — kopi fra landing -->
+    <section class="section section--find" aria-labelledby="find-title">
+      <div class="find-grid">
+        <div class="find-map">
           <img src="images/map-placeholder.svg" alt="Kort: Langeskov Centret 1, 5550 Langeskov">
         </div>
-        <div>
-          <h2 id="find-title">Find os i klinikken</h2>
-          <address>
+        <div class="find-info">
+          <h2 id="find-title">Find vej til klinikken</h2>
+          <address class="find-address">
             Langeskov Centret 1, butik 3<br>
-            5550 Langeskov<br>
-            <a href="tel:+4560866770">+45 60 86 67 70</a><br>
-            <a href="mailto:kontakt@grocott.dk">kontakt@grocott.dk</a>
+            5550 Langeskov
           </address>
-          <h3>Åbningstider</h3>
-          <ul class="hours">
-            <li><span>Man–Fre</span><span>08:00–20:00</span></li>
-            <li><span>Lørdag</span><span>09:00–14:00</span></li>
+          <a href="https://maps.google.com/?q=Langeskov+Centret+1" target="_blank" rel="noopener" class="btn btn--outline find-cta">Få rutevejledning →</a>
+          <hr class="find-divider">
+          <h3 class="find-hours-heading">Åbningstider</h3>
+          <ul class="hours find-hours">
+            <li><span>Man–Fre</span><span>08:00–18:00</span></li>
+            <li><span>Lørdag</span><span>09:00–13:00</span></li>
             <li><span>Søndag</span><span>Lukket</span></li>
           </ul>
-          <a href="#" class="btn btn--secondary">Se på Google Maps →</a>
         </div>
       </div>
     </section>
@@ -227,42 +400,42 @@
 
   <footer class="footer" role="contentinfo">
     <div class="container footer__grid">
+      <div class="footer__col footer__col--brand">
+        <span class="footer__logo-pill">Grocott Fysioterapi</span>
+        <p class="footer__cvr">CVR: XX XX XX XX</p>
+        <p class="footer__tagline">Personlig fysioterapi i Langeskov.<br>Ingen autopilot, ingen standardsvar.</p>
+      </div>
       <div class="footer__col">
         <h2 class="footer__heading">Navigation</h2>
         <ul>
-          <li><a href="/">Forside</a></li>
+          <li><a href="index.html#behandlinger-title">Behandlinger</a></li>
           <li><a href="om-nikolai.html">Om Nicolai</a></li>
-          <li><a href="stubs/holdtraening.html">Holdtræning</a></li>
-          <li><a href="stubs/erhvervsaftaler.html">Erhvervsaftaler</a></li>
+          <li><a href="stubs/priser.html">Priser</a></li>
+          <li><a href="index.html#find-title">Kontakt</a></li>
+          <li><a href="booking/trin-1.html">Book tid</a></li>
         </ul>
       </div>
       <div class="footer__col">
         <h2 class="footer__heading">Kontakt</h2>
-        <address>
-          Langeskov Centret 1, butik 3<br>5550 Langeskov<br>
-          <a href="tel:+4560866770">+45 60 86 67 70</a><br>
-          <a href="mailto:kontakt@grocott.dk">kontakt@grocott.dk</a>
-        </address>
+        <ul class="footer__contact">
+          <li><a href="tel:+4560866770">+45 60 86 67 70</a></li>
+          <li><a href="mailto:info@grocottfys.dk">info@grocottfys.dk</a></li>
+          <li>Langeskov Centret 1</li>
+          <li>5550 Langeskov</li>
+        </ul>
       </div>
       <div class="footer__col">
         <h2 class="footer__heading">Information</h2>
         <ul>
-          <li><a href="stubs/priser.html">Priser</a></li>
-          <li><a href="stubs/praktisk-information.html">Praktisk info</a></li>
           <li><a href="stubs/privatlivspolitik.html">Privatlivspolitik</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h2 class="footer__heading">Åbningstider</h2>
-        <ul class="hours">
-          <li><span>Man–Fre</span><span>08:00–20:00</span></li>
-          <li><span>Lørdag</span><span>09:00–14:00</span></li>
-          <li><span>Søndag</span><span>Lukket</span></li>
+          <li><a href="stubs/privatlivspolitik.html#cookies">Cookie-indstillinger</a></li>
+          <li><a href="stubs/praktisk-information.html">Forsikringsoversigt</a></li>
+          <li><a href="stubs/privatlivspolitik.html#gdpr">GDPR</a></li>
         </ul>
       </div>
     </div>
     <div class="container footer__bar">
-      <p>© 2026 Grocott Fysioterapi &amp; Sundhedshus · CVR XX XX XX XX</p>
+      <p>© 2026 Grocott Fysioterapi · <a href="stubs/privatlivspolitik.html">Privatlivspolitik</a> · <a href="stubs/privatlivspolitik.html#cookies">Cookies</a></p>
     </div>
   </footer>
 
