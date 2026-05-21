@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 620" width="570" height="620" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Behandlingsscene: Nicolai behandler en klient">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#3a2820"/>
-      <stop offset="1" stop-color="#1c0c06"/>
-    </linearGradient>
-    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#d4a87e"/>
-      <stop offset="1" stop-color="#a8825e"/>
-    </linearGradient>
-  </defs>
-  <rect width="570" height="620" fill="url(#bg)"/>
-  <!-- abstract: terapeut silhouet bagved -->
-  <path d="M180 80c-30 0-55 22-55 50v90c0 18 12 36 30 44l25 12v344h180V276l25-12c18-8 30-26 30-44V130c0-28-25-50-55-50h-30c-10 18-25 30-45 30s-35-12-45-30h-60z" fill="#5a4030" opacity="0.7"/>
-  <!-- klient hoved (foran terapeuten) -->
-  <ellipse cx="280" cy="340" rx="78" ry="92" fill="url(#skin)"/>
-  <!-- hår -->
-  <path d="M205 320c0-50 35-90 75-90s75 40 75 90c0 15-5 28-12 38-8-32-30-58-63-58s-55 26-63 58c-7-10-12-23-12-38z" fill="#3a2820"/>
-  <!-- terapeut hænder på klient -->
-  <ellipse cx="220" cy="380" rx="22" ry="16" fill="url(#skin)" transform="rotate(-20 220 380)"/>
-  <ellipse cx="345" cy="380" rx="22" ry="16" fill="url(#skin)" transform="rotate(20 345 380)"/>
-  <!-- klient skulder/krop -->
-  <path d="M180 430c0-25 45-42 100-42s100 17 100 42v190H180z" fill="#7a5a40"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 620" width="570" height="620" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder for hero-foto af Nicolai der behandler en klient">
+  <rect width="570" height="620" fill="#1C0C06"/>
+  <text x="50%" y="48%" font-family="Mulish, sans-serif" font-size="22" font-weight="700" fill="#E06820" text-anchor="middle" dominant-baseline="middle">Foto: behandlingssituation</text>
+  <text x="50%" y="55%" font-family="Mulish, sans-serif" font-size="14" fill="#E06820" text-anchor="middle" opacity="0.5">570 × 620</text>
 </svg>

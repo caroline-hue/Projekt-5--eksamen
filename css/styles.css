@@ -65,7 +65,7 @@
   --radius-card: 8px;
   --radius-btn:  50px;
 
-  /* Spacing */
+  /* Spacing (Figma tokens) */
   --space-4:  4px;
   --space-8:  8px;
   --space-16: 16px;
@@ -73,6 +73,10 @@
   --space-32: 32px;
   --space-48: 48px;
   --space-64: 64px;
+
+  /* Section vertical padding — konsistent på tværs af alle sektioner */
+  --section-py: var(--space-64);
+  --section-py-tight: var(--space-48);
 
   /* Layout */
   --max-width:     1440px;
@@ -133,7 +137,7 @@ ul, ol { padding: 0; list-style: none; }
 .section--light { background: var(--bg-light); color: var(--text-dark); }
 .section--accent{ background: var(--accent);   color: var(--text-on-accent); }
 
-.section { padding: var(--space-64) 0; }
+.section { padding: var(--section-py) 0; }
 
 /* ====================================================================
    02. Typografi (Figma: Sen + Mulish)
@@ -726,7 +730,7 @@ p:last-child { margin-block-end: 0; }
 
 /* Anmeldelser-sektion (Figma): white cards med horizontal divider mellem quote og forfatter */
 .reviews-header {
-  margin-block-end: var(--space-32);
+  margin-block-end: var(--space-16);
 }
 .reviews-rating {
   display: inline-flex;
@@ -1955,10 +1959,9 @@ p:last-child { margin-block-end: 0; }
 
 .cta-band {
   text-align: center;
-  padding-block: var(--space-32);
 }
-.cta-band h2 { margin-block-end: var(--space-8); }
-.cta-band p { margin-block-end: var(--space-24); }
+.cta-band h2 { margin-block-end: var(--space-32); }
+.cta-band p { margin-block-end: var(--space-32); }
 
 /* CTA-band "Usikker? Bare ring." — DARK med orange phone-pill (Figma) */
 .section--cta-ring {
@@ -1973,17 +1976,24 @@ p:last-child { margin-block-end: 0; }
   margin-inline: auto;
 }
 
-/* Mød Nicolai-sektion: H2 ovenover 2-kol layout */
+/* Mød Nicolai-sektion: H2 ovenover 2-kol layout (Figma 1312 content width) */
+.moed-section .container {
+  max-width: 1280px;
+}
 .moed-section .moed-heading {
   margin-block-end: var(--space-48);
 }
 .moed-section .video-block {
   aspect-ratio: 5 / 4;
 }
+.moed-section .grid--2col {
+  grid-template-columns: 593fr 640fr;
+  gap: var(--space-64);
+}
 .moed-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-48);
+  gap: var(--space-32);
 }
 .moed-body h3 { margin-block-end: var(--space-16); }
 .moed-body .moed-intro p { margin-block-end: var(--space-16); }
@@ -2071,7 +2081,7 @@ p:last-child { margin-block-end: 0; }
   display: block;
 }
 .find-info {
-  padding: var(--space-32) var(--space-64);
+  padding: var(--space-24) var(--space-64);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2082,7 +2092,7 @@ p:last-child { margin-block-end: 0; }
   font-style: normal;
   color: var(--text-dark);
   font-size: 16px;
-  margin-block-end: var(--space-24);
+  margin-block-end: var(--space-16);
   line-height: 1.6;
 }
 .find-cta {
@@ -2091,7 +2101,7 @@ p:last-child { margin-block-end: 0; }
 .find-divider {
   border: none;
   border-block-start: 1px solid var(--border-light-figma);
-  margin-block: var(--space-32);
+  margin-block: var(--space-16);
 }
 .find-hours-heading {
   font-family: 'Mulish', sans-serif;
