@@ -2315,6 +2315,9 @@ p:last-child { margin-block-end: 0; }
   body { font-size: 16px; line-height: 1.6; }
   .hero__lead { font-size: 18px; }
 
+  /* Nav (Figma 1:5/73:7 — 390×72): burger right, logo left, skjul desktop-links/CTAs */
+  .nav__inner { padding-inline: var(--space-16); gap: var(--space-16); }
+  .nav__logo-img { height: 40px; }
   .nav__links, .nav__ctas { display: none; }
   .nav__burger {
     display: flex;
@@ -2338,6 +2341,30 @@ p:last-child { margin-block-end: 0; }
     grid-template-columns: 1fr;
   }
   .footer__grid { grid-template-columns: 1fr; gap: var(--space-32); }
+
+  /* Hero landing (Figma 73:19 — 390×1124): single-column stack med foto sidst */
+  .section--hero-landing { padding-block: var(--space-32) var(--space-48); }
+  .section--hero-landing .container {
+    grid-template-columns: 1fr;
+    gap: var(--space-24);
+    max-width: 100%;
+  }
+  .section--hero-landing .hero__content { order: 1; }
+  .section--hero-landing .hero__image {
+    order: 2;
+    aspect-ratio: 342 / 240;
+    max-height: none;
+  }
+  .section--hero-landing .hero__logo-img { height: 64px; }
+  .section--hero-landing h1 {
+    font-size: 30px;
+    line-height: 1.25;
+    margin-block-start: var(--space-16);
+  }
+  .section--hero-landing .hero__lead { font-size: 16px; max-width: 100%; }
+  .hero__ctas { flex-direction: column; gap: var(--space-16); margin-block: var(--space-24); }
+  .hero__ctas .btn { width: 100%; justify-content: center; }
+  .hero__rating { flex-wrap: wrap; row-gap: var(--space-4); }
 
   .stepper__label { display: none; }
 
