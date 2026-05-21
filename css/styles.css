@@ -1417,43 +1417,99 @@ p:last-child { margin-block-end: 0; }
   outline-offset: 2px;
 }
 
-/* Calendar */
-.calendar { margin-block-end: var(--space-24); }
+/* Akut-row (Figma trin-3): cream-bg række med titel + caption + iOS-switch */
+.akut-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  background: var(--bg-light);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-card);
+  padding: var(--space-16) var(--space-20, 20px);
+  margin-block-end: var(--space-24);
+}
+.akut-row__text { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.akut-row__title { font-family: 'Mulish', sans-serif; font-weight: 700; font-size: 16px; line-height: 1.4; margin: 0; }
+.akut-row__caption { font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+.akut-row .switch { margin: 0; flex-shrink: 0; }
+
+/* Konsultations-row (Figma trin-3): inline label + pill-toggle */
+.consult-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12, 12px);
+  margin-block-end: var(--space-24);
+  flex-wrap: wrap;
+}
+.consult-row__label { font-weight: 700; font-size: 18px; margin: 0; }
+
+/* Calendar (Figma trin-3): wrap i hvidt kort med border + padding */
+.calendar {
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-card);
+  padding: var(--space-24);
+  margin-block-end: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
 .calendar__nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-block-end: var(--space-16);
+  margin: 0;
 }
 .calendar__nav button {
   width: 44px;
   height: 44px;
-  border-radius: 50%;
-  font-size: 20px;
+  font-size: 24px;
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  color: var(--text-dark);
 }
-.calendar__nav button:hover { background: var(--bg-light); }
-.calendar__nav h2 { margin: 0; font-size: 20px; }
+.calendar__nav button:hover { background: var(--bg-light); border-radius: 50%; }
+.calendar__nav h2 { margin: 0; font-family: 'Sen', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.4; }
 
 .calendar__grid {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: var(--space-8) var(--space-8);
+  table-layout: fixed;
 }
 .calendar__grid th {
-  padding: var(--space-8);
+  padding: var(--space-8) 0;
   font-weight: 700;
   color: var(--text-secondary);
   font-size: 13px;
   text-align: center;
+  line-height: 1.8;
 }
-.calendar__grid td { padding: 2px; text-align: center; }
+.calendar__grid td {
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+}
 
+/* Date-cell: rektangulær med cream-lys bg (Figma) */
 .date-cell {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-8);
+  border-radius: var(--radius-card);
+  background: #F7F2EB;
+  font-family: 'Mulish', sans-serif;
   font-weight: 500;
+  font-size: 18px;
+  color: var(--text-dark);
+  line-height: 1.8;
+  border: none;
+  transition: background-color 0.2s;
 }
-.date-cell:hover:not(:disabled) { background: var(--bg-light); }
+.date-cell:hover:not(:disabled):not(.date-cell--selected) {
+  background: #ECE3D2;
+}
 .date-cell--selected,
 .date-cell[aria-pressed="true"] {
   background: var(--accent);
@@ -1462,26 +1518,37 @@ p:last-child { margin-block-end: 0; }
 }
 .date-cell:disabled,
 .date-cell[aria-disabled="true"] {
+  background: transparent;
   color: var(--text-secondary);
   opacity: 0.4;
   cursor: not-allowed;
+  font-weight: 500;
 }
 
-/* Time slots */
+/* Calendar — ledige tider sub-sektion */
+.calendar__times { display: flex; flex-direction: column; gap: var(--space-12, 12px); padding-block-start: var(--space-8); }
+.calendar__times-title { font-family: 'Mulish', sans-serif; font-weight: 700; font-size: 18px; line-height: 1.8; margin: 0; color: var(--text-dark); }
+
+/* Time slots (Figma trin-3): flex-1 rektangulære kort */
 .time-slots {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-  margin-block-end: var(--space-16);
+  gap: var(--space-12, 12px);
+  margin: 0;
+  padding: 0;
 }
 .time-slot {
-  padding: 10px 20px;
-  border-radius: var(--radius-btn);
-  border: 1.5px solid var(--border-light);
-  font-weight: 700;
+  flex: 1;
+  padding: var(--space-12, 12px) var(--space-8);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-light-figma);
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
   background: var(--white);
-  min-height: 44px;
-  min-width: 44px;
+  min-height: 50px;
+  color: var(--text-dark);
+  line-height: 1.8;
+  transition: border-color 0.2s, background 0.2s;
 }
 .time-slot:hover { border-color: var(--accent); }
 .time-slot--selected,
@@ -1489,13 +1556,44 @@ p:last-child { margin-block-end: 0; }
   background: var(--accent);
   color: var(--text-on-accent);
   border-color: var(--accent);
+  font-weight: 700;
 }
 
+/* Booking-summary (Figma trin-3): 2-linje cream-bg-kort */
 .booking-summary {
-  padding: var(--space-16);
   background: var(--bg-light);
+  border: 1px solid var(--border-light-figma);
   border-radius: var(--radius-card);
+  padding: 14px;
   margin-block-end: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.booking-summary p { margin: 0; line-height: 1.6; font-size: 16px; }
+.booking-summary p:first-child { font-weight: 700; color: var(--text-dark); }
+.booking-summary p:last-child { color: var(--text-secondary); }
+
+/* Trin-3 mobile: stack akut-row vertikalt + kompakt kalender + 1-kol time-slots */
+@media (max-width: 767px) {
+  .akut-row { padding: 14px var(--space-16); }
+  .akut-row__title { font-size: 14px; }
+  .akut-row__caption { font-size: 11px; }
+
+  .calendar { padding: var(--space-16); gap: var(--space-12, 12px); }
+  .calendar__nav h2 { font-size: 20px; }
+  .calendar__grid { border-spacing: 4px; }
+  .calendar__grid th { font-size: 11px; padding: 4px 0; }
+  .date-cell { min-height: 40px; font-size: 14px; padding: 4px; }
+
+  .calendar__times-title { font-size: 16px; }
+
+  /* Mobile time-slots: full-width vertikal liste (matcher Figma 179:255) */
+  .time-slots { flex-direction: column; gap: var(--space-12, 12px); }
+  .time-slot { width: 100%; padding: 14px var(--space-16); }
+
+  .booking-summary { padding: 12px; }
+  .booking-summary p { font-size: 15px; }
 }
 
 /* Symptom grid */
