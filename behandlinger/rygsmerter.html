@@ -137,20 +137,20 @@
       <div class="container">
         <h2 id="testimonials-title">Rigtige klienter. Rigtige resultater.</h2>
         <div class="grid grid--3col">
-          <figure class="card card--testimonial">
-            <div class="card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★★★★★</span></div>
+          <figure class="review-card">
+            <div class="review-card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
             <blockquote><p>"Nicolai forstod mit problem på 5 minutter. Efter 3 behandlinger var smerterne væk."</p></blockquote>
-            <figcaption><strong>Mette K.</strong><span class="caption">Google-anmeldelse</span></figcaption>
+            <figcaption><span class="review-card__name">Mette K.</span><span class="review-card__source">Google-anmeldelse</span></figcaption>
           </figure>
-          <figure class="card card--testimonial">
-            <div class="card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★★★★★</span></div>
+          <figure class="review-card">
+            <div class="review-card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
             <blockquote><p>"Endelig en fysioterapeut der ikke bare giver mig en standardøvelse."</p></blockquote>
-            <figcaption><strong>Jens B.</strong><span class="caption">Google-anmeldelse</span></figcaption>
+            <figcaption><span class="review-card__name">Jens B.</span><span class="review-card__source">Google-anmeldelse</span></figcaption>
           </figure>
-          <figure class="card card--testimonial">
-            <div class="card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★★★★★</span></div>
+          <figure class="review-card">
+            <div class="review-card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
             <blockquote><p>"Den bedste fysioterapeut jeg har været hos i 20 år."</p></blockquote>
-            <figcaption><strong>Anne L.</strong><span class="caption">Google-anmeldelse</span></figcaption>
+            <figcaption><span class="review-card__name">Anne L.</span><span class="review-card__source">Google-anmeldelse</span></figcaption>
           </figure>
         </div>
       </div>
@@ -217,34 +217,38 @@
       </div>
     </section>
 
-    <section class="section section--accent" aria-labelledby="ring-title">
+    <section class="section section--cta-ring" aria-labelledby="ring-title">
       <div class="container cta-band">
         <h2 id="ring-title">Usikker? Bare ring.</h2>
-        <p>Ring og spørg hvad som helst. Nicolai tager telefonen.</p>
-        <a href="tel:+4560866770" class="btn btn--phone" aria-label="Ring til Nicolai på +45 60 86 67 70">+45 60 86 67 70</a>
+        <p>Jeg svarer ofte selv på telefonen — også uden for åbningstid. Ring og spørg hvad som helst.</p>
+        <a href="tel:+4560866770" class="btn btn--phone-accent" aria-label="Ring til Nicolai på +45 60 86 67 70">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="currentColor">
+            <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z"/>
+          </svg>
+          +45 60 86 67 70
+        </a>
       </div>
     </section>
 
-    <section class="section section--light" aria-labelledby="find-title">
-      <div class="container grid grid--2col">
-        <div class="map-block">
+    <section class="section section--find" aria-labelledby="find-title">
+      <div class="find-grid">
+        <div class="find-map">
           <img src="../images/map-placeholder.svg" alt="Kort: Langeskov Centret 1, 5550 Langeskov">
         </div>
-        <div>
-          <h2 id="find-title">Find os i klinikken</h2>
-          <address>
+        <div class="find-info">
+          <h2 id="find-title">Find vej til klinikken</h2>
+          <address class="find-address">
             Langeskov Centret 1, butik 3<br>
-            5550 Langeskov<br>
-            <a href="tel:+4560866770">+45 60 86 67 70</a><br>
-            <a href="mailto:kontakt@grocott.dk">kontakt@grocott.dk</a>
+            5550 Langeskov
           </address>
-          <h3>Åbningstider</h3>
-          <ul class="hours">
-            <li><span>Man–Fre</span><span>08:00–20:00</span></li>
-            <li><span>Lørdag</span><span>09:00–14:00</span></li>
+          <a href="https://maps.google.com/?q=Langeskov+Centret+1" target="_blank" rel="noopener" class="btn btn--outline find-cta">Få rutevejledning →</a>
+          <hr class="find-divider">
+          <h3 class="find-hours-heading">Åbningstider</h3>
+          <ul class="hours find-hours">
+            <li><span>Man–Fre</span><span>08:00–18:00</span></li>
+            <li><span>Lørdag</span><span>09:00–13:00</span></li>
             <li><span>Søndag</span><span>Lukket</span></li>
           </ul>
-          <a href="#" class="btn btn--secondary">Se på Google Maps →</a>
         </div>
       </div>
     </section>
@@ -253,42 +257,42 @@
 
   <footer class="footer" role="contentinfo">
     <div class="container footer__grid">
+      <div class="footer__col footer__col--brand">
+        <span class="footer__logo-pill">Grocott Fysioterapi</span>
+        <p class="footer__cvr">CVR: XX XX XX XX</p>
+        <p class="footer__tagline">Personlig fysioterapi i Langeskov.<br>Ingen autopilot, ingen standardsvar.</p>
+      </div>
       <div class="footer__col">
         <h2 class="footer__heading">Navigation</h2>
         <ul>
-          <li><a href="../index.html">Forside</a></li>
+          <li><a href="../index.html#behandlinger-title">Behandlinger</a></li>
           <li><a href="../om-nikolai.html">Om Nicolai</a></li>
-          <li><a href="../stubs/holdtraening.html">Holdtræning</a></li>
-          <li><a href="../stubs/erhvervsaftaler.html">Erhvervsaftaler</a></li>
+          <li><a href="../stubs/priser.html">Priser</a></li>
+          <li><a href="../index.html#find-title">Kontakt</a></li>
+          <li><a href="../booking/trin-1.html">Book tid</a></li>
         </ul>
       </div>
       <div class="footer__col">
         <h2 class="footer__heading">Kontakt</h2>
-        <address>
-          Langeskov Centret 1, butik 3<br>5550 Langeskov<br>
-          <a href="tel:+4560866770">+45 60 86 67 70</a><br>
-          <a href="mailto:kontakt@grocott.dk">kontakt@grocott.dk</a>
-        </address>
+        <ul class="footer__contact">
+          <li><a href="tel:+4560866770">+45 60 86 67 70</a></li>
+          <li><a href="mailto:info@grocottfys.dk">info@grocottfys.dk</a></li>
+          <li>Langeskov Centret 1</li>
+          <li>5550 Langeskov</li>
+        </ul>
       </div>
       <div class="footer__col">
         <h2 class="footer__heading">Information</h2>
         <ul>
-          <li><a href="../stubs/priser.html">Priser</a></li>
-          <li><a href="../stubs/praktisk-information.html">Praktisk info</a></li>
           <li><a href="../stubs/privatlivspolitik.html">Privatlivspolitik</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h2 class="footer__heading">Åbningstider</h2>
-        <ul class="hours">
-          <li><span>Man–Fre</span><span>08:00–20:00</span></li>
-          <li><span>Lørdag</span><span>09:00–14:00</span></li>
-          <li><span>Søndag</span><span>Lukket</span></li>
+          <li><a href="../stubs/privatlivspolitik.html#cookies">Cookie-indstillinger</a></li>
+          <li><a href="../stubs/praktisk-information.html">Forsikringsoversigt</a></li>
+          <li><a href="../stubs/privatlivspolitik.html#gdpr">GDPR</a></li>
         </ul>
       </div>
     </div>
     <div class="container footer__bar">
-      <p>© 2026 Grocott Fysioterapi &amp; Sundhedshus · CVR XX XX XX XX</p>
+      <p>© 2026 Grocott Fysioterapi · <a href="../stubs/privatlivspolitik.html">Privatlivspolitik</a> · <a href="../stubs/privatlivspolitik.html#cookies">Cookies</a></p>
     </div>
   </footer>
 
