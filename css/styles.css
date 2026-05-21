@@ -135,6 +135,7 @@ ul, ol { padding: 0; list-style: none; }
 /* Sektioner accepterer dyb baggrundsfarve */
 .section--dark  { background: var(--bg-dark);  color: var(--text-primary); }
 .section--light { background: var(--bg-light); color: var(--text-dark); }
+.section--white { background: var(--white);    color: var(--text-dark); }
 .section--accent{ background: var(--accent);   color: var(--text-on-accent); }
 
 .section { padding: var(--section-py) 0; }
@@ -2197,6 +2198,128 @@ section[aria-labelledby="behandlinger-title"].section--light {
 .symptom-list { padding-left: var(--space-24); list-style: disc; }
 .symptom-list li { margin-block-end: var(--space-8); }
 
+/* Behandlings-sider — "Kender du det her?" check-card-grid (Figma 454:52) */
+.symptom-checks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-16);
+}
+.symptom-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12, 12px);
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: 12px;
+  padding: var(--space-16) var(--space-20, 20px);
+  min-height: 60px;
+}
+.symptom-check__icon {
+  flex-shrink: 0;
+  inline-size: 24px;
+  block-size: 24px;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+.symptom-check__label {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--text-dark);
+}
+
+/* Behandlings-sider — "Min tilgang"-quote card (Figma 458:53) — dark navy card med citat + attribution */
+.quote-card {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  border-radius: 16px;
+  padding: var(--space-32);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.quote-card__quote {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.8;
+  margin: 0;
+}
+.quote-card__attribution {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--accent);
+  margin: 0;
+}
+
+/* Behandlings-sider — "Hænger smerterne sammen?" single cross-link card (Figma 459:121) */
+.cross-link-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: 12px;
+  padding: var(--space-24) var(--space-32);
+  max-width: 720px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.cross-link-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.cross-link-card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.cross-link-card__title {
+  font-family: 'Sen', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--accent-text-on-light);
+  margin: 0;
+}
+.cross-link-card__desc {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+/* CTA bund — "Klar til at booke en tid?" (Figma 459:124) — centered dark CTA, ingen telefon */
+.section--cta-bund {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  text-align: center;
+}
+.section--cta-bund h2 { color: var(--text-primary); }
+.cta-bund {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-20, 20px);
+  max-width: 720px;
+  margin-inline: auto;
+}
+.cta-bund p {
+  color: var(--text-primary);
+  margin: 0;
+}
+.cta-bund h2 { margin: 0; }
+
 .hours { display: flex; flex-direction: column; gap: 4px; }
 .hours li { display: flex; justify-content: space-between; }
 
@@ -2583,6 +2706,19 @@ section[aria-labelledby="behandlinger-title"].section--light {
 
   .symptom-grid { grid-template-columns: repeat(2, 1fr); }
   .symptom-sub { grid-template-columns: repeat(2, 1fr); }
+
+  /* Behandlings-sider: check-grid stacker til 1-kol, cross-link card får tightere padding */
+  .symptom-checks { grid-template-columns: 1fr; }
+  .cross-link-card { padding: var(--space-20, 20px) var(--space-24); }
+  .cross-link-card__title { font-size: 20px; }
+  .cross-link-card__desc { font-size: 16px; }
+
+  /* Steps på behandlings-sider: vandret desktop → stacked vertikalt på mobil (Figma 903:788+) */
+  .step-list--horizontal { flex-direction: column; gap: var(--space-24); }
+
+  /* CTA bund mobil — mindre padding, tightere tekst */
+  .section--cta-bund { padding-block: var(--space-48); }
+  .cta-bund p { font-size: 16px; }
 
   .consult-toggle { flex-direction: column; }
 
