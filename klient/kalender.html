@@ -17,7 +17,10 @@
   <header class="nav" role="banner">
     <div class="nav__inner container">
       <a href="../" class="nav__logo" aria-label="Grocott Fysioterapi forside">
-        <span class="nav__logo-text">Grocott Fysioterapi & Sundhedshus</span>
+        <picture>
+          <source media="(max-width: 767px)" srcset="../images/logo-mobile.png">
+          <img src="../images/logo-desktop.png" alt="Grocott Fysioterapi &amp; Sundhedshus" class="nav__logo-img">
+        </picture>
       </a>
       <nav class="nav__links" aria-label="Hovedmenu">
         <ul>
@@ -25,7 +28,7 @@
             <button class="nav__link" aria-expanded="false" aria-controls="dd-behandlinger">
               Behandlinger <span class="nav__chevron" aria-hidden="true">▾</span>
             </button>
-            <div id="dd-behandlinger" class="nav__dropdown" hidden>
+            <div id="dd-behandlinger" class="nav__dropdown">
               <ul>
                 <li><a href="../behandlinger/rygsmerter.html">Rygsmerter</a></li>
                 <li><a href="../behandlinger/skulder-nakke.html">Skulder og nakke</a></li>
@@ -43,7 +46,7 @@
             <button class="nav__link" aria-expanded="false" aria-controls="dd-praktisk">
               Praktisk <span class="nav__chevron" aria-hidden="true">▾</span>
             </button>
-            <div id="dd-praktisk" class="nav__dropdown" hidden>
+            <div id="dd-praktisk" class="nav__dropdown">
               <ul>
                 <li><a href="../stubs/priser.html">Priser</a></li>
                 <li><a href="../stubs/praktisk-information.html">Praktisk information</a></li>

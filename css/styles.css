@@ -435,9 +435,10 @@ p:last-child { margin-block-end: 0; }
 
 .nav__chevron { font-size: 12px; }
 
+/* Dropdown — CSS-only: åbner ved hover OG focus-within (tastatur) */
 .nav__dropdown {
   position: absolute;
-  top: calc(100% + 4px);
+  top: 100%;
   left: 0;
   background: var(--white);
   color: var(--text-dark);
@@ -446,7 +447,27 @@ p:last-child { margin-block-end: 0; }
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   border: 1px solid var(--border-light-figma);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out, visibility 0.15s;
+  z-index: 110;
 }
+.nav__item--dropdown:hover .nav__dropdown,
+.nav__item--dropdown:focus-within .nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* Rotér chevron når dropdown er åben */
+.nav__item--dropdown:hover .nav__chevron,
+.nav__item--dropdown:focus-within .nav__chevron {
+  transform: rotate(180deg);
+}
+.nav__chevron { transition: transform 0.15s ease-out; }
+
 .nav__dropdown ul { display: flex; flex-direction: column; gap: 0; }
 .nav__dropdown a {
   display: block;
@@ -454,7 +475,8 @@ p:last-child { margin-block-end: 0; }
   color: var(--text-dark);
   text-decoration: none;
 }
-.nav__dropdown a:hover { background: var(--bg-light); color: var(--accent-text-on-light); text-decoration: none; }
+.nav__dropdown a:hover,
+.nav__dropdown a:focus-visible { background: var(--bg-light); color: var(--accent-text-on-light); text-decoration: none; }
 
 .nav__ctas {
   display: flex;
