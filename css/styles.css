@@ -2803,9 +2803,72 @@ section[aria-labelledby="behandlinger-title"].section--light {
 }
 
 .confirmation-title {
-  color: var(--accent);
+  color: var(--accent-text-on-light);
 }
 
+/* Summary-card (Figma trin-5 booket): hvidt kort med titel + divider + rows + map */
+.summary-card {
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: var(--radius-card);
+  padding: var(--space-24);
+  margin-block-end: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+.summary-card__title {
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--text-dark);
+  margin: 0;
+}
+.summary-card__divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-light-figma);
+  border: none;
+  margin: 0;
+}
+.summary-card__map {
+  width: 100%;
+  height: 200px;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+}
+
+/* Summary-row: label venstre (secondary) + value højre (bold dark) */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-16);
+  font-size: 18px;
+  line-height: 1.8;
+}
+.summary-row__label { color: var(--text-secondary); font-weight: 400; margin: 0; }
+.summary-row__value { color: var(--text-dark); font-weight: 700; margin: 0; text-align: right; }
+
+/* Confirmation-message (Figma trin-5 mobil): venlig hilsen centreret */
+.confirmation-message {
+  text-align: center;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: var(--space-8) 0;
+}
+
+/* Flow-header centered variant (trin-5: kun titel, ingen back/close) */
+@media (max-width: 767px) {
+  .flow-header--centered { justify-content: center; }
+  .summary-card { padding: 18px; gap: var(--space-12, 12px); }
+  .summary-card__title { font-size: 20px; }
+  .summary-row { font-size: 16px; line-height: 1.6; }
+  .summary-card__map { height: 160px; }
+}
+
+/* Fallback for legacy .confirmation-summary (klient/kalender m.fl.) */
 .confirmation-summary {
   display: grid;
   grid-template-columns: max-content 1fr;

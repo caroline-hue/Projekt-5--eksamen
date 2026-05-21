@@ -94,12 +94,17 @@
   </header>
 
   <main id="main" class="flow-main">
+
+    <div class="flow-header flow-header--centered" aria-label="Booking-navigation">
+      <p class="flow-header__title">Bekræft</p>
+    </div>
+
     <div class="flow-card">
 
       <ol class="stepper" aria-label="Booking trin">
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
-          <span class="stepper__label">Introduktion</span>
+          <span class="stepper__label">Intro</span>
         </li>
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
@@ -107,13 +112,13 @@
         </li>
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
-          <span class="stepper__label">Kalender</span>
+          <span class="stepper__label">Tid</span>
         </li>
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
           <span class="stepper__label">Oplysninger</span>
         </li>
-        <li class="stepper__step stepper__step--done">
+        <li class="stepper__step stepper__step--done" aria-current="step">
           <span class="stepper__circle" aria-hidden="true">✓</span>
           <span class="stepper__label">Bekræft</span>
         </li>
@@ -122,27 +127,36 @@
       <h1 class="confirmation-title">Din tid er bestilt ✓</h1>
       <p>Du vil modtage en bekræftelse på e-mail inden for få minutter.</p>
 
-      <dl class="confirmation-summary">
-        <dt>Behandling</dt><dd>60 min konsultation</dd>
-        <dt>Dato og tid</dt><dd>Tirsdag 5. maj 2026 kl. 10:00</dd>
-        <dt>Behandler</dt><dd>Nicolai Grocott</dd>
-        <dt>Adresse</dt><dd>Langeskov Centret 1, butik 3, 5550 Langeskov</dd>
-        <dt>Pris</dt><dd>650 kr.</dd>
-      </dl>
+      <section class="summary-card" aria-labelledby="summary-title">
+        <h2 id="summary-title" class="summary-card__title">Opsummering</h2>
+        <hr class="summary-card__divider">
 
-      <div class="map-block">
-        <img src="../images/map-placeholder.svg" alt="Kort: Langeskov Centret 1, 5550 Langeskov">
-      </div>
+        <div class="summary-row">
+          <p class="summary-row__label">Behandling</p>
+          <p class="summary-row__value">60 min konsultation</p>
+        </div>
+        <div class="summary-row">
+          <p class="summary-row__label">Dato og tid</p>
+          <p class="summary-row__value">Tirsdag 5. maj kl. 10:00</p>
+        </div>
+        <div class="summary-row">
+          <p class="summary-row__label">Behandler</p>
+          <p class="summary-row__value">Nicolai Grocott</p>
+        </div>
+        <div class="summary-row">
+          <p class="summary-row__label">Adresse</p>
+          <p class="summary-row__value">Langeskov Centret 1, butik 3</p>
+        </div>
+
+        <img src="../images/map-placeholder.svg" alt="Kort: Langeskov Centret 1, 5550 Langeskov" class="summary-card__map">
+      </section>
+
+      <p class="confirmation-message">Vi glæder os til at se dig! 🙂</p>
 
       <div class="flow-card__actions">
-        <button type="button" class="btn btn--primary">📅 Tilføj til kalender</button>
         <a href="../index.html" class="btn btn--secondary">← Tilbage til forsiden</a>
+        <button type="button" class="btn btn--primary" data-js-ics-trigger>📅 Tilføj til kalender</button>
       </div>
-
-      <aside class="flow-card__phone-fallback">
-        <p>Er du i tvivl og har brug for vejledning?</p>
-        <a href="tel:+4560866770" class="btn btn--phone">📞 Ring til mig: +45 60 86 67 70</a>
-      </aside>
 
     </div>
   </main>
