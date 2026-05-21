@@ -1331,6 +1331,40 @@ p:last-child { margin-block-end: 0; }
 .consult-toggle__option--recommended .consult-toggle__card { border-color: var(--accent); }
 .consult-toggle__card .pris { font-weight: 700; font-size: 20px; margin-block-start: auto; }
 
+/* Consult-toggle heading row med inline "★ Anbefalet" (Figma trin-1) */
+.consult-toggle__heading {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+.consult-toggle__heading strong {
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--text-dark);
+}
+.consult-toggle__star {
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--accent-text-on-light);
+  white-space: nowrap;
+}
+.consult-toggle__body {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-dark);
+}
+.consult-toggle__price {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--text-dark);
+  margin-block-start: auto;
+}
+
 .consult-toggle--inline { gap: var(--space-8); }
 .consult-toggle__pill { display: inline-block; }
 .consult-toggle__pill input { position: absolute; opacity: 0; pointer-events: none; }
@@ -2330,9 +2364,52 @@ section[aria-labelledby="behandlinger-title"].section--light {
 
 .flow-main {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   padding: var(--space-48) var(--space-24);
+  gap: var(--space-24);
+}
+
+/* Mobile-only flow header (back arrow + step title + close) — Figma BF Mobil */
+.flow-header {
+  display: none;
+}
+@media (max-width: 767px) {
+  .flow-main { padding: 0 0 var(--space-32); gap: 0; }
+
+  .flow-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    padding: var(--space-8) var(--space-16);
+    border-bottom: 1px solid var(--border-light-figma);
+    width: 100%;
+    min-height: 56px;
+  }
+  .flow-header__back,
+  .flow-header__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    font-family: 'Sen', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--text-dark);
+    text-decoration: none;
+  }
+  .flow-header__back:hover,
+  .flow-header__close:hover { text-decoration: none; }
+  .flow-header__title {
+    font-family: 'Sen', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--text-dark);
+    margin: 0;
+  }
 }
 
 .flow-card {
@@ -2359,6 +2436,14 @@ section[aria-labelledby="behandlinger-title"].section--light {
 }
 .flow-card__actions .btn { flex-shrink: 0; }
 
+/* Single-CTA variant (fx trin-1: kun "Næste") — uden top-border + højre-justeret */
+.flow-card__actions--single {
+  border-top: none;
+  padding-block-start: var(--space-16);
+  justify-content: flex-end;
+  margin-block-start: var(--space-16);
+}
+
 .flow-card__phone-fallback {
   margin-block-start: var(--space-32);
   padding-block-start: var(--space-24);
@@ -2370,20 +2455,71 @@ section[aria-labelledby="behandlinger-title"].section--light {
   margin-block-end: var(--space-8);
 }
 
+/* Phone-vejledning som tekst (ikke knap) — Figma trin-1 bund */
+.flow-card__phone-vejledning {
+  margin-block-start: var(--space-24);
+  padding-block-start: var(--space-16);
+}
+.flow-card__phone-vejledning p {
+  margin-block-end: var(--space-8);
+  line-height: 1.8;
+}
+.flow-card__phone-vejledning p:last-child {
+  margin-block-end: 0;
+}
+.flow-card__phone-vejledning a[href^="tel:"] {
+  color: var(--accent-text-on-light);
+  font-weight: 400;
+  text-decoration: none;
+}
+.flow-card__phone-vejledning a[href^="tel:"]:hover,
+.flow-card__phone-vejledning a[href^="tel:"]:focus-visible {
+  text-decoration: underline;
+}
+
+/* Min tilgang-kort (trin-1) — tekst-kolonne + foto-kolonne */
 .min-tilgang-card {
   display: flex;
-  gap: var(--space-16);
-  padding: var(--space-16);
-  background: var(--bg-light);
+  gap: var(--space-32);
+  align-items: flex-start;
+  padding: var(--space-32);
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
   border-radius: var(--radius-card);
-  margin-block-end: var(--space-32);
+  margin-block-end: var(--space-24);
 }
-.min-tilgang-card img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+.min-tilgang-card__text {
+  flex: 1;
+  min-width: 0;
+}
+.min-tilgang-card__text h2 {
+  font-size: 24px;
+  margin-block-end: var(--space-8);
+}
+.min-tilgang-card__text p {
+  margin-block-end: 0;
+}
+.min-tilgang-card__photo {
+  width: 172px;
+  height: 199px;
   flex-shrink: 0;
+  border-radius: var(--radius-card);
   object-fit: cover;
+}
+@media (max-width: 767px) {
+  .min-tilgang-card {
+    flex-direction: column;
+    gap: var(--space-16);
+    padding: var(--space-16);
+    align-items: stretch;
+  }
+  .min-tilgang-card__text h2 { font-size: 20px; }
+  .min-tilgang-card__text p  { font-size: 16px; line-height: 1.6; }
+  .min-tilgang-card__photo {
+    width: 140px;
+    height: 140px;
+    align-self: center;
+  }
 }
 
 .confirmation-title {

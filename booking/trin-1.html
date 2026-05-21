@@ -94,12 +94,23 @@
   </header>
 
   <main id="main" class="flow-main">
+
+    <div class="flow-header" aria-label="Booking-navigation">
+      <a href="../index.html" class="flow-header__back" aria-label="Tilbage til forsiden">
+        <span aria-hidden="true">←</span>
+      </a>
+      <p class="flow-header__title">Introduktion</p>
+      <a href="../index.html" class="flow-header__close" aria-label="Luk booking">
+        <span aria-hidden="true">✕</span>
+      </a>
+    </div>
+
     <div class="flow-card">
 
       <ol class="stepper" aria-label="Booking trin">
         <li class="stepper__step stepper__step--active" aria-current="step">
           <span class="stepper__circle" aria-hidden="true">1</span>
-          <span class="stepper__label">Introduktion</span>
+          <span class="stepper__label">Intro</span>
         </li>
         <li class="stepper__step">
           <span class="stepper__circle" aria-hidden="true">2</span>
@@ -107,7 +118,7 @@
         </li>
         <li class="stepper__step">
           <span class="stepper__circle" aria-hidden="true">3</span>
-          <span class="stepper__label">Kalender</span>
+          <span class="stepper__label">Tid</span>
         </li>
         <li class="stepper__step">
           <span class="stepper__circle" aria-hidden="true">4</span>
@@ -120,48 +131,55 @@
       </ol>
 
       <h1>Din første gang hos Grocott Fysioterapi</h1>
-      <p>Jeg ved godt, at det kan føles usikkert at prøve en ny behandler. Lad os starte med det vigtigste — at finde ud af hvor lang tid du skal have ved første besøg.</p>
+      <p>Jeg ved godt, at det kan føles usikkert at prøve en ny behandler. Hos mig starter vi altid med en grundig samtale, så jeg forstår din situation, inden vi gør noget som helst.</p>
 
-      <div class="min-tilgang-card">
-        <img src="../images/nikolai-tilgang.svg" alt="Nicolai Grocott i klinikken">
-        <div>
+      <article class="min-tilgang-card">
+        <div class="min-tilgang-card__text">
           <h2>Min tilgang</h2>
-          <p>Jeg tager mig tid til at lytte, undersøge grundigt og lægge en plan vi følger sammen.</p>
+          <p>Jeg finder årsagen til dine smerter og laver en plan vi begge tror på. De fleste klienter oplever klar forbedring efter 3–5 behandlinger. Første konsultation (60 min) koster 650 kr.</p>
         </div>
-      </div>
+        <img src="../images/nikolai-tilgang.svg" alt="Nicolai Grocott i klinikken" class="min-tilgang-card__photo">
+      </article>
 
-      <fieldset class="consult-toggle" role="radiogroup" aria-labelledby="consult-legend">
-        <legend id="consult-legend">Vælg konsultationslængde</legend>
-        <p class="field__help">Nicolai anbefaler 60 min til første besøg — du får undersøgelse og behandling i samme session. Vælg 30 min kun hvis du har én fokuseret problemstilling.</p>
+      <section aria-labelledby="consult-length-heading">
+        <h2 id="consult-length-heading">Første konsultationslængde</h2>
+        <p>Nicolai anbefaler 60 min til første besøg — du får undersøgelse og behandling i samme session. Vælg 30 min kun hvis du har én fokuseret problemstilling og har prøvet behandling hos os før.</p>
 
-        <label class="consult-toggle__option">
-          <input type="radio" name="length" value="30">
-          <span class="consult-toggle__card">
-            <strong>30 minutter</strong>
-            <span>Kortere konsultation. Passende ved fokuseret problemstilling.</span>
-            <span class="pris">400 kr.</span>
-          </span>
-        </label>
+        <fieldset class="consult-toggle" aria-labelledby="consult-length-heading">
+          <legend class="sr-only">Vælg første konsultationslængde</legend>
 
-        <label class="consult-toggle__option consult-toggle__option--recommended">
-          <input type="radio" name="length" value="60" checked>
-          <span class="consult-toggle__card">
-            <span class="badge badge--filled">★ Anbefalet</span>
-            <strong>60 minutter</strong>
-            <span>Inkl. undersøgelse og behandlingsplan. Anbefales til alle nye patienter.</span>
-            <span class="pris">650 kr.</span>
-          </span>
-        </label>
-      </fieldset>
+          <label class="consult-toggle__option">
+            <input type="radio" name="length" value="30" data-js-consult-option="30">
+            <span class="consult-toggle__card">
+              <span class="consult-toggle__heading">
+                <strong>30 minutter</strong>
+              </span>
+              <span class="consult-toggle__body">Kortere konsultation. Passende ved fokuseret problemstilling.</span>
+              <span class="consult-toggle__price">400 kr.</span>
+            </span>
+          </label>
 
-      <div class="flow-card__actions">
-        <a href="../index.html" class="btn btn--secondary">← Tilbage</a>
+          <label class="consult-toggle__option consult-toggle__option--recommended">
+            <input type="radio" name="length" value="60" data-js-consult-option="60" checked>
+            <span class="consult-toggle__card">
+              <span class="consult-toggle__heading">
+                <strong>60 minutter</strong>
+                <span class="consult-toggle__star" aria-hidden="true">★ Anbefalet</span>
+              </span>
+              <span class="consult-toggle__body">Inkl. undersøgelse og behandlingsplan. Anbefales til alle nye patienter.</span>
+              <span class="consult-toggle__price">650 kr.</span>
+            </span>
+          </label>
+        </fieldset>
+      </section>
+
+      <div class="flow-card__actions flow-card__actions--single">
         <a href="trin-2.html" class="btn btn--primary">Vælg dine symptomer →</a>
       </div>
 
-      <aside class="flow-card__phone-fallback">
+      <aside class="flow-card__phone-vejledning">
         <p>Er du i tvivl og har brug for vejledning?</p>
-        <a href="tel:+4560866770" class="btn btn--phone">📞 Ring til mig: +45 60 86 67 70</a>
+        <p><strong>📞 Ring til mig:</strong> <a href="tel:+4560866770">+45 60 86 67 70</a></p>
       </aside>
 
     </div>
