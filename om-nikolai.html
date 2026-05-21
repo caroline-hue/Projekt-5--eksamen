@@ -17,11 +17,10 @@
   <header class="nav" role="banner">
     <div class="nav__inner container">
       <a href="/" class="nav__logo" aria-label="Grocott Fysioterapi forside">
-        <img src="images/logo.svg" alt="" class="nav__logo-icon" width="36" height="36">
-        <span class="nav__logo-text">
-          <strong>Grocott Fysioterapi</strong>
-          <small>&amp; Sundhedshus</small>
-        </span>
+        <picture>
+          <source media="(max-width: 767px)" srcset="images/logo-mobile.png">
+          <img src="images/logo-desktop.png" alt="Grocott Fysioterapi &amp; Sundhedshus" class="nav__logo-img">
+        </picture>
       </a>
       <nav class="nav__links" aria-label="Hovedmenu">
         <ul>
@@ -153,33 +152,33 @@
       </div>
     </section>
 
-    <!-- Section 4: Dit første besøg hos mig — 3 step-cards (Figma 269:16) -->
+    <!-- Section 4: Dit første besøg hos mig — 3 numbered step-cards (Figma 269:16) -->
     <section class="section" aria-labelledby="visit-title">
       <div class="container">
         <h2 id="visit-title">Dit første besøg hos mig</h2>
-        <div class="visit-grid">
-          <div class="visit-card">
-            <span class="visit-card__dot" aria-hidden="true"></span>
+        <ol class="visit-grid">
+          <li class="visit-card">
+            <span class="visit-card__number" aria-hidden="true">1</span>
             <div>
               <h3>Undersøgelse</h3>
               <p>Grundig anamnese og funktionel test af det område der gør ondt.</p>
             </div>
-          </div>
-          <div class="visit-card">
-            <span class="visit-card__dot" aria-hidden="true"></span>
+          </li>
+          <li class="visit-card">
+            <span class="visit-card__number" aria-hidden="true">2</span>
             <div>
               <h3>Forklaring og plan</h3>
               <p>Jeg forklarer hvad jeg finder — og vi laver en plan sammen.</p>
             </div>
-          </div>
-          <div class="visit-card">
-            <span class="visit-card__dot" aria-hidden="true"></span>
+          </li>
+          <li class="visit-card">
+            <span class="visit-card__number" aria-hidden="true">3</span>
             <div>
               <h3>Behandling</h3>
               <p>Manuelle teknikker, øvelser og konkrete værktøjer du tager med hjem.</p>
             </div>
-          </div>
-        </div>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -188,42 +187,40 @@
       <div class="container">
         <h2 id="baggrund-title">Min baggrund</h2>
         <p>Jeg startede som badmintontræner og endte som autoriseret fysioterapeut i Langeskov. Undervejs har jeg specialiseret mig i skulder, nakke, hovedpine, kæbe og idrætsskader.</p>
-      </div>
-      <div class="timeline-scroll" role="region" aria-label="Karriere-tidslinje — scroll horisontalt">
-        <ol class="timeline">
-          <li class="timeline-event">
-            <span class="timeline-event__year">~2009</span>
-            <span class="timeline-event__dot" aria-hidden="true"></span>
-            <p class="timeline-event__desc">Elite badmintontræner, Aalborg Trænerakademi</p>
-          </li>
-          <li class="timeline-event">
-            <span class="timeline-event__year">2009–2012</span>
-            <span class="timeline-event__dot" aria-hidden="true"></span>
-            <p class="timeline-event__desc">Idræt og Sundhed, SDU (2,5 år)</p>
-          </li>
-          <li class="timeline-event">
-            <span class="timeline-event__year">2012</span>
-            <span class="timeline-event__dot" aria-hidden="true"></span>
-            <p class="timeline-event__desc">Færdiguddannet fysioterapeut</p>
-          </li>
-          <li class="timeline-event">
-            <span class="timeline-event__year">2012–2018</span>
-            <span class="timeline-event__dot" aria-hidden="true"></span>
-            <p class="timeline-event__desc">Roskilde + Kerteminde Kommuner (socialpsykiatri)</p>
-          </li>
-          <li class="timeline-event">
-            <span class="timeline-event__year">2018</span>
-            <span class="timeline-event__dot" aria-hidden="true"></span>
-            <p class="timeline-event__desc">Selvstændig, indlejer hos Din Fysioterapi i Vissenbjerg</p>
-          </li>
-          <li class="timeline-event">
-            <span class="timeline-event__year">I dag</span>
-            <span class="timeline-event__dot" aria-hidden="true"></span>
-            <p class="timeline-event__desc">Grocott Fysioterapi i Langeskov Centret</p>
-          </li>
-        </ol>
-      </div>
-      <div class="container">
+        <div class="timeline-scroll" role="region" aria-label="Karriere-tidslinje — scroll horisontalt">
+          <ol class="timeline">
+            <li class="timeline-event">
+              <span class="timeline-event__year">~2009</span>
+              <span class="timeline-event__dot" aria-hidden="true"></span>
+              <p class="timeline-event__desc">Elite badmintontræner, Aalborg Trænerakademi</p>
+            </li>
+            <li class="timeline-event">
+              <span class="timeline-event__year">2009–2012</span>
+              <span class="timeline-event__dot" aria-hidden="true"></span>
+              <p class="timeline-event__desc">Idræt og Sundhed, SDU (2,5 år)</p>
+            </li>
+            <li class="timeline-event">
+              <span class="timeline-event__year">2012</span>
+              <span class="timeline-event__dot" aria-hidden="true"></span>
+              <p class="timeline-event__desc">Færdiguddannet fysioterapeut</p>
+            </li>
+            <li class="timeline-event">
+              <span class="timeline-event__year">2012–2018</span>
+              <span class="timeline-event__dot" aria-hidden="true"></span>
+              <p class="timeline-event__desc">Roskilde + Kerteminde Kommuner (socialpsykiatri)</p>
+            </li>
+            <li class="timeline-event">
+              <span class="timeline-event__year">2018</span>
+              <span class="timeline-event__dot" aria-hidden="true"></span>
+              <p class="timeline-event__desc">Selvstændig, indlejer hos Din Fysioterapi i Vissenbjerg</p>
+            </li>
+            <li class="timeline-event">
+              <span class="timeline-event__year">I dag</span>
+              <span class="timeline-event__dot" aria-hidden="true"></span>
+              <p class="timeline-event__desc">Grocott Fysioterapi i Langeskov Centret</p>
+            </li>
+          </ol>
+        </div>
         <p class="timeline-hint">← scroll horisontalt for mere →</p>
       </div>
     </section>

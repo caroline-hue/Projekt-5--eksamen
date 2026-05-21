@@ -17,11 +17,10 @@
   <header class="nav" role="banner">
     <div class="nav__inner container">
       <a href="/" class="nav__logo" aria-label="Grocott Fysioterapi forside">
-        <img src="images/logo.svg" alt="" class="nav__logo-icon" width="36" height="36">
-        <span class="nav__logo-text">
-          <strong>Grocott Fysioterapi</strong>
-          <small>&amp; Sundhedshus</small>
-        </span>
+        <picture>
+          <source media="(max-width: 767px)" srcset="images/logo-mobile.png">
+          <img src="images/logo-desktop.png" alt="Grocott Fysioterapi &amp; Sundhedshus" class="nav__logo-img">
+        </picture>
       </a>
       <nav class="nav__links" aria-label="Hovedmenu">
         <ul>
@@ -101,11 +100,7 @@
       <div class="container">
         <div class="hero__content">
           <div class="hero__logo" aria-hidden="true">
-            <img src="images/logo.svg" alt="" class="hero__logo-icon" width="64" height="64">
-            <span class="hero__logo-text">
-              <strong>Grocott Fysioterapi</strong>
-              <small>&amp; Sundhedshus</small>
-            </span>
+            <img src="images/logo-desktop.png" alt="" class="hero__logo-img">
           </div>
           <h1 id="hero-title">Smerter, der holder dig fra det, du holder af?</h1>
           <p class="hero__lead">Jeg specialiserer mig i rygsmerter, nakkesmerter og skuldergener — og smerter du måske har levet med i årevis. Du får en grundig undersøgelse og en behandlingsplan til netop dig og dine behov.</p>
