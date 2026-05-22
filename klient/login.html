@@ -112,21 +112,21 @@
       <h1 class="login__title">Velkommen tilbage</h1>
       <p class="login__subhead">Log ind for at booke din næste tid.</p>
 
-      <button type="button" class="btn btn--mitid" data-js-mitid-login>
+      <a href="vaelg.html" class="btn btn--mitid" data-js-mitid-login>
         <span class="mitid-logo" aria-hidden="true">MitID</span>
         <span>Log ind med MitID</span>
-      </button>
+      </a>
 
       <div class="divider login__divider-or" aria-hidden="true"><span>eller</span></div>
 
-      <form class="login__form" novalidate data-js-email-login>
+      <form class="login__form" action="vaelg.html" method="get" novalidate data-js-email-login>
         <div class="field">
           <label for="email">E-mail</label>
-          <input id="email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="navn@eksempel.dk">
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="navn@eksempel.dk">
         </div>
         <div class="field">
           <label for="password">Adgangskode</label>
-          <input id="password" name="password" type="password" required autocomplete="current-password" placeholder="••••••••">
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••">
         </div>
         <button type="submit" class="btn login__email-btn">Log ind med e-mail</button>
         <a href="#" class="login__forgot" data-js-forgot-password>Glemt adgangskode?</a>
@@ -134,7 +134,7 @@
 
       <div class="login__sms">
         <div class="divider login__divider-or" aria-hidden="true"><span>eller</span></div>
-        <button type="button" class="btn btn--ghost login__sms-btn" data-js-sms-login>Modtag engangskode på SMS</button>
+        <a href="vaelg.html" class="btn btn--ghost login__sms-btn" data-js-sms-login>Modtag engangskode på SMS</a>
       </div>
 
       <hr class="login__rule" aria-hidden="true">
