@@ -136,6 +136,18 @@ ul, ol { padding: 0; list-style: none; }
 .section--dark  { background: var(--bg-dark);  color: var(--text-primary); }
 .section--light { background: var(--bg-light); color: var(--text-dark); }
 .section--white { background: var(--white);    color: var(--text-dark); }
+
+/* I hvide sektioner inverteres card-baggrunde fra hvid → cream så de stadig
+   står frem mod bg'en. Scoped, så cards på cream-sektioner forbliver hvide. */
+.section--white .approach-card,
+.section--white .review-card,
+.section--white .review-card--google {
+  background: var(--bg-light);
+}
+/* Timeline-dot border simulerer "sidder på cream" — hvid sektion kræver hvid border */
+.section--white .timeline-event__dot {
+  border-color: var(--white);
+}
 .section--accent{ background: var(--accent);   color: var(--text-on-accent); }
 
 .section { padding: var(--section-py) 0; }
@@ -1188,14 +1200,16 @@ p:last-child { margin-block-end: 0; }
   color: var(--text-dark);
 }
 .accordion__item--card .accordion__icon {
-  font-size: 20px;
-  color: var(--text-secondary);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--accent-text-on-light);
   font-family: 'Sen', sans-serif;
+  font-weight: 700;
   transition: transform 0.2s;
 }
 .accordion__item--card[open] .accordion__icon {
   transform: rotate(90deg);
-  color: var(--accent);
+  /* farve uændret — orange både closed + open for tydeligere affordance */
 }
 .accordion__item--card .accordion__body {
   padding-block: var(--space-16) var(--space-8);
@@ -2014,7 +2028,8 @@ p:last-child { margin-block-end: 0; }
   display: grid;
   grid-template-columns: 560fr 640fr;
   gap: var(--space-64);
-  align-items: center;
+  /* stretch så text-kolonne får samme højde som foto → CTAs kan bund-aligne */
+  align-items: stretch;
   max-width: 1280px;
 }
 .om-hero__photo {
@@ -2029,9 +2044,16 @@ p:last-child { margin-block-end: 0; }
   height: 100%;
   object-fit: cover;
 }
-.om-hero__text { max-width: 640px; }
+.om-hero__text {
+  max-width: 640px;
+  /* Flex-column så CTAs kan bund-aligne med foto via margin-block-start: auto. */
+  display: flex;
+  flex-direction: column;
+}
 .om-hero__text .eyebrow {
   margin-block-end: var(--space-24);
+  /* Override .om-hero__text p { color: text-dark } som vinder på specificity (1,1) */
+  color: var(--accent-text-on-light);
 }
 .om-hero__text h1 {
   font-size: 52px;
@@ -2048,7 +2070,10 @@ p:last-child { margin-block-end: 0; }
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-16);
-  margin-block-start: var(--space-32);
+  /* auto skubber CTAs til bunden af text-kolonnen → bund-aligner med foto.
+     Min 32 så de ikke klistrer til paragraf-blokken hvis kolonnen ER kort. */
+  margin-block-start: auto;
+  padding-block-start: var(--space-32);
 }
 
 /* Hør mig fortælle — stor centreret video-player */
@@ -3291,6 +3316,27 @@ section[aria-labelledby="behandlinger-title"].section--light {
   .footer__logo-img { height: 36px; }
   .footer__heading { margin-block-end: var(--space-16); }
   .footer__col ul { gap: var(--space-12, 12px); }
+
+  /* Om Nicolai-hero (Figma 294:402 — 390): stack til 1-kol så foto's aspect-ratio
+     ikke balloonerer ved align-items: stretch på smalle viewports. */
+  .section--hero-om .container {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+  }
+  .om-hero__ctas {
+    /* CTAs ikke længere "bund-aligned med foto" når kolonner er stacked — reset. */
+    margin-block-start: 0;
+    padding-block-start: var(--space-8);
+  }
+  .om-hero__text h1 { font-size: 32px; line-height: 1.25; }
+
+  /* Om Nicolai-grids: stack til 1-kol så cards ikke tvinger document-width større
+     end viewport (var pre-eksisterende mangel — kortene har min-content fra padding). */
+  .approach-grid,
+  .visit-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
 
   /* Hero landing (Figma 73:19 — 390×1124): Logo → Photo → H1 → Lead → CTAs → Rating
      display:contents på .hero__content gør at children flytter op i container-layoutet,
