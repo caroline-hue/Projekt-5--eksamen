@@ -2043,12 +2043,16 @@ p:last-child { margin-block-end: 0; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Vis mere af toppen så Nicolais hoved ikke croppes ved cover-fit */
+  object-position: center 20%;
 }
 .om-hero__text {
   max-width: 640px;
-  /* Flex-column så CTAs kan bund-aligne med foto via margin-block-start: auto. */
+  /* Flex-column + flex-end skubber HELE indholdsstakken (eyebrow → h1 → p → CTAs)
+     ned til bunden af kolonnen, så tekst ikke svæver over CTA'erne. */
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
 }
 .om-hero__text .eyebrow {
   margin-block-end: var(--space-24);
@@ -2070,9 +2074,8 @@ p:last-child { margin-block-end: 0; }
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-16);
-  /* auto skubber CTAs til bunden af text-kolonnen → bund-aligner med foto.
-     Min 32 så de ikke klistrer til paragraf-blokken hvis kolonnen ER kort. */
-  margin-block-start: auto;
+  /* justify-content: flex-end på .om-hero__text grupperer alt content i bunden,
+     så CTAs sidder lige under brødteksten med 32px breathing room. */
   padding-block-start: var(--space-32);
 }
 
