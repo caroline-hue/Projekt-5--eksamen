@@ -265,12 +265,12 @@ function handleSymptom(e) {
   // updateBookingState({ symptom: valgt });   // venter på TODO på linje 114
 
   const INFO = {
-    rygsmerter: 'Jeg finder årsagen til dine rygsmerter og behandler dem.',
-    'skulder-nakke': 'Spændinger og smerter i skuldre og nakke.',
-    'kaebe-hoved': 'Kæbeled, spændingshovedpine og migræne-relaterede smerter.',
-    'knae-hofter': 'Slidgigt, løbeskader og smerter i knæ og hofter.',
-    fod: 'Fodsmerter og indlægssåler.',
-    massage: 'Afspændende og smertelindrende massage.'
+    rygsmerter: 'Diskusprolaps, lændesmerter, kronisk ryg og udstråling ned i benene. Jeg finder årsagen — ikke kun hvor det gør ondt — og laver en plan der får dig tilbage til hverdagen.',
+    'skulder-nakke': 'Spændinger, frossen skulder, museskader og nedsat bevægelighed. Vi løsner det fastlåste og styrker det svage, så du kan dreje hovedet uden ubehag igen.',
+    'kaebe-hoved': 'Kæbeled-dysfunktion, spændingshovedpine og migræne-relaterede smerter. Kæben og nakken hænger ofte sammen — jeg arbejder med begge dele samtidigt.',
+    'knae-hofter': 'Slidgigt, løbeskader, brusk-problemer og smerter ved trapper eller lange ture. Jeg ser på hele bevægekæden, ikke kun leddet der gør ondt.',
+    fod: 'Plantar fasciitis, hælspore, achillessene-problemer og fodsmerter ved gang. Indlægssåler kan være en del af løsningen — men sjældent hele svaret.',
+    massage: 'Afspændende og dybdegående behandling der løsner muskelspændinger, forbedrer blodgennemstrømning og giver dig en pause fra hverdagens stress. Bruges som tilskud til andre forløb eller alene.'
   };
   const card = $('.info-card');
   card.hidden = false;

@@ -1309,13 +1309,21 @@ p:last-child { margin-block-end: 0; }
 .pris-row:last-child { border-bottom: none; }
 .pris-row span:last-child { font-weight: 700; }
 
-/* Landing Pris-grid (Figma) — 2-kol med pris-list venstre, forsikring-card højre */
+/* Landing Pris-grid (Figma) — 2-kol med pris-list venstre, forsikring-card højre.
+   align-items: stretch så begge kolonner får samme højde → CTAs kan bund-aligne. */
 .pris-grid {
   display: grid;
   grid-template-columns: 560fr 640fr;
   gap: var(--space-32);
   margin-block-start: var(--space-32);
-  align-items: start;
+  align-items: stretch;
+}
+
+.pris-col {
+  display: flex;
+  flex-direction: column;
+  /* Matcher forsikring-card's bottom-padding så CTAs aligner præcist på samme Y. */
+  padding-block-end: var(--space-32);
 }
 
 .pris-list {
@@ -1346,15 +1354,18 @@ p:last-child { margin-block-end: 0; }
 }
 .pris-cta {
   width: 100%;
-  margin-block-start: var(--space-24);
+  margin-block-start: auto;
 }
 
-/* Forsikrings-card (Figma): WHITE boxed card med border, indeholder titel/tekst/logos/eyebrow/CTA */
+/* Forsikrings-card (Figma): WHITE boxed card med border, indeholder titel/tekst/logos/CTA.
+   Flex-column så CTA kan skubbes til bunden via margin-block-start: auto. */
 .forsikring-card {
   background: var(--white);
   border: 1px solid var(--border-light-figma);
   border-radius: var(--radius-card);
   padding: var(--space-32);
+  display: flex;
+  flex-direction: column;
 }
 .forsikring-card h3 {
   margin-block-end: var(--space-16);
@@ -1394,6 +1405,7 @@ p:last-child { margin-block-end: 0; }
 }
 .forsikring-cta {
   width: 100%;
+  margin-block-start: auto;
 }
 
 /* ====================================================================
