@@ -136,16 +136,16 @@
         <p><strong>📋 Sikkerhed:</strong> Dit CPR-nummer er allerede i din journal og bekræftes ikke på ny.</p>
       </div>
 
-      <form novalidate>
+      <form action="booket.html" method="get" novalidate data-js-bekraeft-form>
         <label class="checkbox">
-          <input type="checkbox" name="gdpr" required>
+          <input type="checkbox" name="gdpr" data-js-gdpr>
           <span class="checkbox__mark"></span>
           <span>Jeg bekræfter at oplysningerne er korrekte *</span>
         </label>
 
         <div class="flow-card__actions">
           <a href="kalender.html" class="btn btn--secondary">← Tilbage</a>
-          <button type="submit" class="btn btn--primary">Bekræft booking →</button>
+          <button type="submit" class="btn btn--primary" data-js-bekraeft-submit>Bekræft booking →</button>
         </div>
       </form>
 
