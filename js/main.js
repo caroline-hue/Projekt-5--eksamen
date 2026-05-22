@@ -376,11 +376,11 @@ ready(() => {
   // if (document.body.classList.contains('flow-page')) renderStepper();
 
   // Side-specifik:
-  // const path = window.location.pathname;
-  // if (path.endsWith('trin-1.html'))       consultToggle();
+  const path = window.location.pathname;
+  if (path.endsWith('trin-1.html'))       consultToggle();
   if (path.endsWith('trin-2.html'))       symptomGrid();
   // if (path.endsWith('trin-3.html'))     { renderCalendar(2026, 4); consultToggle(); }
   // if (path.endsWith('trin-4.html'))     { formValidation(); cprModal(); }
   // if (path.endsWith('trin-5.html'))       renderConfirmation();
-  // if (path.includes('/klient/'))          mockEKLogin();
+  // if (path.includes('/klient/'))         mockEKLogin();
 });
