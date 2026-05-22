@@ -180,6 +180,7 @@ function handleSymptom(e) {
   const valgt = e.target.value;
   sidstValgt = valgt;
   // updateBookingState({ symptom: valgt });   // venter på TODO på linje 114
+
   const INFO = {
     rygsmerter: 'Jeg finder årsagen til dine rygsmerter og behandler dem.',
     'skulder-nakke': 'Spændinger og smerter i skuldre og nakke.',
@@ -195,6 +196,14 @@ function handleSymptom(e) {
 sub.classList.toggle('is-aktiv', valgt === 'fod'); 
 }
 
+function closeOnOutsideClick(e) {
+  if (e.target.closest('.info-card') || e.target.closest('.filter-chip')) return;
+  const card = $('.info-card');
+  if (card) card.hidden = true;
+  const sub = $('.symptom-sub');
+  if (sub) sub.classList.remove('is-aktiv');
+  $$('input[name="symptom"]').forEach(input => input.checked = false);
+}
 
 /* ============================================================
    08. BOOKING TRIN 3 — kalender render + dato/tid
@@ -363,7 +372,7 @@ sub.classList.toggle('is-aktiv', valgt === 'fod');
 /* ============================================================
    START — kør de relevante funktioner ved DOM klar
    ============================================================ */
-ready(() => {
+ready(() => { 
   // Naviger fungerer på alle sider
   // navDropdown();
   // mobileBurger();
@@ -379,4 +388,6 @@ ready(() => {
   // if (path.endsWith('trin-4.html'))     { formValidation(); cprModal(); }
   // if (path.endsWith('trin-5.html'))       renderConfirmation();
   // if (path.includes('/klient/'))         mockEKLogin();
+
+document.addEventListener('click', closeOnOutsideClick);
 });
