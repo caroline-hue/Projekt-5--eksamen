@@ -88,6 +88,89 @@ function $(selector, scope = document) {
 
 
 /* ============================================================
+   03b. ANMELDELSER — dynamisk render fra data/reviews.json
+   Demonstrerer: async/await, fetch, try/catch, Array.filter/sort/slice/forEach,
+   destructuring, template literals, Date, createElement, ARIA, classList
+   ============================================================ */
+async function initReviewsWidget() {
+  const grid = document.getElementById('reviews-grid');
+  const moreBtn = document.querySelector('[data-js-reviews-more]');
+  if (!grid) return; // virker kun på landing — early return på andre sider
+
+  const MAX_VISIBLE = 3;
+  let allReviews = [];
+  let visibleCount = MAX_VISIBLE;
+
+  try {
+    const response = await fetch('data/reviews.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+
+    // Filtrér til 4+ stjerner, sortér nyeste først
+    allReviews = data.reviews
+      .filter(review => review.rating >= 4)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    renderReviews(grid, allReviews.slice(0, visibleCount));
+    grid.setAttribute('aria-busy', 'false');
+
+    // "Indlæs flere"-knap — kun hvis der er flere end MAX_VISIBLE
+    if (moreBtn && allReviews.length > MAX_VISIBLE) {
+      moreBtn.hidden = false;
+      moreBtn.addEventListener('click', () => {
+        visibleCount += MAX_VISIBLE;
+        renderReviews(grid, allReviews.slice(0, visibleCount));
+        if (visibleCount >= allReviews.length) {
+          moreBtn.hidden = true;
+        }
+      });
+    }
+  } catch (error) {
+    console.error('Kunne ikke indlæse anmeldelser:', error);
+    grid.innerHTML = '';
+    grid.classList.add('has-error');
+    grid.setAttribute('aria-busy', 'false');
+    grid.insertAdjacentHTML(
+      'beforeend',
+      `<p class="reviews-error" role="alert">Kunne ikke indlæse anmeldelser lige nu. <a href="https://www.google.com/maps">Se dem på Google</a></p>`
+    );
+  }
+}
+
+function renderReviews(container, reviews) {
+  container.innerHTML = '';
+  reviews.forEach(review => {
+    const card = createReviewCard(review);
+    container.appendChild(card);
+  });
+}
+
+function createReviewCard({ name, source, rating, quote, date }) {
+  const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+  const dateFormatted = new Date(date).toLocaleDateString('da-DK', {
+    year: 'numeric',
+    month: 'long'
+  });
+
+  const figure = document.createElement('figure');
+  figure.className = 'review-card';
+  figure.dataset.reviewSource = source.toLowerCase();
+
+  figure.innerHTML = `
+    <div class="review-card__stars" aria-label="${rating} ud af 5 stjerner">
+      <span aria-hidden="true">${stars}</span>
+    </div>
+    <blockquote><p>"${quote}"</p></blockquote>
+    <figcaption>
+      <span class="review-card__name">${name}</span>
+      <span class="review-card__source">${source} · ${dateFormatted}</span>
+    </figcaption>
+  `;
+
+  return figure;
+}
+
+/* ============================================================
    04. BOOKING — STATE (sessionStorage helpers)
    ============================================================ */
 /*
@@ -374,6 +457,7 @@ function closeOnOutsideClick(e) {
    ============================================================ */
 ready(() => { 
   // Naviger fungerer på alle sider
+    initReviewsWidget();
   // navDropdown();
   // mobileBurger();
 

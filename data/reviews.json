@@ -1,0 +1,46 @@
+{
+  "source": "google",
+  "lastUpdated": "2026-05-22",
+  "reviews": [
+    {
+      "id": 1,
+      "name": "Mette H.",
+      "source": "Google",
+      "rating": 5,
+      "quote": "Nicolai er den første fysioterapeut der faktisk har lyttet ordentligt. Mine knæsmerter er væk efter 3 behandlinger — efter 2 år hos andre.",
+      "date": "2026-04-12"
+    },
+    {
+      "id": 2,
+      "name": "Anders K.",
+      "source": "Google",
+      "rating": 5,
+      "quote": "Jeg gik fra at have ondt hver morgen til at kunne løbe igen. Nicolai forklarer hvad han gør og hvorfor — det giver tryghed.",
+      "date": "2026-03-28"
+    },
+    {
+      "id": 3,
+      "name": "Lisbeth P.",
+      "source": "Google",
+      "rating": 5,
+      "quote": "Holistisk tilgang der virker. Han fandt at min skuldersmerte kom fra noget helt andet end jeg troede. Anbefales varmt.",
+      "date": "2026-03-10"
+    },
+    {
+      "id": 4,
+      "name": "Thomas L.",
+      "source": "Google",
+      "rating": 4,
+      "quote": "Grundig undersøgelse og en plan jeg forstod. Lidt ventetid på første tid, men det var det værd.",
+      "date": "2026-02-22"
+    },
+    {
+      "id": 5,
+      "name": "Sara M.",
+      "source": "Google",
+      "rating": 5,
+      "quote": "Endelig en fysioterapeut der ikke bare giver mig en standardøvelse og sender mig hjem. Min ryg har det bedre end den har gjort i 5 år.",
+      "date": "2026-02-08"
+    }
+  ]
+}
