@@ -179,7 +179,7 @@ function symptomGrid() {
 function handleSymptom(e) {
   const valgt = e.target.value;
   sidstValgt = valgt;
-  updateBookingState({ symptom: valgt });
+  // updateBookingState({ symptom: valgt });   // venter på TODO på linje 114
   const INFO = {
     rygsmerter: 'Jeg finder årsagen til dine rygsmerter og behandler dem.',
     'skulder-nakke': 'Spændinger og smerter i skuldre og nakke.',
@@ -374,7 +374,7 @@ ready(() => {
   // Side-specifik:
   const path = window.location.pathname;
   // if (path.endsWith('trin-1.html'))       consultToggle();
-  if (path.endsWith('trin-2.html'))       symptomGrid();
+  if (path === '/' || path.endsWith('index.html'))   symptomGrid();
   // if (path.endsWith('trin-3.html'))     { renderCalendar(2026, 4); consultToggle(); }
   // if (path.endsWith('trin-4.html'))     { formValidation(); cprModal(); }
   // if (path.endsWith('trin-5.html'))       renderConfirmation();
