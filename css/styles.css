@@ -151,23 +151,34 @@ ul, ol { padding: 0; list-style: none; }
    siden, og center-aligner det med tekst-kolonnen ved siden af. */
 section[aria-labelledby="hvad-title"] .grid--2col {
   align-items: center;
+  /* Asymmetrisk grid så fotoet matcher Figma's 580/624 proportion — fotoet får
+     mere bredde end tekst-kolonnen og bliver dermed større. */
+  grid-template-columns: 1fr 1.25fr;
 }
 section[aria-labelledby="hvad-title"] .grid--2col > img {
   aspect-ratio: 624 / 380;
   width: 100%;
   height: auto;
-  max-height: 420px;
+  max-height: 480px;
   object-fit: cover;
-  /* Vis den nederste del af billedet (hænder + ryg) frem for toppen */
-  object-position: center 65%;
+  /* Center-mod-bunden så både Nicolai (øvre del) og hænder/ryg (nedre) ses */
+  object-position: center 50%;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
 
-/* Tilgang-sektion (Figma 328:2531) — cream quote-card til venstre + foto højre */
-.tilgang-row {
-  align-items: center;
+/* Tilgang-sektion (Figma 328:2531) — quote-card til venstre + foto højre.
+   align-items: stretch så quote-cardet matcher foto-højden visuelt (quoten
+   skal aligne med billedet, ikke svæve i midten).
+   Bemærk: .grid--2col har align-items: start senere i cascade — derfor
+   bumper vi specificity med dobbelt-klasse. */
+.grid--2col.tilgang-row {
+  align-items: stretch;
   margin-block-start: var(--space-32);
+}
+.grid--2col.tilgang-row .quote-card {
+  /* Centrér quote-teksten lodret når kortet er stretched til foto-højde */
+  justify-content: center;
 }
 .quote-card.quote-card--light {
   background: var(--bg-light);
