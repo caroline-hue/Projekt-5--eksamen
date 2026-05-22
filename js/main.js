@@ -374,7 +374,7 @@ ready(() => {
   // Side-specifik:
   const path = window.location.pathname;
   // if (path.endsWith('trin-1.html'))       consultToggle();
-  if (path === '/' || path.endsWith('index.html'))   symptomGrid();
+  // if (path === '/' || path.endsWith('index.html'))   symptomGrid();   // landingpage = pure links, ingen JS-toggle
   // if (path.endsWith('trin-3.html'))     { renderCalendar(2026, 4); consultToggle(); }
   // if (path.endsWith('trin-4.html'))     { formValidation(); cprModal(); }
   // if (path.endsWith('trin-5.html'))       renderConfirmation();
