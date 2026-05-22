@@ -190,13 +190,9 @@ function handleSymptom(e) {
   };
   const card = $('.info-card');
   card.hidden = false;
-  card.textContent = INFO[valgt];
+  card.querySelector('[data-js-info-body]').textContent = INFO[valgt];
   const sub = $('.symptom-sub');
-  if (valgt === 'fod') {
-    sub.hidden = false;
-  } else {
-    sub.hidden = true;
-  }
+sub.classList.toggle('is-aktiv', valgt === 'fod'); 
 }
 
 
@@ -377,7 +373,7 @@ ready(() => {
 
   // Side-specifik:
   const path = window.location.pathname;
-  if (path.endsWith('trin-1.html'))       consultToggle();
+  // if (path.endsWith('trin-1.html'))       consultToggle();
   if (path.endsWith('trin-2.html'))       symptomGrid();
   // if (path.endsWith('trin-3.html'))     { renderCalendar(2026, 4); consultToggle(); }
   // if (path.endsWith('trin-4.html'))     { formValidation(); cprModal(); }
