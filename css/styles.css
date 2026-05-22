@@ -356,18 +356,32 @@ p:last-child { margin-block-end: 0; }
 }
 .btn--phone-accent svg { flex-shrink: 0; }
 
+/* MitID-knap (klient/login.html) — Figma desktop = dark navy/rounded-8, mobile = MitID blå/pill */
 .btn--mitid {
-  background: #000;
-  color: #fff;
+  background: var(--bg-dark);
+  color: var(--white);
+  border-color: var(--bg-dark);
   width: 100%;
+  border-radius: 8px;
+  min-height: 56px;
+  gap: var(--space-12, 12px);
+  padding-inline: var(--space-16);
 }
-.btn--mitid:hover { background: #222; }
+.btn--mitid:hover {
+  background: #0d1620;
+  color: var(--white);
+  text-decoration: none;
+}
 .mitid-logo {
-  background: #fff;
-  color: #000;
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-weight: 800;
+  background: var(--white);
+  color: var(--bg-dark);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: 'Mulish', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
 /* ====================================================================
@@ -2910,6 +2924,182 @@ section[aria-labelledby="behandlinger-title"].section--light {
   font-size: 14px;
 }
 .link-row { text-align: center; margin-block-start: var(--space-24); }
+
+/* --------------------------------------------------------------------
+   EK 00 — Login (klient/login.html)
+   Figma desktop 727:1196 + mobile 733:491
+   -------------------------------------------------------------------- */
+.flow-card--login {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-20, 20px);
+  max-width: 800px;
+  padding: var(--space-48) 56px 56px;
+  text-align: center;
+}
+
+.flow-card--login > * { margin-block: 0; }
+
+.login__eyebrow {
+  margin-block-end: 0;
+  letter-spacing: 0.22px;
+  font-size: 11px;
+}
+
+.flow-card--login .login__title {
+  font-size: 36px;
+  line-height: 1.3;
+  color: var(--text-dark);
+  margin-block-end: 0;
+}
+
+.login__subhead {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-block-end: 0;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20, 20px);
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+.flow-card--login .login__form .field {
+  margin-block-end: 0;
+  gap: var(--space-8);
+}
+
+.login__email-btn {
+  width: 100%;
+  background: var(--white);
+  color: var(--accent-text-on-light);
+  border-color: var(--accent);
+  min-height: 52px;
+}
+.login__email-btn:hover {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  text-decoration: none;
+}
+
+.login__forgot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 500;
+  min-height: 44px;
+  padding-inline: var(--space-8);
+}
+.login__forgot:hover { color: var(--text-dark); }
+
+.login__sms {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20, 20px);
+  width: 100%;
+}
+
+.login__sms-btn {
+  width: 100%;
+  min-height: 52px;
+}
+
+.login__rule {
+  border: 0;
+  border-top: 1px solid var(--border-light-figma);
+  width: 100%;
+  margin: 0;
+}
+
+.login__signup {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-block-end: 0;
+}
+.login__signup-link {
+  display: inline-block;
+  color: var(--accent-text-on-light);
+  text-decoration: none;
+  font-weight: 700;
+  padding: var(--space-4) var(--space-8);
+}
+.login__signup-link:hover { text-decoration: underline; }
+
+/* Mobile (Figma 733:491): cream fullscreen, ingen card-styling, venstrejusteret,
+   MitID-pill blå, dark e-mail-knap, ingen SMS-sektion, stacked signup-link. */
+@media (max-width: 767px) {
+  .flow-card--login {
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 28px var(--space-24) var(--space-40, 40px);
+    max-width: 100%;
+    text-align: left;
+    align-items: stretch;
+  }
+
+  .login__eyebrow,
+  .login__sms,
+  .login__rule {
+    display: none;
+  }
+
+  .flow-card--login .login__title { font-size: 28px; }
+
+  .login__subhead { font-size: 15px; }
+
+  .btn--mitid {
+    background: #0060e6;
+    border-color: #0060e6;
+    border-radius: 50px;
+    min-height: 52px;
+  }
+  .btn--mitid:hover { background: #004fc1; }
+  .mitid-logo { color: #0060e6; }
+
+  .login__email-btn {
+    background: var(--white);
+    color: var(--text-dark);
+    border-color: var(--text-dark);
+  }
+  .login__email-btn:hover {
+    background: var(--text-dark);
+    color: var(--white);
+  }
+
+  .login__forgot {
+    color: var(--accent-text-on-light);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .login__signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    text-align: center;
+    padding-block-start: var(--space-8);
+  }
+  .login__signup-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: var(--space-8) var(--space-16);
+  }
+}
 
 /* ====================================================================
    22. Media queries — Responsive

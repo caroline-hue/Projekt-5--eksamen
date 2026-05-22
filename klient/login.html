@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Eksisterende klient hos Grocott Fysioterapi? Log ind for at booke din næste tid.">
+  <meta name="description" content="Eksisterende klient hos Grocott Fysioterapi? Log ind med MitID eller e-mail for at booke din næste tid.">
   <title>Log ind · Grocott Fysioterapi</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +57,7 @@
         </ul>
       </nav>
       <div class="nav__ctas">
-        <a href="login.html" class="btn btn--secondary btn--on-dark">Jeg er allerede klient</a>
+        <a href="login.html" class="btn btn--secondary btn--on-dark" aria-current="page">Jeg er allerede klient</a>
         <a href="../booking/trin-1.html" class="btn btn--primary">Book første tid</a>
       </div>
       <button class="nav__burger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Åbn menu">
@@ -86,7 +86,7 @@
           <li><a href="../stubs/priser.html">Priser</a></li>
           <li><a href="../stubs/praktisk-information.html">Praktisk information</a></li>
           <li><a href="../stubs/privatlivspolitik.html">Privatlivspolitik</a></li>
-          <li><a href="login.html">Jeg er allerede klient</a></li>
+          <li><a href="login.html" aria-current="page">Jeg er allerede klient</a></li>
         </ul>
       </nav>
       <a href="../booking/trin-1.html" class="btn btn--primary">Book første tid</a>
@@ -94,36 +94,55 @@
   </header>
 
   <main id="main" class="flow-main">
-    <div class="flow-card flow-card--narrow">
 
-      <p class="eyebrow">GROCOTT FYSIOTERAPI</p>
-      <h1>Velkommen tilbage</h1>
-      <p>Log ind for at booke din næste tid.</p>
+    <div class="flow-header" aria-label="Login-navigation">
+      <a href="../index.html" class="flow-header__back" aria-label="Tilbage til forsiden">
+        <span aria-hidden="true">←</span>
+      </a>
+      <p class="flow-header__title">Log ind</p>
+      <a href="../index.html" class="flow-header__close" aria-label="Luk login">
+        <span aria-hidden="true">✕</span>
+      </a>
+    </div>
 
-      <button type="button" class="btn btn--mitid">
-        <span class="mitid-logo" aria-hidden="true">MitID</span> Log ind med MitID
+    <div class="flow-card flow-card--login">
+
+      <p class="eyebrow login__eyebrow">GROCOTT FYSIOTERAPI</p>
+
+      <h1 class="login__title">Velkommen tilbage</h1>
+      <p class="login__subhead">Log ind for at booke din næste tid.</p>
+
+      <button type="button" class="btn btn--mitid" data-js-mitid-login>
+        <span class="mitid-logo" aria-hidden="true">MitID</span>
+        <span>Log ind med MitID</span>
       </button>
 
-      <div class="divider"><span>eller</span></div>
+      <div class="divider login__divider-or" aria-hidden="true"><span>eller</span></div>
 
-      <form novalidate>
+      <form class="login__form" novalidate data-js-email-login>
         <div class="field">
           <label for="email">E-mail</label>
-          <input id="email" name="email" type="email" required autocomplete="email" placeholder="navn@eksempel.dk">
+          <input id="email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="navn@eksempel.dk">
         </div>
         <div class="field">
           <label for="password">Adgangskode</label>
           <input id="password" name="password" type="password" required autocomplete="current-password" placeholder="••••••••">
         </div>
-        <button type="submit" class="btn btn--ghost">Log ind med e-mail</button>
-        <a href="#" class="link-subtle">Glemt adgangskode?</a>
+        <button type="submit" class="btn login__email-btn">Log ind med e-mail</button>
+        <a href="#" class="login__forgot" data-js-forgot-password>Glemt adgangskode?</a>
       </form>
 
-      <div class="divider"><span>eller</span></div>
+      <div class="login__sms">
+        <div class="divider login__divider-or" aria-hidden="true"><span>eller</span></div>
+        <button type="button" class="btn btn--ghost login__sms-btn" data-js-sms-login>Modtag engangskode på SMS</button>
+      </div>
 
-      <button type="button" class="btn btn--ghost">Modtag engangskode på SMS</button>
+      <hr class="login__rule" aria-hidden="true">
 
-      <p class="link-row">Første gang hos Grocott? <a href="../booking/trin-1.html">Book som ny patient →</a></p>
+      <p class="login__signup">
+        <span class="login__signup-q">Første gang hos Grocott?</span>
+        <a href="../booking/trin-1.html" class="login__signup-link">Book som ny patient →</a>
+      </p>
 
     </div>
   </main>
