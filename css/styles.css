@@ -167,18 +167,21 @@ section[aria-labelledby="hvad-title"] .grid--2col > img {
   box-shadow: var(--shadow-card);
 }
 
-/* Tilgang-sektion (Figma 328:2531) — quote-card til venstre + foto højre.
-   align-items: stretch så quote-cardet matcher foto-højden visuelt (quoten
-   skal aligne med billedet, ikke svæve i midten).
+/* Tilgang-sektion (Figma 328:2531) — H2 + quote-card stak til venstre + foto højre.
+   align-items: center så h2+quote-stakken centreres lodret mod fotoets højde
+   (h2 sidder ud for fotoets midte, quote umiddelbart under).
    Bemærk: .grid--2col har align-items: start senere i cascade — derfor
    bumper vi specificity med dobbelt-klasse. */
 .grid--2col.tilgang-row {
-  align-items: stretch;
-  margin-block-start: var(--space-32);
+  align-items: center;
 }
-.grid--2col.tilgang-row .quote-card {
-  /* Centrér quote-teksten lodret når kortet er stretched til foto-højde */
-  justify-content: center;
+.tilgang-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20, 20px);
+}
+.tilgang-text-col h2 {
+  margin: 0;
 }
 .quote-card.quote-card--light {
   background: var(--bg-light);
