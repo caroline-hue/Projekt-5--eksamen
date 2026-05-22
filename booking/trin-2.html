@@ -94,12 +94,23 @@
   </header>
 
   <main id="main" class="flow-main">
+
+    <div class="flow-header" aria-label="Booking-navigation">
+      <a href="trin-1.html" class="flow-header__back" aria-label="Tilbage til forrige trin">
+        <span aria-hidden="true">←</span>
+      </a>
+      <p class="flow-header__title">Symptomer</p>
+      <a href="../index.html" class="flow-header__close" aria-label="Luk booking">
+        <span aria-hidden="true">✕</span>
+      </a>
+    </div>
+
     <div class="flow-card">
 
       <ol class="stepper" aria-label="Booking trin">
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
-          <span class="stepper__label">Introduktion</span>
+          <span class="stepper__label">Intro</span>
         </li>
         <li class="stepper__step stepper__step--active" aria-current="step">
           <span class="stepper__circle" aria-hidden="true">2</span>
@@ -107,7 +118,7 @@
         </li>
         <li class="stepper__step">
           <span class="stepper__circle" aria-hidden="true">3</span>
-          <span class="stepper__label">Kalender</span>
+          <span class="stepper__label">Tid</span>
         </li>
         <li class="stepper__step">
           <span class="stepper__circle" aria-hidden="true">4</span>
@@ -123,66 +134,73 @@
       <p>Vælg den kategori der passer bedst til dine symptomer.</p>
 
       <fieldset class="symptom-grid" aria-labelledby="symptom-legend">
-        <legend id="symptom-legend" class="sr-only">Symptom-kategorier</legend>
+        <legend id="symptom-legend" class="sr-only">Vælg symptom-kategori</legend>
         <label class="symptom-grid__option">
-          <input type="radio" name="symptom" value="hovedpine">
+          <input type="radio" name="symptom" value="hovedpine" data-js-symptom="hovedpine">
           <span>Hovedpine og kæbe</span>
         </label>
         <label class="symptom-grid__option">
-          <input type="radio" name="symptom" value="skulder-nakke">
+          <input type="radio" name="symptom" value="skulder-nakke" data-js-symptom="skulder-nakke">
           <span>Skulder og nakke</span>
         </label>
         <label class="symptom-grid__option">
-          <input type="radio" name="symptom" value="knae-hofter">
+          <input type="radio" name="symptom" value="knae-hofter" data-js-symptom="knae-hofter">
           <span>Knæ og hofter</span>
         </label>
         <label class="symptom-grid__option">
-          <input type="radio" name="symptom" value="rygsmerter">
+          <input type="radio" name="symptom" value="rygsmerter" data-js-symptom="rygsmerter">
           <span>Rygsmerter</span>
         </label>
         <label class="symptom-grid__option">
-          <input type="radio" name="symptom" value="fod">
+          <input type="radio" name="symptom" value="fod" data-js-symptom="fod">
           <span>Fod-problematikker</span>
         </label>
         <label class="symptom-grid__option">
-          <input type="radio" name="symptom" value="massage">
+          <input type="radio" name="symptom" value="massage" data-js-symptom="massage">
           <span>Massage</span>
         </label>
       </fieldset>
 
-      <fieldset class="symptom-sub" hidden data-show-when="fod" aria-labelledby="sub-legend">
-        <legend id="sub-legend">Specifik fod-problematik</legend>
-        <label class="symptom-grid__option">
-          <input type="radio" name="subCategory" value="indlaegssaaler">
-          <span>↳ Indlægssåler</span>
-        </label>
-        <label class="symptom-grid__option">
-          <input type="radio" name="subCategory" value="sandaler">
-          <span>↳ Spenco sandaler</span>
-        </label>
-        <label class="symptom-grid__option">
-          <input type="radio" name="subCategory" value="generelt">
-          <span>↳ Generelt</span>
-        </label>
+      <fieldset class="symptom-sub" data-js-sub-for="fod" aria-labelledby="sub-legend">
+        <legend id="sub-legend" class="symptom-sub__title">Undervalg ved Fod-problematikker:</legend>
+        <div class="symptom-sub__options">
+          <label class="symptom-grid__option">
+            <input type="radio" name="subCategory" value="indlaegssaaler" data-js-subcat="indlaegssaaler">
+            <span>↳ Indlægssåler</span>
+          </label>
+          <label class="symptom-grid__option">
+            <input type="radio" name="subCategory" value="sandaler" data-js-subcat="sandaler">
+            <span>↳ Spenco sandaler</span>
+          </label>
+          <label class="symptom-grid__option">
+            <input type="radio" name="subCategory" value="generelt" data-js-subcat="generelt">
+            <span>↳ Generelt</span>
+          </label>
+        </div>
       </fieldset>
 
-      <div class="info-card" hidden data-info-for>
-        <h3 data-info-title></h3>
-        <p data-info-desc></p>
-        <a href="#" data-info-link>Læs mere om denne behandling →</a>
+      <div class="info-card" hidden data-js-info-card>
+        <h3 class="info-card__title" data-js-info-title></h3>
+        <p class="info-card__body" data-js-info-body></p>
+        <a href="#" class="btn btn--secondary" data-js-info-link>Læs mere om denne behandling →</a>
       </div>
 
-      <div class="flow-card__actions">
-        <a href="trin-1.html" class="btn btn--secondary">← Tilbage</a>
+      <div class="flow-card__actions flow-card__actions--desktop">
+        <a href="trin-1.html" class="btn btn--secondary">← Forrige</a>
         <a href="trin-3.html" class="btn btn--primary">Vælg dato og tid →</a>
       </div>
 
-      <aside class="flow-card__phone-fallback">
+      <aside class="flow-card__phone-vejledning">
         <p>Er du i tvivl og har brug for vejledning?</p>
-        <a href="tel:+4560866770" class="btn btn--phone">📞 Ring til mig: +45 60 86 67 70</a>
+        <p><strong>📞 Ring til mig:</strong> <a href="tel:+4560866770">+45 60 86 67 70</a></p>
       </aside>
 
     </div>
+
+    <nav class="flow-bottom-nav" aria-label="Trin-navigation">
+      <a href="trin-1.html" class="btn btn--secondary">← Forrige</a>
+      <a href="trin-3.html" class="btn btn--primary">Næste →</a>
+    </nav>
   </main>
 
   <footer class="footer" role="contentinfo">

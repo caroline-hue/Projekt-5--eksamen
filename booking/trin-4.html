@@ -94,12 +94,23 @@
   </header>
 
   <main id="main" class="flow-main">
+
+    <div class="flow-header" aria-label="Booking-navigation">
+      <a href="trin-3.html" class="flow-header__back" aria-label="Tilbage til forrige trin">
+        <span aria-hidden="true">←</span>
+      </a>
+      <p class="flow-header__title">Oplysninger</p>
+      <a href="../index.html" class="flow-header__close" aria-label="Luk booking">
+        <span aria-hidden="true">✕</span>
+      </a>
+    </div>
+
     <div class="flow-card">
 
       <ol class="stepper" aria-label="Booking trin">
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
-          <span class="stepper__label">Introduktion</span>
+          <span class="stepper__label">Intro</span>
         </li>
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
@@ -107,7 +118,7 @@
         </li>
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
-          <span class="stepper__label">Kalender</span>
+          <span class="stepper__label">Tid</span>
         </li>
         <li class="stepper__step stepper__step--active" aria-current="step">
           <span class="stepper__circle" aria-hidden="true">4</span>
@@ -123,59 +134,70 @@
       <p>Udfyld dine kontaktoplysninger for at gennemføre bookingen.</p>
 
       <form novalidate>
-        <div class="field">
-          <label for="navn">Fulde navn *</label>
-          <input id="navn" name="navn" type="text" required autocomplete="name" placeholder="Fornavn Efternavn">
+        <div class="form-card">
+          <div class="field">
+            <label for="navn">Fulde navn *</label>
+            <input id="navn" name="navn" type="text" required autocomplete="name" placeholder="Fornavn Efternavn" data-js-field="navn">
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail *</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="navn@eksempel.dk" data-js-field="email">
+          </div>
+
+          <div class="field">
+            <label for="phone">Telefonnummer *</label>
+            <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+45 XX XX XX XX" data-js-field="phone">
+          </div>
+
+          <div class="field">
+            <label for="cpr">CPR-nummer *</label>
+            <input id="cpr" name="cpr" type="password" required pattern="\d{6}-?\d{4}" autocomplete="off" placeholder="XXXXXX-XXXX" aria-describedby="cpr-help" data-js-field="cpr">
+            <button type="button" class="field__info-trigger" aria-controls="cpr-modal" aria-expanded="false" id="cpr-help" data-js-modal-trigger="cpr-info">
+              <span aria-hidden="true">ⓘ</span>
+              <span>Hvad bruges CPR-nummer til? Læs om brug og opbevaring</span>
+            </button>
+            <div class="cpr-info-box">
+              <span class="cpr-info-box__icon" aria-hidden="true">💡</span>
+              <p class="cpr-info-box__text">Dit CPR-nummer bruges til at oprette din patientjournal (krav fra Sundhedsstyrelsen). Deles aldrig med tredjepart. <strong>Demo:</strong> Feltet er maskeret og gemmes ikke.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="notes">Kommentar (valgfri)</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Beskriv evt. dit problem kort" data-js-field="notes"></textarea>
+          </div>
+
+          <label class="checkbox">
+            <input type="checkbox" name="sygesikring" data-js-checkbox="sygesikring">
+            <span class="checkbox__mark"></span>
+            <span>Jeg er medlem af sygesikring Danmark</span>
+          </label>
+
+          <label class="checkbox">
+            <input type="checkbox" name="gdpr" required data-js-checkbox="gdpr">
+            <span class="checkbox__mark"></span>
+            <span>Jeg accepterer privatlivspolitikken *</span>
+          </label>
         </div>
 
-        <div class="field">
-          <label for="email">E-mail *</label>
-          <input id="email" name="email" type="email" required autocomplete="email" placeholder="navn@eksempel.dk">
-        </div>
-
-        <div class="field">
-          <label for="phone">Telefonnummer *</label>
-          <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+45 XX XX XX XX">
-        </div>
-
-        <div class="field">
-          <label for="cpr">CPR-nummer *</label>
-          <input id="cpr" name="cpr" type="password" required pattern="\d{6}-?\d{4}" autocomplete="off" placeholder="XXXXXX-XXXX" aria-describedby="cpr-help">
-          <button type="button" class="field__info-trigger" aria-controls="cpr-modal" aria-expanded="false" id="cpr-help">
-            ℹ Hvad bruges CPR-nummer til? Læs om vores opbevaring
-          </button>
-          <p class="field__help"><strong>⚠ Demo:</strong> Feltet er maskeret (type=password). I dette prototypeflow gemmes intet.</p>
-        </div>
-
-        <div class="field">
-          <label for="notes">Kommentar (valgfri)</label>
-          <textarea id="notes" name="notes" rows="3" placeholder="Beskriv evt. dit problem kort"></textarea>
-        </div>
-
-        <label class="checkbox">
-          <input type="checkbox" name="sygesikring">
-          <span class="checkbox__mark"></span>
-          <span>Jeg er medlem af sygesikring Danmark</span>
-        </label>
-
-        <label class="checkbox">
-          <input type="checkbox" name="gdpr" required>
-          <span class="checkbox__mark"></span>
-          <span>Jeg accepterer privatlivspolitikken *</span>
-        </label>
-
-        <div class="flow-card__actions">
-          <a href="trin-3.html" class="btn btn--secondary">← Tilbage</a>
+        <div class="flow-card__actions flow-card__actions--desktop">
+          <a href="trin-3.html" class="btn btn--secondary">← Forrige</a>
           <button type="submit" class="btn btn--primary">Bekræft booking →</button>
         </div>
       </form>
 
-      <aside class="flow-card__phone-fallback">
+      <aside class="flow-card__phone-vejledning">
         <p>Er du i tvivl og har brug for vejledning?</p>
-        <a href="tel:+4560866770" class="btn btn--phone">📞 Ring til mig: +45 60 86 67 70</a>
+        <p><strong>📞 Ring til mig:</strong> <a href="tel:+4560866770">+45 60 86 67 70</a></p>
       </aside>
 
     </div>
+
+    <nav class="flow-bottom-nav" aria-label="Trin-navigation">
+      <a href="trin-3.html" class="btn btn--secondary">← Forrige</a>
+      <a href="trin-5.html" class="btn btn--primary">Bekræft →</a>
+    </nav>
   </main>
 
   <div id="cpr-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cpr-modal-title" hidden>

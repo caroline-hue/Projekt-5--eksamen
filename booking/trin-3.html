@@ -94,12 +94,23 @@
   </header>
 
   <main id="main" class="flow-main">
+
+    <div class="flow-header" aria-label="Booking-navigation">
+      <a href="trin-2.html" class="flow-header__back" aria-label="Tilbage til forrige trin">
+        <span aria-hidden="true">←</span>
+      </a>
+      <p class="flow-header__title">Kalender</p>
+      <a href="../index.html" class="flow-header__close" aria-label="Luk booking">
+        <span aria-hidden="true">✕</span>
+      </a>
+    </div>
+
     <div class="flow-card">
 
       <ol class="stepper" aria-label="Booking trin">
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
-          <span class="stepper__label">Introduktion</span>
+          <span class="stepper__label">Intro</span>
         </li>
         <li class="stepper__step stepper__step--done">
           <span class="stepper__circle" aria-hidden="true">✓</span>
@@ -107,7 +118,7 @@
         </li>
         <li class="stepper__step stepper__step--active" aria-current="step">
           <span class="stepper__circle" aria-hidden="true">3</span>
-          <span class="stepper__label">Kalender</span>
+          <span class="stepper__label">Tid</span>
         </li>
         <li class="stepper__step">
           <span class="stepper__circle" aria-hidden="true">4</span>
@@ -120,30 +131,39 @@
       </ol>
 
       <h1>Vælg dato og tid</h1>
+      <p>Vælg en ledig dato i kalenderen og et tidspunkt der passer dig.</p>
 
-      <label class="switch">
-        <input type="checkbox" name="akut">
-        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
-        <span class="switch__label">Jeg har brug for en akuttid <span class="caption">(+300 kr.)</span></span>
-      </label>
+      <div class="akut-row">
+        <div class="akut-row__text">
+          <p class="akut-row__title">Jeg har brug for en akuttid</p>
+          <p class="akut-row__caption">Viser kun tider inden for 24 timer (+300 kr akuttillæg)</p>
+        </div>
+        <label class="switch" aria-label="Slå akuttid til/fra">
+          <input type="checkbox" name="akut" data-js-akut-toggle>
+          <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+        </label>
+      </div>
 
-      <fieldset class="consult-toggle consult-toggle--inline" role="radiogroup" aria-labelledby="length-legend">
-        <legend id="length-legend" class="sr-only">Konsultationslængde</legend>
-        <label class="consult-toggle__pill">
-          <input type="radio" name="length" value="60" checked>
-          <span>60 minutter ★</span>
-        </label>
-        <label class="consult-toggle__pill">
-          <input type="radio" name="length" value="30">
-          <span>30 minutter</span>
-        </label>
-      </fieldset>
+      <div class="consult-row">
+        <p class="consult-row__label" id="consult-row-label">Konsultationslængde:</p>
+        <fieldset class="consult-toggle consult-toggle--inline" aria-labelledby="consult-row-label">
+          <legend class="sr-only">Vælg konsultationslængde for denne booking</legend>
+          <label class="consult-toggle__pill">
+            <input type="radio" name="length" value="60" data-js-length="60" checked>
+            <span>60 minutter ★</span>
+          </label>
+          <label class="consult-toggle__pill">
+            <input type="radio" name="length" value="30" data-js-length="30">
+            <span>30 minutter</span>
+          </label>
+        </fieldset>
+      </div>
 
       <section class="calendar" aria-labelledby="calendar-title">
         <header class="calendar__nav">
-          <button type="button" aria-label="Forrige måned">‹</button>
+          <button type="button" aria-label="Forrige måned" data-js-cal-prev>←</button>
           <h2 id="calendar-title">Maj 2026</h2>
-          <button type="button" aria-label="Næste måned">›</button>
+          <button type="button" aria-label="Næste måned" data-js-cal-next>→</button>
         </header>
         <table class="calendar__grid" role="grid" aria-labelledby="calendar-title">
           <thead>
@@ -159,42 +179,86 @@
           </thead>
           <tbody>
             <tr>
-              <td><button type="button" class="date-cell">4</button></td>
-              <td><button type="button" class="date-cell date-cell--selected" aria-pressed="true">5</button></td>
-              <td><button type="button" class="date-cell">6</button></td>
-              <td><button type="button" class="date-cell">7</button></td>
-              <td><button type="button" class="date-cell">8</button></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-01">1</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">2</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">3</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-04">4</button></td>
+              <td><button type="button" class="date-cell date-cell--selected" aria-pressed="true" data-js-date="2026-05-05">5</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-06">6</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-07">7</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-08">8</button></td>
               <td><button type="button" class="date-cell" disabled aria-disabled="true">9</button></td>
               <td><button type="button" class="date-cell" disabled aria-disabled="true">10</button></td>
             </tr>
+            <tr>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">11</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-12">12</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-13">13</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-14">14</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-15">15</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">16</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">17</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-18">18</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-19">19</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-20">20</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-21">21</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-22">22</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">23</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">24</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-25">25</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-26">26</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-27">27</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-28">28</button></td>
+              <td><button type="button" class="date-cell" data-js-date="2026-05-29">29</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">30</button></td>
+              <td><button type="button" class="date-cell" disabled aria-disabled="true">31</button></td>
+            </tr>
           </tbody>
         </table>
+
+        <div class="calendar__times" data-js-time-slots>
+          <p class="calendar__times-title">Ledige tider – tirsdag 5. maj</p>
+          <ul class="time-slots">
+            <li><button type="button" class="time-slot" data-js-time="09:00">09:00</button></li>
+            <li><button type="button" class="time-slot time-slot--selected" aria-pressed="true" data-js-time="10:00">10:00</button></li>
+            <li><button type="button" class="time-slot" data-js-time="13:00">13:00</button></li>
+            <li><button type="button" class="time-slot" data-js-time="14:30">14:30</button></li>
+            <li><button type="button" class="time-slot" data-js-time="16:00">16:00</button></li>
+          </ul>
+        </div>
       </section>
 
-      <h3>Ledige tider — tirsdag 5. maj 2026</h3>
-      <ul class="time-slots">
-        <li><button type="button" class="time-slot">09:00</button></li>
-        <li><button type="button" class="time-slot time-slot--selected" aria-pressed="true">10:00</button></li>
-        <li><button type="button" class="time-slot">13:00</button></li>
-        <li><button type="button" class="time-slot">14:30</button></li>
-        <li><button type="button" class="time-slot">16:00</button></li>
-      </ul>
-
-      <div class="booking-summary" aria-live="polite">
-        <strong>Tir 5. maj · 10:00 · 60 min · 650 kr.</strong>
+      <div class="booking-summary" aria-live="polite" data-js-summary>
+        <p>Tir 5. maj · 10:00 · 60 min · 650 kr.</p>
+        <p>Symptom: Fod-problematikker</p>
       </div>
 
-      <div class="flow-card__actions">
-        <a href="trin-2.html" class="btn btn--secondary">← Tilbage</a>
+      <div class="flow-card__actions flow-card__actions--desktop">
+        <a href="trin-2.html" class="btn btn--secondary">← Forrige</a>
         <a href="trin-4.html" class="btn btn--primary">Udfyld dine oplysninger →</a>
       </div>
 
-      <aside class="flow-card__phone-fallback">
+      <aside class="flow-card__phone-vejledning">
         <p>Er du i tvivl og har brug for vejledning?</p>
-        <a href="tel:+4560866770" class="btn btn--phone">📞 Ring til mig: +45 60 86 67 70</a>
+        <p><strong>📞 Ring til mig:</strong> <a href="tel:+4560866770">+45 60 86 67 70</a></p>
       </aside>
 
     </div>
+
+    <nav class="flow-bottom-nav" aria-label="Trin-navigation">
+      <a href="trin-2.html" class="btn btn--secondary">← Forrige</a>
+      <a href="trin-4.html" class="btn btn--primary">Næste →</a>
+    </nav>
   </main>
 
   <footer class="footer" role="contentinfo">
