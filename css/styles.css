@@ -144,6 +144,23 @@ ul, ol { padding: 0; list-style: none; }
 .section--white .review-card--google {
   background: var(--bg-light);
 }
+
+/* Behandlings-detail-sider: efter sletning af dark fullbleed hero bliver
+   "Hvad er rygsmerter?" (aria-labelledby="hvad-title") den de facto top-sektion.
+   Constrain image til Figma's hero-proportion 624/380 så fotoet ikke dominerer
+   siden, og center-aligner det med tekst-kolonnen ved siden af. */
+section[aria-labelledby="hvad-title"] .grid--2col {
+  align-items: center;
+}
+section[aria-labelledby="hvad-title"] .grid--2col > img {
+  aspect-ratio: 624 / 380;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
 /* Timeline-dot border simulerer "sidder på cream" — hvid sektion kræver hvid border */
 .section--white .timeline-event__dot {
   border-color: var(--white);
