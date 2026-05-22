@@ -14,3 +14,6 @@ dist/
 
 # Audit-outputs (kun screenshots committes)
 docs/audits/*.json
+
+# Claude Code worktrees (lokale arbejdskopier, må ikke commit'tes)
+.claude/worktrees/
