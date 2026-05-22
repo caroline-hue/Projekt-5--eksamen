@@ -202,65 +202,83 @@
         <p class="behandlinger__lead">Jeg behandler alt fra rygsmerter og nakkegener til knæ, hofter og fodsmerter — start med det der ligner dig.</p>
       </div>
       <div class="behandlinger-scroll" role="region" aria-label="Liste af behandlinger — scroll horisontalt">
-        <ol class="behandlinger-row">
+        <ol class="behandlinger-row" role="radiogroup" aria-labelledby="behandlinger-title">
           <li>
             <article class="card card--treatment">
-              <img src="images/card-rygsmerter.svg" alt="" class="card__image">
-              <div class="card__body">
-                <h3 class="card__title">Rygsmerter</h3>
-                <p>Discusprolaps, lændesmerter, kronisk ryg og udstråling.</p>
-                <a href="behandlinger/rygsmerter.html" class="card__link" aria-label="Læs mere om rygsmerter">Læs mere <span aria-hidden="true">→</span></a>
-              </div>
+              <label class="card__select">
+                <input type="radio" name="symptom" value="rygsmerter" class="sr-only">
+                <img src="images/card-rygsmerter.svg" alt="" class="card__image">
+                <div class="card__body">
+                  <h3 class="card__title">Rygsmerter</h3>
+                  <p>Discusprolaps, lændesmerter, kronisk ryg og udstråling.</p>
+                </div>
+              </label>
+              <a href="behandlinger/rygsmerter.html" class="card__link" aria-label="Læs mere om rygsmerter">Læs mere <span aria-hidden="true">→</span></a>
             </article>
           </li>
           <li>
             <article class="card card--treatment">
-              <img src="images/card-skulder.svg" alt="" class="card__image">
-              <div class="card__body">
-                <h3 class="card__title">Skulder &amp; nakke</h3>
-                <p>Spændinger, smerter og nedsat bevægelighed i skulder og nakke.</p>
-                <a href="behandlinger/skulder-nakke.html" class="card__link" aria-label="Læs mere om skulder og nakke">Læs mere <span aria-hidden="true">→</span></a>
-              </div>
+              <label class="card__select">
+                <input type="radio" name="symptom" value="skulder-nakke" class="sr-only">
+                <img src="images/card-skulder.svg" alt="" class="card__image">
+                <div class="card__body">
+                  <h3 class="card__title">Skulder &amp; nakke</h3>
+                  <p>Spændinger, smerter og nedsat bevægelighed i skulder og nakke.</p>
+                </div>
+              </label>
+              <a href="behandlinger/skulder-nakke.html" class="card__link" aria-label="Læs mere om skulder og nakke">Læs mere <span aria-hidden="true">→</span></a>
             </article>
           </li>
           <li>
             <article class="card card--treatment">
-              <img src="images/card-hoved.svg" alt="" class="card__image">
-              <div class="card__body">
-                <h3 class="card__title">Hovedpine &amp; kæbegener</h3>
-                <p>Spændingshovedpine, kæbeleds-dysfunktion, migræne-relaterede smerter.</p>
-                <a href="behandlinger/kaebe-hoved.html" class="card__link" aria-label="Læs mere om hovedpine og kæbegener">Læs mere <span aria-hidden="true">→</span></a>
-              </div>
+              <label class="card__select">
+                <input type="radio" name="symptom" value="kaebe-hoved" class="sr-only">
+                <img src="images/card-hoved.svg" alt="" class="card__image">
+                <div class="card__body">
+                  <h3 class="card__title">Hovedpine &amp; kæbegener</h3>
+                  <p>Spændingshovedpine, kæbeleds-dysfunktion, migræne-relaterede smerter.</p>
+                </div>
+              </label>
+              <a href="behandlinger/kaebe-hoved.html" class="card__link" aria-label="Læs mere om hovedpine og kæbegener">Læs mere <span aria-hidden="true">→</span></a>
             </article>
           </li>
           <li>
             <article class="card card--treatment">
-              <img src="images/card-knae.svg" alt="" class="card__image">
-              <div class="card__body">
-                <h3 class="card__title">Knæ &amp; hofter</h3>
-                <p>Slidgigt, idrætsskader, smerter i knæ og hofter.</p>
-                <a href="behandlinger/knae-hofter.html" class="card__link" aria-label="Læs mere om knæ og hofter">Læs mere <span aria-hidden="true">→</span></a>
-              </div>
+              <label class="card__select">
+                <input type="radio" name="symptom" value="knae-hofter" class="sr-only">
+                <img src="images/card-knae.svg" alt="" class="card__image">
+                <div class="card__body">
+                  <h3 class="card__title">Knæ &amp; hofter</h3>
+                  <p>Slidgigt, idrætsskader, smerter i knæ og hofter.</p>
+                </div>
+              </label>
+              <a href="behandlinger/knae-hofter.html" class="card__link" aria-label="Læs mere om knæ og hofter">Læs mere <span aria-hidden="true">→</span></a>
             </article>
           </li>
           <li>
             <article class="card card--treatment">
-              <img src="images/card-rygsmerter.svg" alt="" class="card__image">
-              <div class="card__body">
-                <h3 class="card__title">Fod-problematikker</h3>
-                <p>Forfodssmerter, hælsmerter og fodleds-skader.</p>
-                <a href="behandlinger/fod.html" class="card__link" aria-label="Læs mere om fod-problematikker">Læs mere <span aria-hidden="true">→</span></a>
-              </div>
+              <label class="card__select">
+                <input type="radio" name="symptom" value="fod" class="sr-only">
+                <img src="images/card-rygsmerter.svg" alt="" class="card__image">
+                <div class="card__body">
+                  <h3 class="card__title">Fod-problematikker</h3>
+                  <p>Forfodssmerter, hælsmerter og fodleds-skader.</p>
+                </div>
+              </label>
+              <a href="behandlinger/fod.html" class="card__link" aria-label="Læs mere om fod-problematikker">Læs mere <span aria-hidden="true">→</span></a>
             </article>
           </li>
           <li>
             <article class="card card--treatment">
-              <img src="images/card-skulder.svg" alt="" class="card__image">
-              <div class="card__body">
-                <h3 class="card__title">Sportsmassage</h3>
-                <p>Dybdegående massage til muskelspændinger og restitution.</p>
-                <a href="behandlinger/massage.html" class="card__link" aria-label="Læs mere om massage">Læs mere <span aria-hidden="true">→</span></a>
-              </div>
+              <label class="card__select">
+                <input type="radio" name="symptom" value="massage" class="sr-only">
+                <img src="images/card-skulder.svg" alt="" class="card__image">
+                <div class="card__body">
+                  <h3 class="card__title">Sportsmassage</h3>
+                  <p>Dybdegående massage til muskelspændinger og restitution.</p>
+                </div>
+              </label>
+              <a href="behandlinger/massage.html" class="card__link" aria-label="Læs mere om massage">Læs mere <span aria-hidden="true">→</span></a>
             </article>
           </li>
         </ol>
@@ -270,6 +288,14 @@
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           Swipe eller scroll sidelæns for at se alle behandlinger
         </p>
+        <!-- Info-card: Louises JS viser tekst om valgt behandling -->
+        <div class="info-card" hidden data-js-info-card>
+          <p class="info-card__body" data-js-info-body></p>
+        </div>
+        <!-- Skjult placeholder så Louises sub.classList.toggle ikke crasher -->
+        <fieldset class="symptom-sub" data-js-sub-for="fod" hidden>
+          <legend class="sr-only">Fod-undervalg</legend>
+        </fieldset>
       </div>
     </section>
 
