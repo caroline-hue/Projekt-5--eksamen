@@ -679,8 +679,8 @@ p:last-child { margin-block-end: 0; }
 
 /* Filter-chips i mød-sektionen: Louises JS-zone (klik trigger info-card) */
 .moed-filter {
-  margin-block-start: var(--space-48);
-  padding-block-start: var(--space-32);
+  margin-block-start: var(--space-64);
+  padding-block-start: var(--space-48);
   border-block-start: 1px solid var(--border-light-figma);
 }
 .moed-filter__heading {
@@ -688,23 +688,24 @@ p:last-child { margin-block-end: 0; }
   font-weight: 700;
   font-size: 24px;
   line-height: 1.4;
-  margin: 0 0 var(--space-12);
+  margin: 0 0 var(--space-16);
   color: var(--text-dark);
 }
 .behandlinger-filter {
   border: 0;
   padding: 0;
-  margin: 0 0 var(--space-24);
+  margin: 0 0 var(--space-32);
 }
 .behandlinger-filter__hint {
-  margin: 0 0 var(--space-12);
+  margin: 0 0 var(--space-24);
   color: var(--text-secondary);
   font-size: 15px;
+  max-width: 720px;
 }
 .behandlinger-filter__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-8);
+  gap: var(--space-12, 12px);
 }
 .filter-chip {
   cursor: pointer;
@@ -3457,4 +3458,38 @@ section[aria-labelledby="behandlinger-title"].section--light {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
+}
+/* ============================================================
+   25. JS STATE CLASSES
+   ============================================================ */
+/* ---- Anmeldelser (initReviewsWidget) ---- */
+.reviews-loading,
+.reviews-error {
+  grid-column: 1 / -1;          /* fylder hele 3-col grid */
+  text-align: center;
+  padding: 2rem 1rem;
+  margin: 0;
+  font-style: italic;
+  color: #6b6b6b;            
+}
+
+.reviews-grid.has-error {
+  border: 1px dashed #c5b8a8;  
+  border-radius: 12px;
+  background: #fff;
+}
+
+.reviews-error {
+  font-style: normal;
+  color: #b84e10;            
+}
+
+.reviews-error a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.reviews-more {
+  display: block;
+  margin: 1.5rem auto 0;
 }
