@@ -673,21 +673,67 @@ p:last-child { margin-block-end: 0; }
   color: var(--accent-text-on-light);
   font-weight: 700;
   margin-block-start: auto;
-  padding: var(--space-8) var(--space-24) var(--space-24);
+  padding-block-start: var(--space-8);
 }
-.card--treatment .card__link:hover { gap: 8px; transition: gap 0.2s; text-decoration: underline; }
+.card--treatment .card__cover-link:hover .card__link { gap: 8px; text-decoration: underline; }
 
-/* Card-select: klikbar label-wrapper inde i treatment-kort.
-   Wrapper image + body så hele visuelle kort (minus "Læs mere"-link)
-   trigger den skjulte radio. Louises JS i js/main.js lytter på change. */
-.card--treatment .card__select {
+/* Card cover-link: anchor der wrapper hele kort-indhold så hele kortet
+   er én klikbar tab-stop til detail-siden. */
+.card--treatment .card__cover-link {
   display: flex;
   flex-direction: column;
   flex: 1;
-  cursor: pointer;
-  margin: 0;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.2s;
 }
-.card--treatment .card__select:focus-within {
+.card--treatment .card__cover-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.card--treatment .card__cover-link:hover { transform: translateY(-2px); }
+
+/* Behandlinger filter-chips: Louises JS-zone (klik trigger info-card) */
+.behandlinger-filter {
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--space-24);
+}
+.behandlinger-filter__hint {
+  margin: 0 0 var(--space-12);
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+.behandlinger-filter__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+.filter-chip {
+  cursor: pointer;
+}
+.filter-chip > span {
+  display: inline-block;
+  padding: var(--space-8) var(--space-16);
+  border: 1px solid var(--border-light-figma);
+  border-radius: 999px;
+  background: var(--white);
+  font-family: 'Mulish', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-dark);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.filter-chip:hover > span {
+  border-color: var(--accent);
+  color: var(--accent-text-on-light);
+}
+.filter-chip > input:checked + span {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+.filter-chip > input:focus-visible + span {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
@@ -704,6 +750,8 @@ p:last-child { margin-block-end: 0; }
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   padding-block-end: var(--space-16);
+  max-width: 1200px;
+  margin-inline: auto;
 }
 .behandlinger-scroll::-webkit-scrollbar { height: 8px; }
 .behandlinger-scroll::-webkit-scrollbar-track {
@@ -719,7 +767,7 @@ p:last-child { margin-block-end: 0; }
   grid-auto-flow: column;
   grid-auto-columns: 280px;
   gap: var(--space-24);
-  padding-inline: max(24px, calc((100% - 1200px) / 2));
+  padding-inline: var(--space-24);
   padding-block: var(--space-8);
   margin: 0;
 }
