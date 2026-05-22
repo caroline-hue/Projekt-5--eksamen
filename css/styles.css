@@ -1722,8 +1722,7 @@ p:last-child { margin-block-end: 0; }
 }
 
 /* Symptom-sub: cream-bg højlys-container (Figma trin-2)
-   CSS-only toggle: vises kun når matchende kategori er valgt
-   (`:has()` + sibling-selector — ingen JS påkrævet) */
+   Skjult som default — JS toggler synlighed via klasse/attribut når matchende kategori er valgt. */
 .symptom-sub {
   display: none;
   background: #F5EDE0;
@@ -1732,9 +1731,6 @@ p:last-child { margin-block-end: 0; }
   padding: var(--space-16);
   margin-block-end: var(--space-24);
   grid-column: unset;
-}
-.symptom-grid:has(input[value="fod"]:checked) ~ .symptom-sub[data-js-sub-for="fod"] {
-  display: block;
 }
 .symptom-sub__title {
   font-family: 'Mulish', sans-serif;
@@ -3136,9 +3132,7 @@ section[aria-labelledby="behandlinger-title"].section--light {
     transition: transform 0.2s;
   }
 
-  /* Burger-dropdown (CSS-only via :focus-within — JS-toggle wires senere på samme HTML).
-     Når burger eller noget i .nav__mobile har focus, vises dropdown'en. Tap udenfor → blur → luk.
-     Overstyrer [hidden] og de eksisterende aria-expanded display-regler. */
+  /* Mobile-nav panel — layout. Synlighed styres af JS (toggle [hidden] eller klasse). */
   .nav__mobile {
     position: absolute;
     inset: 100% 0 auto 0;
@@ -3155,15 +3149,6 @@ section[aria-labelledby="behandlinger-title"].section--light {
     flex-direction: column;
     gap: var(--space-16);
     display: none;
-  }
-  /* Vis dropdown'en når burger eller mobile-nav-indhold har focus.
-     !important er nødvendigt for at overstyre browserens [hidden]-default
-     ([hidden] { display: none } har høj-prioriteret cascade ved tag-attribute-selector).
-     Louise's JS vil senere toggle [hidden] direkte — denne CSS giver et fungerende
-     CSS-only fallback (tap burger → fokus åbner panel; tap udenfor → blur lukker). */
-  .nav:focus-within .nav__mobile,
-  .nav:focus-within .nav__mobile[hidden] {
-    display: flex !important;
   }
   /* Skjul den interne luk-knap — der er ingen JS til at lukke, tap udenfor lukker via blur */
   .nav__mobile .nav__close { display: none; }
