@@ -158,8 +158,47 @@ section[aria-labelledby="hvad-title"] .grid--2col > img {
   height: auto;
   max-height: 420px;
   object-fit: cover;
+  /* Vis den nederste del af billedet (hænder + ryg) frem for toppen */
+  object-position: center 65%;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
+}
+
+/* Tilgang-sektion (Figma 328:2531) — cream quote-card til venstre + foto højre */
+.tilgang-row {
+  align-items: center;
+  margin-block-start: var(--space-32);
+}
+.quote-card.quote-card--light {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  border: 1px solid var(--border-light-figma);
+}
+.quote-card.quote-card--light .quote-card__quote {
+  color: var(--text-dark);
+}
+.tilgang-photo {
+  aspect-ratio: 624 / 380;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* CTA-book (Figma 328:2586) — cream/hvid Klar til at booke en tid? — ikke dark phone-CTA */
+.cta-book {
+  text-align: center;
+}
+.cta-book .cta-band {
+  max-width: 720px;
+  margin-inline: auto;
+}
+.cta-book .cta-band p {
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-inline: auto;
 }
 /* Timeline-dot border simulerer "sidder på cream" — hvid sektion kræver hvid border */
 .section--white .timeline-event__dot {
