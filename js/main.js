@@ -171,7 +171,29 @@ const BOOKING_KEY = 'grocott-booking';
  *
  * IMPLEMENTÉR HER:
  */
-// TODO: function symptomGrid() { ... }
+let sidstValgt = null; 
+function symptomGrid() {
+  const inputs = $$('input[name="symptom"]');
+  inputs.forEach(input => input.addEventListener('click', handleSymptom));
+}
+function handleSymptom(e) {
+  const valgt = e.target.value;
+  sidstValgt = valgt;
+  updateBookingState({ symptom: valgt });
+  const INFO = {
+    rygsmerter: 'Jeg finder årsagen til dine rygsmerter og behandler dem.',
+    'skulder-nakke': 'Spændinger og smerter i skuldre og nakke.',
+    'kaebe-hoved': 'Kæbeled, spændingshovedpine og migræne-relaterede smerter.',
+    'knae-hofter': 'Slidgigt, løbeskader og smerter i knæ og hofter.',
+    fod: 'Fodsmerter og indlægssåler.',
+    massage: 'Afspændende og smertelindrende massage.'
+  };
+  const card = $('.info-card');
+  card.hidden = false;
+  card.querySelector('[data-js-info-body]').textContent = INFO[valgt];
+  const sub = $('.symptom-sub');
+sub.classList.toggle('is-aktiv', valgt === 'fod'); 
+}
 
 
 /* ============================================================
@@ -350,11 +372,11 @@ ready(() => {
   // if (document.body.classList.contains('flow-page')) renderStepper();
 
   // Side-specifik:
-  // const path = window.location.pathname;
+  const path = window.location.pathname;
   // if (path.endsWith('trin-1.html'))       consultToggle();
-  // if (path.endsWith('trin-2.html'))       symptomGrid();
+  if (path.endsWith('trin-2.html'))       symptomGrid();
   // if (path.endsWith('trin-3.html'))     { renderCalendar(2026, 4); consultToggle(); }
   // if (path.endsWith('trin-4.html'))     { formValidation(); cprModal(); }
   // if (path.endsWith('trin-5.html'))       renderConfirmation();
-  // if (path.includes('/klient/'))          mockEKLogin();
+  // if (path.includes('/klient/'))         mockEKLogin();
 });
