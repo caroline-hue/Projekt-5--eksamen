@@ -151,20 +151,22 @@
         </label>
       </fieldset>
 
-      <fieldset class="symptom-sub" hidden data-show-when="fod" aria-labelledby="sub-legend">
-        <legend id="sub-legend">Specifik fod-problematik</legend>
-        <label class="symptom-grid__option">
-          <input type="radio" name="subCategory" value="indlaegssaaler">
-          <span>↳ Indlægssåler</span>
-        </label>
-        <label class="symptom-grid__option">
-          <input type="radio" name="subCategory" value="sandaler">
-          <span>↳ Spenco sandaler</span>
-        </label>
-        <label class="symptom-grid__option">
-          <input type="radio" name="subCategory" value="generelt">
-          <span>↳ Generelt</span>
-        </label>
+      <fieldset class="symptom-sub" data-js-sub-for="fod" aria-labelledby="sub-legend">
+        <legend id="sub-legend" class="symptom-sub__title">Undervalg ved Fod-problematikker:</legend>
+        <div class="symptom-sub__options">
+          <label class="symptom-grid__option">
+            <input type="radio" name="subCategory" value="indlaegssaaler" data-js-subcat="indlaegssaaler">
+            <span>↳ Indlægssåler</span>
+          </label>
+          <label class="symptom-grid__option">
+            <input type="radio" name="subCategory" value="sandaler" data-js-subcat="sandaler">
+            <span>↳ Spenco sandaler</span>
+          </label>
+          <label class="symptom-grid__option">
+            <input type="radio" name="subCategory" value="generelt" data-js-subcat="generelt">
+            <span>↳ Generelt</span>
+          </label>
+        </div>
       </fieldset>
 
       <div class="info-card" hidden data-info-for>
