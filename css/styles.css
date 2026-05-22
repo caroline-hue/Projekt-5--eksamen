@@ -156,24 +156,23 @@ section[aria-labelledby="hvad-title"] .grid--2col {
   grid-template-columns: 1fr 1.25fr;
 }
 section[aria-labelledby="hvad-title"] .grid--2col > img {
-  aspect-ratio: 624 / 380;
+  /* 4/3 i stedet for 624/380 (1.64) — mindre aflangt, viser mere af det
+     naturlige portrait-foto med Nicolai + hænder + ryg samtidig */
+  aspect-ratio: 4 / 3;
   width: 100%;
   height: auto;
-  max-height: 480px;
+  max-height: 520px;
   object-fit: cover;
-  /* Center-mod-bunden så både Nicolai (øvre del) og hænder/ryg (nedre) ses */
   object-position: center 50%;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
 
 /* Tilgang-sektion (Figma 328:2531) — H2 + quote-card stak til venstre + foto højre.
-   align-items: center så h2+quote-stakken centreres lodret mod fotoets højde
-   (h2 sidder ud for fotoets midte, quote umiddelbart under).
-   Bemærk: .grid--2col har align-items: start senere i cascade — derfor
-   bumper vi specificity med dobbelt-klasse. */
+   align-items: start så H2'en sidder lige i toppen ud for fotoets top-kant
+   (caroline ville have h2 aligned med foto-toppen, ikke centreret midt-på). */
 .grid--2col.tilgang-row {
-  align-items: center;
+  align-items: start;
 }
 .tilgang-text-col {
   display: flex;
