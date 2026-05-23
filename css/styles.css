@@ -2772,6 +2772,58 @@ section[aria-labelledby="behandlinger-title"].section--light {
   margin: 0;
 }
 
+/* Indlægssåler-sektion (fod.html — Figma 1037:64/69/74) — eksklusiv for fod-siden.
+   Intro-paragraph + 2 produkt-info-kort (Formthotics + Spenco). Cards genbruger
+   visuelt cross-link-card-mønstret men er ikke links — bare info-paneler. */
+.indlaeggsaler-intro {
+  max-width: 720px;
+  margin: 0 0 var(--space-32);
+  color: var(--text-secondary);
+}
+.product-info-grid {
+  align-items: stretch;
+}
+.product-info-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  background: var(--white);
+  border: 1px solid var(--border-light-figma);
+  border-radius: 12px;
+  padding: var(--space-32);
+  height: 100%;
+}
+.product-info-card h3 {
+  font-family: 'Sen', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--text-dark);
+  margin: 0;
+}
+.product-info-card p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+.product-info-card__media {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: var(--bg-light);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-block-start: auto;
+}
+.product-info-card__price {
+  font-family: 'Sen', system-ui, sans-serif;
+  font-weight: 700;
+  color: var(--accent-text-on-light);
+  margin: 0;
+}
+
 /* CTA bund — "Klar til at booke en tid?" (Figma 459:124) — centered dark CTA, ingen telefon */
 .section--cta-bund {
   background: var(--bg-dark);
