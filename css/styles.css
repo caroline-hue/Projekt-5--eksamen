@@ -3378,6 +3378,23 @@ section[aria-labelledby="behandlinger-title"].section--light {
   .grid--2col, .grid--3col, .grid--4col, .grid--5col {
     grid-template-columns: 1fr;
   }
+
+  /* Behandlings-detail mobile (Figma 902:693 rygsmerter hero, 902:753 tilgang —
+     samme mønster på alle behandlings-sider). Scoped desktop-regler over (linje
+     ~152 + ~174) sætter asymmetriske kolonner — uden mobile override vinder de
+     den globale 1fr-stack pga. højere specificitet. På mobil stacker både hero
+     og tilgang: text-blok øverst (H2 + paragraf/quote), foto nedenunder. */
+  section[aria-labelledby="hvad-title"] .grid--2col,
+  .grid--2col.tilgang-row {
+    grid-template-columns: 1fr;
+  }
+  section[aria-labelledby="hvad-title"] .grid--2col > img {
+    max-height: none;
+  }
+  .tilgang-photo {
+    max-height: none;
+  }
+
   /* Footer (Figma 256:868 — 390×794): 4-kol grid → 1-kol stack, mindre padding-block */
   .footer { padding: var(--space-48) 0 var(--space-24); }
   .footer__grid {
