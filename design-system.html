@@ -444,6 +444,158 @@
       </div>
     </section>
 
+    <!-- ================================================================
+         KAPITEL B — Sektion-system
+         Cream/hvid-rytmen + alle .section--* baggrunde + hero/CTA/find-varianter.
+         Kilde: css/styles.css linje 136-138, 220, 1996-2167, 2442-2833, 2558.
+         ================================================================ -->
+    <section class="section ds-section" aria-labelledby="ds-kapitel-b">
+      <div class="container">
+        <h2 id="ds-kapitel-b">Kapitel B — Sektion-system <span class="caption">🔵 kode-tilføjelse</span></h2>
+        <p>Body er <code>--bg-light</code> (cream) som default. Sektioner skifter baggrund via <code>.section--*</code> modifiers. På landing veksler cream/hvid-rytmen bevidst for at gruppere indhold visuelt (Mød + Behandlinger = hvide, resten = cream).</p>
+      </div>
+    </section>
+
+    <!-- B1. Sektion-baggrunde -->
+    <section class="section ds-section" aria-labelledby="ds-b1-bgs">
+      <div class="container">
+        <h2 id="ds-b1-bgs">B1 — Sektion-baggrunde (4 base-modifiers)</h2>
+        <p>Hver <code>&lt;section class="section ..."&gt;</code> tager én bg-modifier. Container indeni styrer indholds-bredden uafhængigt af bg.</p>
+      </div>
+
+      <!-- Live preview-bånd der viser hver bg i fuld bredde -->
+      <section class="section section--light" aria-label="Eksempel: .section--light">
+        <div class="container">
+          <p class="caption" style="margin: 0;"><code>.section--light</code> · bg <code>--bg-light</code> #F8F4EE · <strong>cream — body default</strong></p>
+        </div>
+      </section>
+
+      <section class="section section--white" aria-label="Eksempel: .section--white">
+        <div class="container">
+          <p class="caption" style="margin: 0;"><code>.section--white</code> · bg <code>--white</code> #FFFFFF · <strong>brydes ind for at gruppere indhold</strong></p>
+        </div>
+      </section>
+
+      <section class="section section--dark" aria-label="Eksempel: .section--dark">
+        <div class="container">
+          <p class="caption" style="margin: 0; color: var(--text-primary);"><code>.section--dark</code> · bg <code>--bg-dark</code> #17212E · <strong>mørk surface (footer, CTA-ring, hero-overlay)</strong></p>
+        </div>
+      </section>
+
+      <section class="section section--accent" aria-label="Eksempel: .section--accent">
+        <div class="container">
+          <p class="caption" style="margin: 0; color: var(--text-on-accent);"><code>.section--accent</code> · bg <code>--accent</code> #E06820 · <strong>orange — sparsom brug, kun til særligt fremhævede CTAs</strong></p>
+        </div>
+      </section>
+
+      <div class="container" style="margin-top: var(--space-32);">
+        <h3 style="font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">📐 Sektion-rytme på landing (bevidst Figma-mønster)</h3>
+        <ol style="padding-left: var(--space-24);">
+          <li>Hero (cream) → Mød din fysioterapeut (<strong>hvid</strong>) → Anmeldelser (cream) → Behandlinger (<strong>hvid</strong>) → Pris &amp; forsikring (cream) → CTA Usikker (mørk) → Find vej (cream)</li>
+        </ol>
+        <p class="caption">Rytmen er bindende — Louises JS må ikke ændre baggrundsfarver når den injicerer indhold.</p>
+      </div>
+    </section>
+
+    <!-- B2. Hero-sektioner -->
+    <section class="section section--white ds-section" aria-labelledby="ds-b2-heroes">
+      <div class="container">
+        <h2 id="ds-b2-heroes">B2 — Hero-sektioner (4 varianter)</h2>
+        <p>Hver canonical side har en specifik hero-variant. Klassisk <code>.section--hero</code> bruges på behandlinger-sider med foto-overlay; landing + om-Nicolai har dedikerede varianter.</p>
+
+        <div class="ds-row">
+          <h3><code>.section--hero</code> — generisk foto-overlay (behandlinger)</h3>
+          <div class="ds-preview" style="background: var(--bg-photo); background-image: linear-gradient(rgba(28,12,6,0.6), rgba(28,12,6,0.6)); color: var(--text-primary); flex-direction: column; align-items: flex-start; min-height: 120px;">
+            <span class="eyebrow" style="color: var(--accent);">BEHANDLING</span>
+            <h3 style="color: var(--text-primary); margin: 0;">Rygsmerter</h3>
+            <p style="color: var(--text-primary); margin: 0;">Jeg finder årsagen, ikke kun symptomet.</p>
+          </div>
+          <p class="caption">Brug: <code>behandlinger/rygsmerter.html</code>, <code>behandlinger/skulder-nakke.html</code>, alle 6 behandlings-sider · Kilde: <code>css/styles.css:1996</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3><code>.section--hero-landing</code> — 2-kolonne med foto til højre</h3>
+          <div class="ds-preview" style="background: var(--bg-light); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-32); align-items: center; min-height: 120px;">
+            <div>
+              <span class="eyebrow">PERSONLIG FYSIOTERAPI</span>
+              <h3 style="margin: 0;">Få den behandling du fortjener</h3>
+              <p class="caption">Ingen autopilot, ingen standardsvar.</p>
+            </div>
+            <div style="background: var(--border-light); height: 80px; border-radius: var(--radius-card); display: flex; align-items: center; justify-content: center; color: var(--text-dark); font-size: 12px;">[foto]</div>
+          </div>
+          <p class="caption">Brug: <code>index.html</code> · Kilde: <code>css/styles.css:2007</code> · Grid: 560fr / 570fr (max-width 1280px)</p>
+        </div>
+
+        <div class="ds-row">
+          <h3><code>.section--hero-om</code> — om-Nicolai hero</h3>
+          <div class="ds-preview" style="background: var(--bg-light); flex-direction: column; align-items: flex-start; min-height: 120px;">
+            <span class="eyebrow">OM NICOLAI</span>
+            <h3 style="margin: 0;">Fysioterapeut med 12 års erfaring</h3>
+            <p class="caption">Specialiseret i ryg, skulder og kæbe — med rod i sportsmedicin.</p>
+          </div>
+          <p class="caption">Brug: <code>om-nikolai.html</code> · Kilde: <code>css/styles.css:2091</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3><code>.section--video-hero</code> — sektion med embedded video-block</h3>
+          <div class="ds-preview" style="background: var(--bg-light); flex-direction: column; align-items: stretch; min-height: 120px;">
+            <h3 style="margin: 0;">Hør mig fortælle</h3>
+            <p class="caption" style="margin-block: var(--space-8);">Hvad kan du forvente når du booker første tid?</p>
+            <div style="background: var(--bg-dark); height: 64px; border-radius: var(--radius-card); display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 12px;">[ ▶ video-block ]</div>
+          </div>
+          <p class="caption">Brug: <code>om-nikolai.html</code> · Kilde: <code>css/styles.css:2152</code> · Indeholder altid en <code>.video-block</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- B3. CTA-sektioner -->
+    <section class="section ds-section" aria-labelledby="ds-b3-ctas">
+      <div class="container">
+        <h2 id="ds-b3-ctas">B3 — CTA-sektioner (2 varianter)</h2>
+        <p>To dedikerede CTA-sektioner med forskellig visuel vægt. <code>.section--cta-ring</code> bruges som "ring-os"-prompt midt på siden; <code>.section--cta-bund</code> bruges som booking-prompt nederst.</p>
+
+        <div class="ds-row">
+          <h3><code>.section--cta-ring</code> — mørk bg + orange phone-pill</h3>
+          <div class="ds-preview" style="background: var(--bg-dark); color: var(--text-primary); flex-direction: column; align-items: flex-start; min-height: 120px;">
+            <h3 style="margin: 0; color: var(--text-primary);">Usikker? Bare ring.</h3>
+            <p class="caption" style="color: var(--text-secondary); margin-block: var(--space-8);">Jeg svarer ofte selv — også uden for åbningstid.</p>
+            <a href="#" class="btn btn--phone-accent" onclick="return false;" aria-label="Eksempel-knap">+45 60 86 67 70</a>
+          </div>
+          <p class="caption">Brug: <code>index.html:627</code>, <code>om-nikolai.html:360</code> · Kilde: <code>css/styles.css:2442</code> · Indeholder altid en <code>.cta-band</code> wrapper og en <code>.btn.btn--phone-accent</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3><code>.section--cta-bund</code> — cream/accent bg + primary CTA</h3>
+          <div class="ds-preview" style="background: var(--bg-dark); color: var(--text-primary); flex-direction: column; align-items: flex-start; min-height: 120px;">
+            <h3 style="margin: 0; color: var(--text-primary);">Klar til at booke en tid?</h3>
+            <p class="caption" style="color: var(--text-secondary); margin-block: var(--space-8);">Book din første tid — jeg anbefaler 60 minutter.</p>
+            <a href="#" class="btn btn--primary" onclick="return false;">Book en tid hos mig</a>
+          </div>
+          <p class="caption">Brug: alle <code>behandlinger/*.html</code> (sidens bund) · Kilde: <code>css/styles.css:2828</code> · Container'en bruger <code>.cta-bund</code>-klassen til centering</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- B4. Find vej -->
+    <section class="section section--white ds-section" aria-labelledby="ds-b4-find">
+      <div class="container">
+        <h2 id="ds-b4-find">B4 — Find vej (<code>.section--find</code>)</h2>
+        <p>Dedikeret sektion for klinik-adresse: kort til venstre, info-kolonne til højre. Bruges på <code>index.html</code> bunden + på alle behandlings-sider.</p>
+
+        <div class="ds-row">
+          <div class="ds-preview" style="background: var(--bg-light); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-24); align-items: stretch; min-height: 140px;">
+            <div style="background: var(--border-light); border-radius: var(--radius-card); display: flex; align-items: center; justify-content: center; color: var(--text-dark); font-size: 12px;">[ kort ]</div>
+            <div>
+              <h3 style="margin: 0;">Find vej til klinikken</h3>
+              <address style="font-style: normal; margin-block: var(--space-8);">Langeskov Centret 1<br>5550 Langeskov</address>
+              <a href="#" class="btn btn--outline" onclick="return false;">Få rutevejledning →</a>
+            </div>
+          </div>
+          <p class="caption">Brug: <code>index.html:656</code>, <code>behandlinger/*.html</code> (sidens bund) · Kilde: <code>css/styles.css:2558</code> · Indeholder <code>.find-grid</code> med <code>.find-map</code> + <code>.find-info</code></p>
+        </div>
+      </div>
+    </section>
+
     <section class="section ds-section" aria-labelledby="ds-buttons">
       <div class="container">
         <h2 id="ds-buttons">01 — Buttons</h2>
