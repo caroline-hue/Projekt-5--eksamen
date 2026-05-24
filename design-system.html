@@ -153,9 +153,29 @@
                 <li><a href="#ds-d7-modal">D7. Modal/popover</a> 🔵</li>
               </ul>
             </li>
-            <li><strong>Kapitel E — Flow-mønstre</strong> 🟡 <span class="caption">(kommer i v2)</span></li>
-            <li><strong>Kapitel F — JS state-klasser</strong> 🔵 <span class="caption">(kommer i v2)</span></li>
-            <li><strong>Kapitel G — Konventioner</strong> 🔵 <span class="caption">(kommer i v2)</span></li>
+            <li><strong><a href="#ds-kapitel-e">Kapitel E — Flow-mønstre</a></strong>
+              <ul>
+                <li><a href="#ds-e1-flow-header">E1. Flow-header + bottom-nav</a> 🔵</li>
+                <li><a href="#ds-e2-flow-card">E2. Flow-card + consult-toggle</a> 🟡</li>
+                <li><a href="#ds-e3-calendar">E3. Calendar + time-slots</a> 🟢</li>
+                <li><a href="#ds-e4-summary">E4. Summary-card</a> 🔵</li>
+                <li><a href="#ds-e5-login">E5. Login-pattern</a> 🔵</li>
+                <li><a href="#ds-e6-ek">E6. EK-flow varianter</a> 🟢</li>
+              </ul>
+            </li>
+            <li><strong><a href="#ds-kapitel-f">Kapitel F — JS state-klasser</a></strong> 🔵
+              <ul>
+                <li><a href="#ds-f1-state">F1. State-klasser (live i kode)</a></li>
+                <li><a href="#ds-f2-hooks">F2. Data-hooks-konvention</a></li>
+              </ul>
+            </li>
+            <li><strong><a href="#ds-kapitel-g">Kapitel G — Konventioner</a></strong> 🔵
+              <ul>
+                <li><a href="#ds-g1-bem">G1. BEM-naming</a></li>
+                <li><a href="#ds-g2-a11y">G2. Accessibility patterns</a></li>
+                <li><a href="#ds-g3-wcag">G3. WCAG-bevidste afvigelser</a></li>
+              </ul>
+            </li>
           </ol>
         </nav>
         <p class="caption">📋 Spec: <code>docs/superpowers/specs/2026-05-24-design-system-update-design.md</code></p>
@@ -1439,6 +1459,458 @@
   &lt;span&gt;Hvad bruges CPR-nummer til?&lt;/span&gt;
 &lt;/button&gt;</code></pre>
           <p class="caption">Brug: <code>booking/trin-4.html:204-217</code> CPR-info-modal · Kilde: <code>css/styles.css:1289+</code> · <code>data-close</code>-attribut markerer click-targets der lukker modal'en (backdrop + close-button)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         KAPITEL E — Flow-mønstre
+         6 sub-sektioner. Booking-flow (5 trin) + EK-flow (klient) deler samme
+         layout-skelet. Her er fælles komponenter — for fuld kontekst se live
+         i booking/ + klient/.
+         ================================================================ -->
+    <section class="section ds-section" aria-labelledby="ds-kapitel-e">
+      <div class="container">
+        <h2 id="ds-kapitel-e">Kapitel E — Flow-mønstre</h2>
+        <p>Booking-flow (5 trin) og EK-flow (klient-login + kalender) deler samme layout-skelet. Figma-designmanualen differentierer EK-varianter med mindre dimensioner — men live-koden bruger samme CSS-klasser i begge flows, kun container giver de mindre størrelser (se E6).</p>
+      </div>
+    </section>
+
+    <!-- E1 — Flow-header + flow-bottom-nav -->
+    <section class="section ds-section" aria-labelledby="ds-e1-flow-header">
+      <div class="container">
+        <h2 id="ds-e1-flow-header">E1 — Flow-header + flow-bottom-nav <span class="caption">🔵 kode-tilføjelse — ikke i Figma DS-board</span></h2>
+        <p>Hovedet på alle booking/EK-flow-sider: tilbage-pil + titel + luk-kryds. Figma viser dem som del af prototype-frames, men ikke som DS-komponent.</p>
+
+        <div class="ds-row">
+          <h3>Flow-header (3-felt-layout)</h3>
+          <div class="ds-preview" style="display: block; padding: 0;">
+            <div class="flow-header" aria-label="Eksempel: booking-navigation" style="background: var(--white); padding: var(--space-16); border-radius: var(--radius-card);">
+              <a href="#" class="flow-header__back" aria-label="Tilbage til forsiden (eksempel)" onclick="return false;">
+                <span aria-hidden="true">←</span>
+              </a>
+              <p class="flow-header__title">Introduktion</p>
+              <a href="#" class="flow-header__close" aria-label="Luk booking (eksempel)" onclick="return false;">
+                <span aria-hidden="true">✕</span>
+              </a>
+            </div>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-1.html:99</code> og alle 4 øvrige trin · Kilde: <code>css/styles.css:2867</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Flow-bottom-nav (mobile-only)</h3>
+          <p class="caption"><code>.flow-bottom-nav</code> er <code>display: none</code> på desktop og viser trin-navigation som sticky-bar &lt;768px. Indeholder typisk "← Forrige" + "Næste →" knapper. Kilde: <code>css/styles.css:2945</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- E2 — Flow-card -->
+    <section class="section section--white ds-section" aria-labelledby="ds-e2-flow-card">
+      <div class="container">
+        <h2 id="ds-e2-flow-card">E2 — Flow-card <span class="caption">🟡 Figma Konsultation Toggle + Switch; kode tilføjer flow-card-skellet</span></h2>
+        <p><code>.flow-card</code> er containeren der indeholder alt i et booking-trin (stepper øverst, indhold, CTAs nederst). Tre inner-komponenter dokumenteres her: consult-toggle (radio cards), inline pill-variant, og akut/consult rows.</p>
+
+        <div class="ds-row">
+          <h3>Consult-toggle (radio cards) <span class="caption">🟢 Figma Konsultation Toggle floating — Selected=60min + Selected=30min</span></h3>
+          <div class="ds-preview" style="display: block;">
+            <fieldset class="consult-toggle" aria-label="Eksempel: vælg konsultationslængde" style="max-width: 640px;">
+              <legend class="sr-only">Vælg første konsultationslængde (eksempel)</legend>
+
+              <label class="consult-toggle__option">
+                <input type="radio" name="length-demo" value="30">
+                <span class="consult-toggle__card">
+                  <span class="consult-toggle__heading"><strong>30 minutter</strong></span>
+                  <span class="consult-toggle__body">Kortere konsultation. Passende ved fokuseret problemstilling.</span>
+                  <span class="consult-toggle__price">400 kr.</span>
+                </span>
+              </label>
+
+              <label class="consult-toggle__option consult-toggle__option--recommended">
+                <input type="radio" name="length-demo" value="60" checked>
+                <span class="consult-toggle__card">
+                  <span class="consult-toggle__heading">
+                    <strong>60 minutter</strong>
+                    <span class="consult-toggle__star" aria-hidden="true">★ Anbefalet</span>
+                  </span>
+                  <span class="consult-toggle__body">Inkl. undersøgelse og behandlingsplan. Anbefales til alle nye patienter.</span>
+                  <span class="consult-toggle__price">650 kr.</span>
+                </span>
+              </label>
+            </fieldset>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-1.html:149</code> "Første konsultationslængde" · Modifier <code>--recommended</code> tilføjer accent-border · Kilde: <code>css/styles.css:1541+</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Consult-toggle--inline (pill-variant)</h3>
+          <div class="ds-preview" style="display: block;">
+            <fieldset class="consult-toggle consult-toggle--inline" aria-label="Eksempel: pill-variant" style="max-width: 480px;">
+              <legend class="sr-only">Vælg konsultationslængde (pill-variant)</legend>
+              <label class="consult-toggle__pill">
+                <input type="radio" name="length-pill-demo" value="60" checked>
+                <span>60 minutter ★</span>
+              </label>
+              <label class="consult-toggle__pill">
+                <input type="radio" name="length-pill-demo" value="30">
+                <span>30 minutter</span>
+              </label>
+            </fieldset>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-3.html:150</code> kompakt-version når plads er begrænset · Kilde: <code>css/styles.css:1618</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Akut-row + consult-row (booking-trin-3 toolbar)</h3>
+          <div class="ds-preview" style="display: block; padding: 0;">
+            <div class="akut-row" style="background: var(--white); padding: var(--space-16); border-radius: var(--radius-card); margin-bottom: var(--space-8);">
+              <div class="akut-row__text">
+                <p class="akut-row__title">Jeg har brug for en akuttid</p>
+                <p class="akut-row__caption">Viser kun tider inden for 24 timer (+300 kr akuttillæg)</p>
+              </div>
+              <label class="switch" aria-label="Slå akuttid til/fra (eksempel)">
+                <input type="checkbox" name="akut-demo-row">
+                <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+              </label>
+            </div>
+            <div class="consult-row" style="background: var(--white); padding: var(--space-16); border-radius: var(--radius-card);">
+              <p class="consult-row__label">Konsultationslængde:</p>
+              <fieldset class="consult-toggle consult-toggle--inline" aria-label="Eksempel">
+                <legend class="sr-only">Vælg længde</legend>
+                <label class="consult-toggle__pill">
+                  <input type="radio" name="length-row-demo" value="60" checked>
+                  <span>60 min ★</span>
+                </label>
+                <label class="consult-toggle__pill">
+                  <input type="radio" name="length-row-demo" value="30">
+                  <span>30 min</span>
+                </label>
+              </fieldset>
+            </div>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-3.html:137</code> over kalender · Kilde: <code>css/styles.css:1671</code> (akut-row), <code>:1688</code> (consult-row)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- E3 — Calendar + time-slots -->
+    <section class="section ds-section" aria-labelledby="ds-e3-calendar">
+      <div class="container">
+        <h2 id="ds-e3-calendar">E3 — Calendar + time-slots <span class="caption">🟢 Figma Date Cell + Time Slot Group floating</span></h2>
+        <p>Tabel-baseret kalender med navigation + grid + time-slot-liste under. Figma dokumenterer alle 3 date-cell-states (Default / Selected / Unavailable). Live-koden implementerer Default + Selected; Unavailable togles via <code>disabled</code> + <code>aria-disabled</code>.</p>
+
+        <div class="ds-row">
+          <h3>Calendar struktur (header + grid)</h3>
+          <div class="ds-preview" style="display: block;">
+            <section class="calendar" aria-labelledby="cal-demo-title" style="max-width: 480px;">
+              <header class="calendar__nav">
+                <button type="button" aria-label="Forrige måned (eksempel)" onclick="return false;">←</button>
+                <h2 id="cal-demo-title" style="font-size: 18px; margin: 0;">Maj 2026</h2>
+                <button type="button" aria-label="Næste måned (eksempel)" onclick="return false;">→</button>
+              </header>
+              <table class="calendar__grid" role="grid" aria-labelledby="cal-demo-title">
+                <thead>
+                  <tr>
+                    <th>Man</th><th>Tir</th><th>Ons</th><th>Tor</th><th>Fre</th><th>Lør</th><th>Søn</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><button type="button" class="date-cell" disabled aria-disabled="true">28</button></td>
+                    <td><button type="button" class="date-cell" disabled aria-disabled="true">29</button></td>
+                    <td><button type="button" class="date-cell" disabled aria-disabled="true">30</button></td>
+                    <td><button type="button" class="date-cell">1</button></td>
+                    <td><button type="button" class="date-cell">2</button></td>
+                    <td><button type="button" class="date-cell">3</button></td>
+                    <td><button type="button" class="date-cell">4</button></td>
+                  </tr>
+                  <tr>
+                    <td><button type="button" class="date-cell date-cell--selected" aria-pressed="true" onclick="return false;">5</button></td>
+                    <td><button type="button" class="date-cell">6</button></td>
+                    <td><button type="button" class="date-cell">7</button></td>
+                    <td><button type="button" class="date-cell">8</button></td>
+                    <td><button type="button" class="date-cell">9</button></td>
+                    <td><button type="button" class="date-cell" disabled aria-disabled="true">10</button></td>
+                    <td><button type="button" class="date-cell" disabled aria-disabled="true">11</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-3.html:163</code> + <code>klient/kalender.html:144</code> · Kilde: <code>css/styles.css:1750+</code> · 3 states: Default · <code>.date-cell--selected</code> (aria-pressed="true") · disabled (aria-disabled="true")</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Time-slots (efter dato-valg)</h3>
+          <div class="ds-preview" style="display: block;">
+            <div class="calendar__times" style="max-width: 480px;">
+              <p class="calendar__times-title">Ledige tider – tirsdag 5. maj</p>
+              <ul class="time-slots" style="list-style: none; padding: 0;">
+                <li><button type="button" class="time-slot" onclick="return false;">09:00</button></li>
+                <li><button type="button" class="time-slot time-slot--selected" aria-pressed="true" onclick="return false;">10:00</button></li>
+                <li><button type="button" class="time-slot" onclick="return false;">13:00</button></li>
+                <li><button type="button" class="time-slot" onclick="return false;">14:30</button></li>
+                <li><button type="button" class="time-slot" onclick="return false;">16:00</button></li>
+              </ul>
+            </div>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-3.html:230</code> · Kilde: <code>css/styles.css</code> (se grep)</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Booking-summary (live update efter valg)</h3>
+          <div class="ds-preview">
+            <div class="booking-summary" aria-live="polite" style="max-width: 480px;">
+              <p>Tir 5. maj · 10:00 · 60 min · 650 kr.</p>
+              <p>Symptom: Fod-problematikker</p>
+            </div>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-3.html:242</code> opsummering nederst · <code>aria-live="polite"</code> annoncerer ændringer til screen reader</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- E4 — Summary-card -->
+    <section class="section section--white ds-section" aria-labelledby="ds-e4-summary">
+      <div class="container">
+        <h2 id="ds-e4-summary">E4 — Summary-card (bekræftelses-kvittering) <span class="caption">🔵 kode-tilføjelse — booking trin-5</span></h2>
+        <p>Final kvittering med opsummering af booking + kort til klinikken. Vises også i C3 ovenfor som card-variant. Her vist i flow-kontekst:</p>
+
+        <div class="ds-row">
+          <p class="caption">Canonical markup (forkortet — fuld struktur vises i C3 Cards):</p>
+          <pre style="background: var(--bg-light); padding: var(--space-16); border-radius: var(--radius-card); overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>&lt;section class="summary-card"&gt;
+  &lt;h2 class="summary-card__title"&gt;Opsummering&lt;/h2&gt;
+  &lt;hr class="summary-card__divider"&gt;
+  &lt;div class="summary-row"&gt;
+    &lt;p class="summary-row__label"&gt;Behandling&lt;/p&gt;
+    &lt;p class="summary-row__value"&gt;60 min konsultation&lt;/p&gt;
+  &lt;/div&gt;
+  ... (3 flere summary-row'er)
+  &lt;img src="..." alt="Kort" class="summary-card__map"&gt;
+&lt;/section&gt;</code></pre>
+          <p class="caption">Brug: <code>booking/trin-5.html:131</code> · Kilde: <code>css/styles.css</code> (se grep)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- E5 — Login-pattern -->
+    <section class="section ds-section" aria-labelledby="ds-e5-login">
+      <div class="container">
+        <h2 id="ds-e5-login">E5 — Login-pattern <span class="caption">🔵 kode-tilføjelse — klient/login.html</span></h2>
+        <p>Side-specifik variant af <code>.flow-card</code> brugt på EK-login. Figma-designmanualen har ikke login-pattern; det er tilføjet til EK-flowet. Class-katalog (uden full markup):</p>
+
+        <div class="ds-row">
+          <h3>Login-klasser i brug</h3>
+          <ul style="padding-left: var(--space-24);">
+            <li><code>.flow-card.flow-card--login</code> — root-container (variant af flow-card)</li>
+            <li><code>.login__title</code> + <code>.login__subhead</code> — heading + intro</li>
+            <li><code>.login__form</code> — email-felt + primary submit</li>
+            <li><code>.login__email-btn</code> + <code>.login__sms-btn</code> — login-metode-knapper</li>
+            <li><code>.login__divider-or</code> — "eller"-divider (bruger <code>.divider</code> som base-styling)</li>
+            <li><code>.login__signup</code> + <code>.login__signup-q</code> + <code>.login__signup-link</code> — bund-sektion</li>
+            <li><code>.login__forgot</code> — "glemt password"-link</li>
+            <li><code>.login__rule</code> — visuel separator</li>
+            <li><code>.btn.btn--mitid</code> — MitID-login-knap (se C1)</li>
+          </ul>
+          <p class="caption">Brug: <code>klient/login.html</code> · Kilde: <code>css/styles.css:3158+</code> (login-specifikke regler)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- E6 — EK-flow varianter (NY — adresserer Figma's EK-specifikke komponenter) -->
+    <section class="section section--white ds-section" aria-labelledby="ds-e6-ek">
+      <div class="container">
+        <h2 id="ds-e6-ek">E6 — EK-flow varianter <span class="caption">🟢 Figma EK Week Cell + EK Time Slot Cell + EK Akut Toggle</span></h2>
+        <p>Figma-designmanualen har 3 EK-specifikke floating-komponenter med mindre dimensioner (booking-flowets pendant er større):</p>
+
+        <div class="ds-row">
+          <h3>Figma's EK-komponenter vs. live-kode</h3>
+          <div class="ds-preview" style="display: block; padding: 0;">
+            <table style="width: 100%; border-collapse: collapse; background: var(--bg-light); border-radius: var(--radius-card); overflow: hidden;">
+              <thead>
+                <tr style="background: var(--text-dark); color: var(--text-primary);">
+                  <th style="padding: var(--space-16); text-align: left;">Figma-komponent</th>
+                  <th style="padding: var(--space-16); text-align: left;">Dimensioner</th>
+                  <th style="padding: var(--space-16); text-align: left;">Live CSS-klasse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">EK Week Cell</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">88×43</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.date-cell</code> (samme som booking)</td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">EK Time Slot Cell</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">156×19</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.time-slot</code> (samme som booking)</td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">EK Akut Toggle</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">44×24</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.switch</code> (samme som booking)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3>📌 Vigtig oplysning til censor</h3>
+          <p>Live-koden implementerer <strong>ikke</strong> separate <code>.ek-date-cell</code>, <code>.ek-time-slot</code> eller <code>.ek-switch</code>-klasser. EK-flowet (<code>klient/kalender.html</code>) genbruger booking-flowets klasser — de mindre dimensioner Figma viser kommer fra parent container's bredde + flex-shrink. Det er en bevidst forenkling der reducerer CSS-duplikering.</p>
+          <p class="caption">Referencer: <code>klient/kalender.html:126-131</code> (.switch i EK-context) · <code>klient/kalender.html:144-170</code> (.calendar + .date-cell i EK-context)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         KAPITEL F — JS state-klasser & data-hooks
+         Dokumenterer kontrakten mellem HTML/CSS og js/main.js.
+         Kun det der RENT FAKTISK togles i koden — ikke aspirational state-classes
+         fra JS-HANDOFF.md.
+         ================================================================ -->
+    <section class="section ds-section" aria-labelledby="ds-kapitel-f">
+      <div class="container">
+        <h2 id="ds-kapitel-f">Kapitel F — JS state-klasser &amp; data-hooks <span class="caption">🔵 kode-tilføjelse</span></h2>
+        <p>Sektion 25 i <code>css/styles.css</code> indeholder state-classes som toggles af <code>js/main.js</code>. State-classes er kontrakten mellem HTML/CSS og JS.</p>
+      </div>
+    </section>
+
+    <!-- F1 — State-klasser -->
+    <section class="section section--white ds-section" aria-labelledby="ds-f1-state">
+      <div class="container">
+        <h2 id="ds-f1-state">F1 — State-klasser (live i kode)</h2>
+        <p>Tabel viser de state-klasser der <strong>rent faktisk</strong> togles af <code>js/main.js</code> i dag (<code>grep "classList\." js/main.js</code>) — plus de selected-modifiers der findes som statisk markup i live-koden.</p>
+
+        <div class="ds-row">
+          <div class="ds-preview" style="display: block; padding: 0;">
+            <table style="width: 100%; border-collapse: collapse; background: var(--bg-light); border-radius: var(--radius-card); overflow: hidden;">
+              <thead>
+                <tr style="background: var(--text-dark); color: var(--text-primary);">
+                  <th style="padding: var(--space-16); text-align: left;">Klasse</th>
+                  <th style="padding: var(--space-16); text-align: left;">Hvem toggler / sætter</th>
+                  <th style="padding: var(--space-16); text-align: left;">Hvor brugt</th>
+                  <th style="padding: var(--space-16); text-align: left;">Live-kilde</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.is-aktiv</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Louise, <code>initSymptomGrid</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.symptom-sub.is-aktiv</code> (vises ved fod-valg)</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>js/main.js:279, 287</code> + <code>css/styles.css:1893</code></td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.has-error</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Caroline, <code>initReviewsWidget</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.reviews-grid.has-error</code> (error-border)</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>js/main.js:131</code> + <code>css/styles.css:3688</code></td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.reviews-loading</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Statisk i HTML, fjernes af JS ved render</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Placeholder før fetch</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>index.html:389</code> + <code>css/styles.css:3678</code></td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.reviews-error</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Caroline (template-render)</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Vises ved failed fetch</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>js/main.js:135</code> + <code>css/styles.css:3679</code></td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.time-slot--selected</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Statisk i live-HTML (kalender-JS ikke bygget endnu)</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Valgt tid i kalender</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>booking/trin-3.html:234</code></td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>.date-cell--selected</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Statisk i live-HTML (samme)</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Valgt dato i kalender</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>klient/kalender.html:165</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption">📝 <strong>Note om JS-HANDOFF.md:</strong> Det dokument nævner <code>body.has-open-menu</code>, <code>body.has-open-modal</code> og <code>.is-active</code> som <em>anbefalede</em> state-klasser Louise kunne tilføje. Pr. 2026-05-24 er ingen af dem implementeret — designsystemet dokumenterer kun det der er, ikke det der er planlagt.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- F2 — Data-hooks -->
+    <section class="section ds-section" aria-labelledby="ds-f2-hooks">
+      <div class="container">
+        <h2 id="ds-f2-hooks">F2 — Data-hooks-konvention</h2>
+        <p>Alle JS-hooks bruger <code>data-js-*</code>-prefix (aldrig klasser). Dette holder CSS- og JS-bekymringer adskilt: når en designer ændrer styling, kan JS-hooks ikke ved et uheld fjernes.</p>
+
+        <div class="ds-row">
+          <h3>Eksempler fra live-koden</h3>
+          <ul style="padding-left: var(--space-24);">
+            <li><code>data-js-reviews</code>, <code>data-js-reviews-more</code> — Caroline (reviews-widget container + load-more knap)</li>
+            <li><code>data-js-modal-trigger</code> — Louise (CPR-info-modal trigger)</li>
+            <li><code>data-js-akut-toggle</code> — Louise (akut-switch)</li>
+            <li><code>data-js-time</code> — Louise (time-slot buttons)</li>
+            <li><code>data-js-symptom</code>, <code>data-js-subcat</code> — Louise (symptom-grid radio)</li>
+            <li><code>data-js-info-card</code>, <code>data-js-info-body</code>, <code>data-js-info-title</code> — Louise (filter-chip info-card target)</li>
+            <li><code>data-js-cal-prev</code>, <code>data-js-cal-next</code> — Louise (kalender-navigation)</li>
+            <li><code>data-js-ics-trigger</code> — Caroline (bekræftelse "tilføj til kalender")</li>
+            <li><code>data-js-summary</code> — Louise (booking-summary live update)</li>
+            <li><code>data-js-field</code>, <code>data-js-checkbox</code> — Louise (form-validation hooks)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         KAPITEL G — Konventioner
+         BEM-naming, accessibility-patterns, WCAG-bevidste afvigelser samlet.
+         ================================================================ -->
+    <section class="section ds-section" aria-labelledby="ds-kapitel-g">
+      <div class="container">
+        <h2 id="ds-kapitel-g">Kapitel G — Konventioner <span class="caption">🔵 kode-tilføjelse</span></h2>
+        <p>Naming-mønstre + accessibility-patterns + WCAG-bevidste afvigelser fra Figma-designmanualen.</p>
+      </div>
+    </section>
+
+    <!-- G1 — BEM-naming -->
+    <section class="section section--white ds-section" aria-labelledby="ds-g1-bem">
+      <div class="container">
+        <h2 id="ds-g1-bem">G1 — BEM-naming</h2>
+        <p>Klasse-navne følger BEM (Block-Element-Modifier) for at gøre HTML+CSS-koblingen forudsigelig og forhindre cascade-konflikter.</p>
+
+        <div class="ds-row">
+          <h3>Mønster</h3>
+          <ul style="padding-left: var(--space-24);">
+            <li><code>.block</code> — root komponent (fx <code>.card</code>, <code>.nav</code>, <code>.form-card</code>)</li>
+            <li><code>.block__element</code> — child af block (fx <code>.card__title</code>, <code>.nav__link</code>)</li>
+            <li><code>.block--modifier</code> — variant af block (fx <code>.card--treatment</code>, <code>.btn--primary</code>)</li>
+          </ul>
+        </div>
+
+        <div class="ds-row">
+          <h3>Konkret eksempel: <code>.card.card--treatment</code></h3>
+          <pre style="background: var(--bg-light); padding: var(--space-16); border-radius: var(--radius-card); overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>&lt;article class="card card--treatment"&gt;
+  &lt;img class="card__image"&gt;
+  &lt;div class="card__body"&gt;
+    &lt;h4 class="card__title"&gt;…&lt;/h4&gt;
+    &lt;a class="card__link"&gt;…&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+          <p class="caption">Block-uden-egen-CSS er tilladt — <code>.accordion</code>, <code>.review-card__source</code>, <code>.login__divider-or</code> er strukturelle wrappers der nedarver styling fra deres elements/parent.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- G2 — Accessibility patterns -->
+    <section class="section ds-section" aria-labelledby="ds-g2-a11y">
+      <div class="container">
+        <h2 id="ds-g2-a11y">G2 — Accessibility patterns</h2>
+        <p>Mønstre brugt konsekvent på tværs af sitet. Mål: WCAG 2.2 AA-compliance + en god oplevelse for screen reader + keyboard-only brugere.</p>
+
+        <div class="ds-row">
+          <ul style="padding-left: var(--space-24);">
+            <li><strong><code>:focus-visible</code> outline</strong> — 3px <code>--accent</code>, 2px offset på alle interaktive elementer</li>
+            <li><strong><code>.sr-only</code></strong> — skjult tekst til screen reader (fx på <code>&lt;legend&gt;</code> der ikke skal vises visuelt)</li>
+            <li><strong><code>&lt;fieldset&gt;</code> + <code>&lt;legend class="sr-only"&gt;</code></strong> — grupperede inputs (radio-grupper, checkbox-grupper)</li>
+            <li><strong><code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code></strong> — CSS-only accordion uden JS-afhængighed</li>
+            <li><strong><code>aria-expanded</code></strong> togges på dropdown-knapper (nav-dropdowns, mobil-burger, modal-trigger)</li>
+            <li><strong><code>aria-pressed="true"</code></strong> på toggle-knapper (time-slot, date-cell selected)</li>
+            <li><strong><code>aria-live="polite"</code></strong> på dynamisk indhold (reviews-grid, booking-summary, calendar__times)</li>
+            <li><strong><code>aria-busy="true"</code></strong> initial state mens fetch kører</li>
+            <li><strong><code>role="alert"</code></strong> på fejl-beskeder (.field__error, .reviews-error)</li>
+            <li><strong><code>role="dialog"</code> + <code>aria-modal="true"</code></strong> på modaler</li>
+            <li><strong>Touch-targets ≥ 44×44 CSS px</strong> — alle knapper og interaktive felter</li>
+            <li><strong><code>prefers-reduced-motion</code></strong> respekteres (CSS sektion 23) — animations slukkes for brugere der har bedt om det</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- G3 — WCAG bevidste afvigelser -->
+    <section class="section section--white ds-section" aria-labelledby="ds-g3-wcag">
+      <div class="container">
+        <h2 id="ds-g3-wcag">G3 — WCAG-bevidste afvigelser fra Figma-designmanualen</h2>
+        <p>Figma's farvepalet er optimeret til æstetik, ikke til WCAG 2.2 AA. Hvor Figma's tokens fejler AA på interaktive elementer (tekst-links, borders, stjerner på lys bg), er der defineret WCAG-fixede varianter. Dette er dokumenteret eksplicit over for censor.</p>
+
+        <div class="ds-row">
+          <div class="ds-preview" style="display: block; padding: 0;">
+            <table style="width: 100%; border-collapse: collapse; background: var(--bg-light); border-radius: var(--radius-card); overflow: hidden;">
+              <thead>
+                <tr style="background: var(--text-dark); color: var(--text-primary);">
+                  <th style="padding: var(--space-16); text-align: left;">Figma-token</th>
+                  <th style="padding: var(--space-16); text-align: left;">Figma-kontrast</th>
+                  <th style="padding: var(--space-16); text-align: left;">CSS WCAG-variant</th>
+                  <th style="padding: var(--space-16); text-align: left;">Vores kontrast</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--accent</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light); color: #B84E10;">3.2:1 ❌</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--accent-text-on-light</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light); color: #1C2630;"><strong>5.08:1 ✓</strong></td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--star</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light); color: #B84E10;">2.6:1 ❌</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--star-on-light</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light); color: #1C2630;"><strong>4.5:1 ✓</strong></td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--border-light-figma</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light); color: #B84E10;">&lt; 3:1 ❌</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--border-light</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light); color: #1C2630;"><strong>3:1 ✓</strong></td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--border-dark-figma</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light); color: #B84E10;">&lt; 3:1 ❌</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--border-dark</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light); color: #1C2630;"><strong>3:1 ✓</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="caption">Figma-token bevares i koden (bruges på dekorative elementer hvor AA-kontrast ikke kræves), men interaktive elementer (tekst-links, eyebrow, stjerner på lys bg, form-borders) bruger WCAG-varianten.</p>
         </div>
       </div>
     </section>

@@ -54,7 +54,7 @@ Ingen frameworks, ingen build tools, ingen npm-pakker.
 
 ## Designsystem
 
-Se `design-system.html` for live komponentbibliotek (11 sektioner).
+Se `design-system.html` for live komponentbibliotek (7 kapitler: Foundations, Sektion-system, Komponenter, Forms, Flow-mønstre, plus JS state-classes og konventioner). Komponenter er kildemærket: 🟢 fra Figma-designmanualen, 🟡 Figma + udvidet i kode, 🔵 kode-tilføjelse udover Figma.
 
 Tokens defineret i `css/styles.css` under `:root`:
 
