@@ -55,9 +55,9 @@ ingen duplikering ved spot-check. **Problemet er kun dokumentation.**
 
 ---
 
-## 1.5 Figma alignment-check (Dennis' designmanual)
+## 1.5 Figma alignment-check (Figma-designmanualen)
 
-Efter første draft af denne spec sammenlignede vi mod Dennis' originale Figma-fil
+Efter første draft af denne spec sammenlignede vi mod den originale Figma-fil
 ("Prototype-og-Designmanual", node 1:3). Resultat:
 
 ### Tokens: 100 % match
@@ -72,12 +72,12 @@ Alle 13 Figma Variables (`bg/dark`, `accent/default`, `radius/btn`, `space/*`,
   `--border-light`, `--border-dark`) — bevidste afvigelser fra Figma's tokens
   der ikke ramte AA-kontrast.
 
-**Naming-konflikt:** Dennis kalder borders `border/light` / `border/dark`. CSS
+**Naming-konflikt:** Figma-designmanualen kalder borders `border/light` / `border/dark`. CSS
 har omdøbt dem til `--border-light-figma` / `--border-dark-figma` for at frigøre
 hovednavnet til WCAG-fixede versioner. Skal forklares i designsystemet.
 
-### Komponenter: Dennis har 11 sektioner + 11 floating component-grupper
-Dennis' "🎨 Design System – Board" har sektioner 01-11:
+### Komponenter: Figma-designmanualen har 11 sektioner + 11 floating component-grupper
+Figma-designmanualens "🎨 Design System – Board" har sektioner 01-11:
 | # | Sektion | I nuværende `design-system.html`? |
 |---|---|---|
 | 01 | Buttons | ✓ |
@@ -92,10 +92,10 @@ Dennis' "🎨 Design System – Board" har sektioner 01-11:
 | 10 | Step | ✓ |
 | **11** | **Navigation Mobile** | **✗ MANGLER — fixes i denne update** |
 
-README.md siger "11 sektioner" — det matcher Dennis' intent men ikke nuværende
+README.md siger "11 sektioner" — det matcher Figma-designmanualens intent men ikke nuværende
 fil-tilstand. Section 11 (Navigation Mobile) skal eksplicit tilføjes.
 
-Plus Dennis' "floating components" (uden for hoved-board):
+Plus Figma's "floating components" (uden for hoved-board):
 - Stepper (5 Steps + 4 Steps Mobile + Mobile-variant)
 - Konsultation Toggle (desktop + mobile)
 - Date Cell (desktop + mobile + **EK-variant 88×43**)
@@ -107,14 +107,14 @@ Plus Dennis' "floating components" (uden for hoved-board):
 - Navigation Mobile menu-open state
 - **EK Akut Toggle 44×24** (mindre end booking-switch)
 
-**Vigtig observation:** Dennis differentierer EK-varianter med mindre dimensioner,
+**Vigtig observation:** Figma-designmanualen differentierer EK-varianter med mindre dimensioner,
 men live-koden bruger **samme CSS-klasser** som booking (`.switch`, `.calendar`,
 `.date-cell`, `.time-slot`) — kun container/parent giver de mindre størrelser.
 Dvs. der er ikke separate `.ek-switch`/`.ek-date-cell` i koden. Det skal
 designsystemet være tydelig omkring.
 
-### Hvor CSS/live-kode går ud over Dennis (= "kode-tilføjelser")
-Disse findes IKKE i Dennis' Figma — de er bygget direkte i kode:
+### Hvor CSS/live-kode går ud over Figma-designmanualen (= "kode-tilføjelser")
+Disse findes IKKE i Figma-designmanualen — de er bygget direkte i kode:
 - **Section-system:** `.section--white`, `.section--cta-bund`, `.section--cta-ring`,
   `.section--find`, `.section--video-hero`, `.section--hero-landing`,
   `.section--hero-om`, `.section--accent`
@@ -128,15 +128,15 @@ Disse findes IKKE i Dennis' Figma — de er bygget direkte i kode:
 - **Login-pattern:** flow-card--login + alle `.login__*`-klasser
 - **Reviews-widget:** reviews-rating, reviews-grid, reviews-loading, reviews-error
   (Caroline JS render, 2026-05-22)
-- **Button-varianter ud over Dennis:** btn--outline, btn--dark, btn--phone,
+- **Button-varianter ud over Figma-designmanualen:** btn--outline, btn--dark, btn--phone,
   btn--phone-accent, btn--mitid
 
 ### Alignment-beslutninger truffet efter Figma-tjek
 | # | Beslutning |
 |---|---|
-| A1 | **Kapitel A (Foundations) beholdes** — visualiser alle tokens som swatches selv om Dennis ikke har det. Multimediedesigner-eksamen kræver synlig token-dokumentation. |
+| A1 | **Kapitel A (Foundations) beholdes** — visualiser alle tokens som swatches selv om Figma-designmanualen ikke har det. Multimediedesigner-eksamen kræver synlig token-dokumentation. |
 | B1 | **Kapitel B (Sektion-system) beholdes** — cream/hvid-rytmen er en kerne-designbeslutning. |
-| C3 | **Caroline/kode-tilføjelser inkluderes med eksplicit "kode-tilføjelse"-mærkat** — synliggør hvad der er bygget udover Dennis' originale Figma. Mest pædagogisk for censor + viser refleksion. |
+| C3 | **Caroline/kode-tilføjelser inkluderes med eksplicit "kode-tilføjelse"-mærkat** — synliggør hvad der er bygget udover den originale Figma. Mest pædagogisk for censor + viser refleksion. |
 | D1 | **Section 11 (Navigation Mobile) tilføjes eksplicit** — fixer README-løgnen. |
 | D2 | **Navigation dropdown-open states tilføjes** — kompakt, som ekstra states i C2. |
 | D3 | **Ny E6: EK-flow varianter** — forklarer at EK bruger samme klasser men i mindre containere. |
@@ -189,14 +189,14 @@ forklarer hvad kapitlet dækker. Inden første kapitel ligger en TOC (table of
 contents) med ankerlinks så censor og udvikler kan springe rundt.
 
 **Source-mærkater i sektioner:**
-- 🟢 **[Dennis]** — komponent findes i Dennis' Figma designmanual som canonical
-- 🟡 **[Dennis + udvidet]** — Dennis har en variant, kode har flere
-- 🔵 **[Kode-tilføjelse]** — ikke i Dennis' Figma, kun bygget i kode
+- 🟢 **[Figma-designmanual]** — komponent findes i Figma-designmanualen som canonical
+- 🟡 **[Figma + udvidet]** — Figma-designmanualen har en variant, kode har flere
+- 🔵 **[Kode-tilføjelse]** — ikke i Figma-designmanualen, kun bygget i kode
   (markeres specifikt hvis det er Caroline/Louise's addition)
 
 ```
 00 — TOC (ny)
-KAPITEL A — Foundations  🔵 [Kode-tilføjelse — Dennis har Variables, ikke swatches]
+KAPITEL A — Foundations  🔵 [Kode-tilføjelse — Figma-designmanualen har Variables, ikke swatches]
   A1. Farver (tokens + WCAG-noter)
   A2. Typografi (Sen + Mulish + 9 Figma type-tokens)
   A3. Spacing + layout
@@ -209,38 +209,38 @@ KAPITEL B — Sektion-system  🔵 [Kode-tilføjelse]
   B4. Find vej (.section--find)
 
 KAPITEL C — Komponenter
-  C1. Buttons  🟡 [Dennis + udvidet — 4 ekstra varianter i kode]
-  C2. Navigation  🟡 [Dennis section 02 + 11 + 3 open-states]
+  C1. Buttons  🟡 [Figma + udvidet — 4 ekstra varianter i kode]
+  C2. Navigation  🟡 [Figma section 02 + 11 + 3 open-states]
        - Desktop nav (live)
-       - Mobile nav (390 bred) — Dennis section 11
+       - Mobile nav (390 bred) — Figma section 11
        - Dropdown-open states: Behandlinger, Praktisk
        - Mobile menu-open state
-  C3. Cards  🟡 [Dennis: Treatment + Testimonial; kode tilføjer 11 cards]
-  C4. Badge  🟢 [Dennis section 06]
-  C5. Pris  🟡 [Dennis pris-row + kode pris-grid/--card/--col/--list/--cta]
-  C6. Step + Stepper + Timeline  🟡 [Dennis step + 5-trin stepper; kode tilføjer step-list/--horizontal + timeline]
+  C3. Cards  🟡 [Figma: Treatment + Testimonial; kode tilføjer 11 cards]
+  C4. Badge  🟢 [Figma section 06]
+  C5. Pris  🟡 [Figma pris-row + kode pris-grid/--card/--col/--list/--cta]
+  C6. Step + Stepper + Timeline  🟡 [Figma step + 5-trin stepper; kode tilføjer step-list/--horizontal + timeline]
   C7. Content-blocks
-       - accordion 🟢 [Dennis floating]
+       - accordion 🟢 [Figma-designmanual: floating]
        - video-block, map-block, cta-band 🔵 [Kode-tilføjelse]
   C8. Reviews-widget  🔵 [Caroline JS, 2026-05-22]
-  C9. FAB  🟢 [Dennis section 05]
+  C9. FAB  🟢 [Figma section 05]
 
 KAPITEL D — Forms
-  D1. Field-states  🟢 [Dennis section 04 — 4 states]
-  D2. Checkbox + Radio  🟡 [Checkbox i kode; radio fra Symptom Section Dennis floating]
-  D3. Switch  🟢 [Dennis Toggle/Switch floating]
-  D4. Symptom-grid + symptom-sub  🟢 [Dennis Symptom Section, 6 varianter]
+  D1. Field-states  🟢 [Figma section 04 — 4 states]
+  D2. Checkbox + Radio  🟡 [Checkbox i kode; radio fra Symptom Section (Figma floating)]
+  D3. Switch  🟢 [Figma Toggle/Switch floating]
+  D4. Symptom-grid + symptom-sub  🟢 [Figma Symptom Section, 6 varianter]
   D5. Filter-chip  🔵 [Caroline/Louise landing-tilføjelse]
   D6. Form-card composition  🔵 [Kode-tilføjelse — booking trin-4]
   D7. Modal/popover  🔵 [Kode-tilføjelse — booking trin-4 CPR-info]
 
 KAPITEL E — Flow-mønstre
   E1. Flow-header + flow-bottom-nav  🔵 [Kode-tilføjelse — i prototype-frames, ikke DS-board]
-  E2. Flow-card  🟡 [Dennis Konsultation Toggle + Switch; kode tilføjer flow-card-skellet]
-  E3. Calendar + time-slots  🟢 [Dennis Date Cell + Time Slot Group]
+  E2. Flow-card  🟡 [Figma Konsultation Toggle + Switch; kode tilføjer flow-card-skellet]
+  E3. Calendar + time-slots  🟢 [Figma Date Cell + Time Slot Group]
   E4. Summary-card  🔵 [Kode-tilføjelse — booking trin-5]
   E5. Login-pattern  🔵 [Kode-tilføjelse — klient/login.html]
-  E6. EK-flow varianter (NY)  🟢 [Dennis EK Week Cell, EK Time Slot Cell, EK Akut Toggle]
+  E6. EK-flow varianter (NY)  🟢 [Figma EK Week Cell, EK Time Slot Cell, EK Akut Toggle]
        - Forklarer at EK bruger samme CSS-klasser men i mindre container
 
 KAPITEL F — JS state-klasser & data-hooks  🔵 [Kode-tilføjelse]
@@ -250,13 +250,13 @@ KAPITEL F — JS state-klasser & data-hooks  🔵 [Kode-tilføjelse]
 KAPITEL G — Konventioner  🔵 [Kode-tilføjelse]
   G1. BEM-naming
   G2. Accessibility patterns
-  G3. WCAG-bevidste afvigelser (samlet liste — Dennis' tokens vs. vores fixes)
+  G3. WCAG-bevidste afvigelser (samlet liste — Figma's tokens vs. vores fixes)
 ```
 
 > **Note:** Kapitel B–E erstatter de gamle sektioner 01-10. Kapitel A og F+G
 > er nye. Kapitel B–E genbruger og udvider 01-11's indhold (incl. den manglende
 > section 11). Source-mærkater gør det tydeligt for censor hvad der er originalt
-> Dennis-arbejde vs. byggeteam-tilføjelser.
+> Figma-arbejde vs. byggeteam-tilføjelser.
 
 ---
 
@@ -375,17 +375,17 @@ Alle defineret i `css/styles.css` sektion 05 (linje 319+):
 
 Vis alle 8 med default-state. Lad eksisterende `data-state="hover"`-mønster blive.
 
-#### C2. Navigation  🟡 [Dennis section 02 + 11 + 3 open-states]
+#### C2. Navigation  🟡 [Figma section 02 + 11 + 3 open-states]
 
-Dennis dokumenterer navigation i to hoved-sektioner + tre open-states. Vi viser dem alle.
+Figma-designmanualen dokumenterer navigation i to hoved-sektioner + tre open-states. Vi viser dem alle.
 
-**C2.1 — Desktop nav (1440 bred)** — Dennis section 02
+**C2.1 — Desktop nav (1440 bred)** — Figma section 02
 "Se denne sides header for live-eksempel" + canonical class-liste:
 - `.nav` (root) → `.nav__inner.container` → `.nav__logo` + `.nav__links` + `.nav__ctas` + `.nav__burger`
 - `.nav__item.nav__item--dropdown` → `.nav__link` (button) + `.nav__chevron` + `.nav__dropdown`
 - Logo: `<picture>` med mobile/desktop source-swap
 
-**C2.2 — Mobile nav (390 bred)** — Dennis section 11 (NY — manglede i v1)
+**C2.2 — Mobile nav (390 bred)** — Figma section 11 (NY — manglede i v1)
 Vis canonical markup (kopieret fra `design-system.html:69-94` der allerede har det):
 ```html
 <div id="mobile-nav" class="nav__mobile" hidden>
@@ -399,7 +399,7 @@ Vis canonical markup (kopieret fra `design-system.html:69-94` der allerede har d
 Forklar: `hidden`-attribut er default; togles af Louises JS når `.nav__burger`
 klikkes.
 
-**C2.3 — 3 open-states** — Dennis dokumenterer disse som separate symboler
+**C2.3 — 3 open-states** — Figma-designmanualen dokumenterer disse som separate symboler
 Vis kompakt 3-row layout med screenshot/illustration + tilstand:
 1. **Desktop / Behandlinger dropdown open** — `<button class="nav__link" aria-expanded="true">` → `.nav__dropdown` synlig
 2. **Desktop / Praktisk dropdown open** — samme pattern, anden trigger
@@ -412,13 +412,13 @@ Vis kompakt 3-row layout med screenshot/illustration + tilstand:
 - Louises JS toggler `hidden`-attribut + `aria-expanded` (ikke klasser) på alle
   3 togglere (`.nav__burger`, `.nav__link[aria-controls]`, `.nav__mobile-toggle`).
 
-#### C3. Cards (13 varianter) 🟡 [Dennis: 2 cards; kode tilføjer 11]
+#### C3. Cards (13 varianter) 🟡 [Figma: 2 cards; kode tilføjer 11]
 **Show one preview per card type med canonical markup.** Klassificér efter formål
 og marker source:
 
 **Indhold-cards:**
-- 🟢 `.card.card--treatment` — Dennis section 03 (forside Behandlinger horisontal-scroll)
-- 🟢 `.card.card--testimonial` — Dennis section 07 (gammel canonical, stadig i CSS)
+- 🟢 `.card.card--treatment` — Figma section 03 (forside Behandlinger horisontal-scroll)
+- 🟢 `.card.card--testimonial` — Figma section 07 (gammel canonical, stadig i CSS)
 - 🔵 `.approach-card` — kode-tilføjelse, om-nikolai 3-col grid (`om-nikolai.html:137`)
 - 🔵 `.quote-card` — kode-tilføjelse (`behandlinger/rygsmerter.html:162`)
 - 🔵 `.cross-link-card` — kode-tilføjelse (`behandlinger/rygsmerter.html:212`)
@@ -435,23 +435,23 @@ og marker source:
 - 🔵 `.forsikring-card` — kode-tilføjelse (`index.html:571`)
 - 🔵 `.summary-card` — kode-tilføjelse (`booking/trin-5.html:131`)
 
-#### C4. Badge + status-pills 🟢 [Dennis section 06]
+#### C4. Badge + status-pills 🟢 [Figma section 06]
 Behold eksisterende prøve (`.badge.badge--outline`, `.badge.badge--filled`).
 Tilføj 🔵 `.consult-toggle__pill` (`booking/trin-3.html:152`) som related pattern
 (kode-tilføjelse — kompakt pill der bruges i `.consult-toggle--inline`).
 
-#### C5. Pris 🟡 [Dennis pris-row + kode pris-grid/--card/--col/--list]
+#### C5. Pris 🟡 [Figma pris-row + kode pris-grid/--card/--col/--list]
 Vis 4 patterns:
-- 🟢 `.pris-rows` med `.pris-row` × 4 — Dennis section 08 (`behandlinger/rygsmerter.html:174`)
+- 🟢 `.pris-rows` med `.pris-row` × 4 — Figma section 08 (`behandlinger/rygsmerter.html:174`)
 - 🔵 `.pris-grid` med `.pris-col` + `.pris-list` + `.pris-card` — kode-tilføjelse (`index.html:550`)
 - 🔵 `.pris-note` — kode-tilføjelse (small print)
 - 🔵 `.pris-cta` — kode-tilføjelse (button under listen)
 
-#### C6. Step + step-list + stepper + timeline 🟡 [Dennis step + 5-trin stepper; kode tilføjer step-list/timeline]
+#### C6. Step + step-list + stepper + timeline 🟡 [Figma step + 5-trin stepper; kode tilføjer step-list/timeline]
 Saml alle "fremgangs"-mønstre i én sektion:
-- 🟢 `.step` — Dennis section 10 (eksisterer i DS — behold)
-- 🟢 `.stepper` med `.stepper__step--active` / `--done` — Dennis Stepper 5 Steps floating
-  (alle 6 active-states fra Dennis: Active=1 .. Active=5 + Active=Complete)
+- 🟢 `.step` — Figma section 10 (eksisterer i DS — behold)
+- 🟢 `.stepper` med `.stepper__step--active` / `--done` — Figma Stepper 5 Steps floating
+  (alle 6 active-states fra Figma: Active=1 .. Active=5 + Active=Complete)
 - 🔵 `.step-list` (vertikal default) — kode-tilføjelse
 - 🔵 `.step-list.step-list--horizontal` — kode-tilføjelse (`behandlinger/rygsmerter.html:126`)
 - 🔵 `.visit-grid` med nummererede `.visit-card` — kode-tilføjelse (`om-nikolai.html:160`)
@@ -462,7 +462,7 @@ Saml alle "fremgangs"-mønstre i én sektion:
 - 🔵 `.map-block` — kode-tilføjelse (CSS sektion 18, brug i find-section)
 - 🔵 `.cta-band` — kode-tilføjelse (`index.html:628` i `.section--cta-ring`)
 - 🟢 `.accordion` med `.accordion__item` + `.accordion__head` + `.accordion__body`
-  — Dennis Accordion + FAQ Accordion floating (Closed/Open states).
+  — Figma Accordion + FAQ Accordion floating (Closed/Open states).
   Bruger native `<details>/<summary>` (`behandlinger/rygsmerter.html:187`).
 
 #### C8. Reviews-widget 🔵 [Caroline JS — kode-tilføjelse 2026-05-22]
@@ -496,24 +496,24 @@ Vis canonical markup for hver:
 Plus `.reviews-header` + `.reviews-rating` (med `.stars` + `.rating-meta`)
 preview. **Note: kører kun via Live Server — fetch fejler på `file://`.**
 
-#### C9. FAB 🟢 [Dennis section 05]
+#### C9. FAB 🟢 [Figma section 05]
 Behold nuværende formulering. Tilføj: "FAB er `position: fixed` + bg `--accent` —
-kun synlig <768px." Dennis viser Default + Hover state (56×56).
+kun synlig <768px." Figma-designmanualen viser Default + Hover state (56×56).
 
 ---
 
 ### KAPITEL D — Forms
 
-#### D1. Field-states 🟢 [Dennis section 04]
+#### D1. Field-states 🟢 [Figma section 04]
 Behold de 4 stater (default / focus / filled / error). Vis `.field--error` med
 `<p class="field__error" role="alert">` og `aria-describedby` på input.
 
-#### D2. Checkbox + Radio 🟡 [Dennis har radio via Symptom Section; checkbox er kode-tilføjelse]
-- Behold checkbox-prøven (🔵 kode-tilføjelse — ikke i Dennis' DS-board).
+#### D2. Checkbox + Radio 🟡 [Figma-designmanualen har radio via Symptom Section; checkbox er kode-tilføjelse]
+- Behold checkbox-prøven (🔵 kode-tilføjelse — ikke i Figma's DS-board).
 - Tilføj radio-prøve: `.symptom-grid__option` viser radio som card-like option
-  (`booking/trin-2.html:139`) — 🟢 Dennis Symptom Section.
+  (`booking/trin-2.html:139`) — 🟢 Figma Symptom Section.
 
-#### D3. Switch 🟢 [Dennis Toggle/Switch floating]
+#### D3. Switch 🟢 [Figma Toggle/Switch floating]
 Ny prøve af `.switch` (`booking/trin-3.html:142`):
 ```html
 <label class="switch" aria-label="Slå akuttid til/fra">
@@ -523,17 +523,17 @@ Ny prøve af `.switch` (`booking/trin-3.html:142`):
   </span>
 </label>
 ```
-Dennis viser State=Off + State=On. Note: `.switch__label` (`klient/kalender.html:129`)
+Figma-designmanualen viser State=Off + State=On. Note: `.switch__label` (`klient/kalender.html:129`)
 er en parent-flex-positionering, ingen separat CSS-styling.
 
-#### D4. Symptom-grid + symptom-sub 🟢 [Dennis Symptom Section floating]
+#### D4. Symptom-grid + symptom-sub 🟢 [Figma Symptom Section floating]
 Vis preview af 6-option grid (`booking/trin-2.html:137`) + det skjulte sub-grid
 der vises når "Fod-problematikker" vælges (`.symptom-sub.is-aktiv` toggle —
-`js/main.js:279`, Louise). Dennis dokumenterer 6 valgte-states (hovedpine,
+`js/main.js:279`, Louise). Figma-designmanualen dokumenterer 6 valgte-states (hovedpine,
 skulder, knae, ryg, fod, massage) — de er alle samme komponent, kun aria-checked
 forskellig.
 
-#### D5. Filter-chip 🔵 [Caroline/Louise landing-tilføjelse — ikke i Dennis]
+#### D5. Filter-chip 🔵 [Caroline/Louise landing-tilføjelse — ikke i Figma-designmanualen]
 Vis preview af `.behandlinger-filter` med 6 `.filter-chip` (`index.html:283`).
 Forklar: radio-inputs er `.sr-only`, `<span>` er det visuelle "chip"
 (`css/styles.css:791+`). Louises JS toggler `.info-card` body på change-event.
@@ -545,10 +545,10 @@ Vis canonical markup af `.form-card` med:
 - `.cpr-info-box` (callout under cpr-feltet)
 - 2 `.checkbox` (sygesikring + GDPR)
 
-Reference: `booking/trin-4.html:138-201`. Dennis dokumenterer kun individuelle
+Reference: `booking/trin-4.html:138-201`. Figma-designmanualen dokumenterer kun individuelle
 field-states (section 04), ikke deres komposition i form-card.
 
-#### D7. Modal/popover 🔵 [Kode-tilføjelse — ikke i Dennis' Figma]
+#### D7. Modal/popover 🔵 [Kode-tilføjelse — ikke i Figma-designmanualen]
 Brug live markup fra `booking/trin-4.html:204`:
 ```html
 <div id="cpr-modal" class="modal" role="dialog" aria-modal="true" hidden>
@@ -569,32 +569,32 @@ Note: Louises JS toggler `hidden`-attribut + `aria-expanded` på trigger.
 
 Forklarende intro: "Booking-flow (5 trin) og EK-flow (klient-login + kalender)
 deler samme layout-skelet. Her er de fælles komponenter — for fuldt kontekst, se
-live-flowet i `booking/trin-1.html` til `trin-5.html` eller `klient/`. Dennis'
+live-flowet i `booking/trin-1.html` til `trin-5.html` eller `klient/`. Figma-designmanualen
 Figma differentierer booking- og EK-varianter med mindre dimensioner — men
 live-koden bruger samme CSS-klasser i begge flows, kun container giver de
 mindre størrelser (se E6)."
 
-#### E1. Flow-header + flow-bottom-nav 🔵 [Kode-tilføjelse — ikke i Dennis' DS]
+#### E1. Flow-header + flow-bottom-nav 🔵 [Kode-tilføjelse — ikke i Figma's DS]
 Vis preview af `.flow-header` (back-knap + titel + close-knap — `booking/trin-1.html:99`).
 Forklar at `.flow-bottom-nav` er trin-navigation der dukker op <768px
-(`css/styles.css:2945`). Dennis' Figma viser flow-headeren som en del af
+(`css/styles.css:2945`). Figma-designmanualen viser flow-headeren som en del af
 prototype-frames, men ikke som DS-komponent.
 
-#### E2. Flow-card 🟡 [Dennis Konsultation Toggle + Switch; kode tilføjer flow-card-skellet]
+#### E2. Flow-card 🟡 [Figma Konsultation Toggle + Switch; kode tilføjer flow-card-skellet]
 Forklar at `.flow-card` (🔵 kode-tilføjelse) er containeren der indeholder alt
 i et booking-trin. Vis preview af 3 inner-komponenter:
-- 🟢 `.consult-toggle` (radio cards — `booking/trin-1.html:149`) — Dennis
+- 🟢 `.consult-toggle` (radio cards — `booking/trin-1.html:149`) — Figma-designmanualens
   Konsultation Toggle floating, Selected=60min + Selected=30min
 - 🟢 `.consult-toggle.consult-toggle--inline` med `.consult-toggle__pill`
   (`trin-3.html:150`) — pill-variant
 - 🔵 `.akut-row` + `.consult-row` (`trin-3.html:137`) — kode-tilføjelse
 
-#### E3. Calendar + time-slots 🟢 [Dennis Date Cell + Time Slot Group floating]
+#### E3. Calendar + time-slots 🟢 [Figma Date Cell + Time Slot Group floating]
 Vis preview af `.calendar` med `.calendar__nav` + `.calendar__grid`
 (table-baseret — `booking/trin-3.html:163`) + `.calendar__times` med `.time-slots`
 ul med `.time-slot` / `.time-slot--selected` buttons.
 
-Dennis dokumenterer alle 3 date-cell-states (Default / Selected / Unavailable)
+Figma-designmanualen dokumenterer alle 3 date-cell-states (Default / Selected / Unavailable)
 og 6 time-slot-selected-states (None + t0900/t1000/t1300/t1430/t1600). Live-koden
 implementerer Default + Selected; Unavailable togles via `disabled` + `aria-disabled`
 attributter (`klient/kalender.html:169`).
@@ -622,15 +622,15 @@ Vis kort intro + class-liste (uden full markup-preview):
   `.login__forgot`, `.login__rule`
 - `.btn.btn--mitid` (MitID-knap)
 
-Forklar at det er en side-specifik variant af `.flow-card`. Dennis' Figma har
+Forklar at det er en side-specifik variant af `.flow-card`. Figma-designmanualen har
 ikke login-pattern; det er tilføjet til EK-flowet. Link til `klient/login.html`
 for live.
 
-#### E6. EK-flow varianter 🟢 [Dennis EK Week Cell + EK Time Slot Cell + EK Akut Toggle]
-**Ny sektion** der adresserer Dennis' EK-varianter.
+#### E6. EK-flow varianter 🟢 [Figma EK Week Cell + EK Time Slot Cell + EK Akut Toggle]
+**Ny sektion** der adresserer Figma's EK-varianter.
 
-Dennis' Figma har 3 EK-specifikke floating-komponenter:
-| Dennis-komponent | Dimensioner | Live CSS-klasse |
+Figma-designmanualen har 3 EK-specifikke floating-komponenter:
+| Figma-komponent | Dimensioner | Live CSS-klasse |
 |---|---|---|
 | EK Week Cell | 88×43 | `.date-cell` (samme som booking) |
 | EK Time Slot Cell | 156×19 | `.time-slot` (samme som booking) |
@@ -639,7 +639,7 @@ Dennis' Figma har 3 EK-specifikke floating-komponenter:
 **Vigtig oplysning til censor:** Live-koden implementerer ikke separate
 `.ek-date-cell`, `.ek-time-slot` eller `.ek-switch`-klasser. EK-flowet
 (`klient/kalender.html`) genbruger booking-flowets klasser — de mindre
-dimensioner Dennis viser i Figma kommer fra parent container's bredde +
+dimensioner Figma-designmanualen viser i Figma kommer fra parent container's bredde +
 flex-shrink. Det er en bevidst forenkling der reducerer CSS-duplikering.
 
 Referencer:
@@ -721,14 +721,14 @@ dokumenteret over for censor."
 `README.md:57` siger pt.: *"Se `design-system.html` for live komponentbibliotek (11 sektioner)."*
 
 Det er **forkert i to retninger**:
-- Dennis' Figma har 11 sektioner (01-11), men nuværende `design-system.html` har kun 10 (mangler section 11 Navigation Mobile).
+- Figma-designmanualen har 11 sektioner (01-11), men nuværende `design-system.html` har kun 10 (mangler section 11 Navigation Mobile).
 - Efter opdatering har vi 7 kapitler (A-G) med ca. 35 sub-sektioner, ikke 11.
 
 Ret til:
 *"Se `design-system.html` for live komponentbibliotek (5 kapitler:
 Foundations, Sektion-system, Komponenter, Forms, Flow-mønstre, plus JS
-state-classes og konventioner). Komponenter er kildemærket: 🟢 Dennis' Figma,
-🟡 Dennis + udvidet i kode, 🔵 kode-tilføjelse udover Figma."*
+state-classes og konventioner). Komponenter er kildemærket: 🟢 fra Figma-designmanualen,
+🟡 fra Figma + udvidet i kode, 🔵 kode-tilføjelse udover Figma."*
 
 `README.md:42` i fil-tree-listen er korrekt — ingen ændring.
 
@@ -743,7 +743,7 @@ mobil (390) + iPad (768).
 **Foreslået commit-rækkefølge:**
 1. `chore(ds): tilføj TOC + Kapitel A — Foundations (tokens, typografi, spacing, radius, shadow) + Figma-alignment-noter`
 2. `feat(ds): tilføj Kapitel B — Sektion-system (.section--* + hero + CTA + find)`
-3. `feat(ds): udvid Kapitel C — Komponenter med source-mærkater (🟢/🟡/🔵), inkl. Navigation Mobile (Dennis section 11) + 3 dropdown-open states, alle 13 cards, reviews-widget`
+3. `feat(ds): udvid Kapitel C — Komponenter med source-mærkater (🟢/🟡/🔵), inkl. Navigation Mobile (Figma section 11) + 3 dropdown-open states, alle 13 cards, reviews-widget`
 4. `feat(ds): udvid Kapitel D — Forms (field, checkbox, radio, switch, symptom-grid, filter-chip, form-card, modal) med source-mærkater`
 5. `feat(ds): tilføj Kapitel E + F + G — flow-mønstre (inkl. ny E6 EK-flow varianter), JS state-klasser, konventioner; fix README sektion-count`
 

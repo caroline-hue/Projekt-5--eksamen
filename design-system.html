@@ -99,7 +99,7 @@
     <section class="section section--light">
       <div class="container">
         <h1>Grocott Fysioterapi — Designsystem</h1>
-        <p class="hero__lead">Komponentbibliotek bygget med CSS custom properties. Alle komponenter henter farve, typografi og spacing fra tokens i <code>:root</code>, så ændringer i tokens automatisk propagerer. Tokens stammer fra Dennis' Figma-designmanual (<em>Prototype-og-Designmanual</em>) — med 4 bevidste WCAG&nbsp;2.2&nbsp;AA-fixede afvigelser dokumenteret nedenfor.</p>
+        <p class="hero__lead">Komponentbibliotek bygget med CSS custom properties. Alle komponenter henter farve, typografi og spacing fra tokens i <code>:root</code>, så ændringer i tokens automatisk propagerer. Tokens stammer fra den originale Figma-designmanual (<em>Prototype-og-Designmanual</em>) — med 4 bevidste WCAG&nbsp;2.2&nbsp;AA-fixede afvigelser dokumenteret nedenfor.</p>
       </div>
     </section>
 
@@ -109,7 +109,7 @@
     <section class="section section--white ds-section" aria-labelledby="ds-toc">
       <div class="container">
         <h2 id="ds-toc">Indhold</h2>
-        <p>Designsystemet er organiseret i syv kapitler. Komponent-source er mærket: <strong>🟢 Dennis' Figma</strong>, <strong>🟡 Dennis + udvidet i kode</strong>, <strong>🔵 kode-tilføjelse udover Figma</strong>.</p>
+        <p>Designsystemet er organiseret i syv kapitler. Komponent-source er mærket: <strong>🟢 fra Figma-designmanualen</strong>, <strong>🟡 fra Figma + udvidet i kode</strong>, <strong>🔵 kode-tilføjelse udover Figma</strong>.</p>
         <nav aria-label="Designsystem-navigation">
           <ol style="columns: 2; column-gap: var(--space-32); list-style: none; padding: 0;">
             <li><strong>Kapitel A — Foundations</strong> 🔵
@@ -155,7 +155,7 @@
     <section class="section ds-section" aria-labelledby="ds-kapitel-a">
       <div class="container">
         <h2 id="ds-kapitel-a">Kapitel A — Foundations <span class="caption">🔵 kode-tilføjelse</span></h2>
-        <p>Designsystemets fundamenter: farver, typografi, spacing, radius og shadow. Alle 13 grund-tokens matcher Dennis' Figma Variables 1:1. CSS udvider med 4 WCAG-fixede varianter, 3 ekstra spacing-trin og 4 layout-constraints.</p>
+        <p>Designsystemets fundamenter: farver, typografi, spacing, radius og shadow. Alle 13 grund-tokens matcher Figma-designmanualens Variables 1:1. CSS udvider med 4 WCAG-fixede varianter, 3 ekstra spacing-trin og 4 layout-constraints.</p>
       </div>
     </section>
 
@@ -165,7 +165,7 @@
         <h2 id="ds-a1-farver">A1 — Farver</h2>
 
         <div class="ds-row">
-          <h3>Figma Variables (13 tokens) <span class="caption">🟢 fra Dennis' designmanual</span></h3>
+          <h3>Figma Variables (13 tokens) <span class="caption">🟢 fra Figma-designmanualen</span></h3>
           <div class="ds-preview" style="align-items: flex-start;">
 
             <figure style="margin: 0; flex: 0 0 180px;">
@@ -262,7 +262,7 @@
             </figure>
 
           </div>
-          <p class="caption">⚠️ <strong>Naming-konflikt:</strong> Dennis kalder borders <code>border/light</code> / <code>border/dark</code>. CSS har omdøbt dem til <code>--border-light-figma</code> / <code>--border-dark-figma</code> for at frigøre hovednavnet til de WCAG-fixede versioner.</p>
+          <p class="caption">⚠️ <strong>Naming-konflikt:</strong> Figma-designmanualen kalder borders <code>border/light</code> / <code>border/dark</code>. CSS har omdøbt dem til <code>--border-light-figma</code> / <code>--border-dark-figma</code> for at frigøre hovednavnet til de WCAG-fixede versioner.</p>
         </div>
       </div>
     </section>
@@ -340,7 +340,7 @@
 
         <div class="ds-row">
           <h3>Spacing-skala (8-baseret)</h3>
-          <p>Dennis' Figma har <code>space/8</code>, <code>space/16</code>, <code>space/24</code>, <code>space/32</code>. CSS udvider med 3 ekstra trin (<code>--space-4</code>, <code>--space-48</code>, <code>--space-64</code>) til at dække alle layout-behov.</p>
+          <p>Figma-designmanualen har <code>space/8</code>, <code>space/16</code>, <code>space/24</code>, <code>space/32</code>. CSS udvider med 3 ekstra trin (<code>--space-4</code>, <code>--space-48</code>, <code>--space-64</code>) til at dække alle layout-behov.</p>
           <div class="ds-preview" style="align-items: flex-end;">
 
             <figure style="margin: 0; text-align: center;">
