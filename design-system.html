@@ -142,9 +142,15 @@
                 <li><a href="#ds-fab">C9. FAB</a> 🟢</li>
               </ul>
             </li>
-            <li><strong>Kapitel D — Forms</strong>
+            <li><strong><a href="#ds-kapitel-d">Kapitel D — Forms</a></strong>
               <ul>
-                <li><a href="#ds-forms">D1. Field-states</a> 🟢 <span class="caption">(udvides i v4)</span></li>
+                <li><a href="#ds-forms">D1. Field-states</a> 🟢</li>
+                <li><a href="#ds-d2-checkbox-radio">D2. Checkbox + Radio</a> 🟡</li>
+                <li><a href="#ds-d3-switch">D3. Switch</a> 🟢</li>
+                <li><a href="#ds-d4-symptom">D4. Symptom-grid</a> 🟢</li>
+                <li><a href="#ds-d5-filter-chip">D5. Filter-chip</a> 🔵</li>
+                <li><a href="#ds-d6-form-card">D6. Form-card komposition</a> 🔵</li>
+                <li><a href="#ds-d7-modal">D7. Modal/popover</a> 🔵</li>
               </ul>
             </li>
             <li><strong>Kapitel E — Flow-mønstre</strong> 🟡 <span class="caption">(kommer i v2)</span></li>
@@ -1160,28 +1166,279 @@
     </section>
 
     <!-- ================================================================
-         KAPITEL D — Forms (kun D1 i denne commit; commit 4 udvider med
-         D2-D7: radio, switch, symptom-grid, filter-chip, form-card, modal)
+         KAPITEL D — Forms
+         7 sub-sektioner: field-states, checkbox+radio, switch, symptom-grid,
+         filter-chip, form-card komposition, modal/popover.
          ================================================================ -->
+    <section class="section ds-section" aria-labelledby="ds-kapitel-d">
+      <div class="container">
+        <h2 id="ds-kapitel-d">Kapitel D — Forms</h2>
+        <p>Form-relaterede komponenter. Figma-designmanualens section 04 viser kun field-states; live-koden tilføjer radio (via symptom-grid), switch (akut-toggle), filter-chip (landing), form-card komposition og modal.</p>
+      </div>
+    </section>
+
+    <!-- D1 — Field-states -->
     <section class="section section--white ds-section" aria-labelledby="ds-forms">
       <div class="container">
-        <h2 id="ds-forms">04 — Forms <span class="caption">🟢 Figma section 04</span></h2>
-        <p class="caption">⚠️ Bliver Kapitel D i næste commit (4/5) — udvides med radio, switch, symptom-grid, filter-chip, form-card og modal.</p>
+        <h2 id="ds-forms">D1 — Field-states (4 states) <span class="caption">🟢 Figma section 04</span></h2>
         <div class="ds-row">
-          <h3>Input / Text Field — 4 states</h3>
+          <h3>Input / Text Field — Default / Focus / Filled / Error</h3>
           <div class="ds-preview ds-preview--stacked">
             <div class="field"><label>Default</label><input type="text" placeholder="Placeholder"></div>
             <div class="field"><label>Focus</label><input type="text" data-state="focus" placeholder="Skriv her..."></div>
             <div class="field"><label>Filled</label><input type="text" value="Caroline Amundsen"></div>
             <div class="field field--error"><label>Error</label><input type="email" value="caroline@" aria-invalid="true" aria-describedby="ds-err"><p id="ds-err" class="field__error" role="alert">Indtast en gyldig e-mail med @</p></div>
           </div>
+          <p class="caption">Error-state bruger <code>aria-invalid="true"</code> + <code>aria-describedby</code> til at koble input til <code>.field__error</code>-besked med <code>role="alert"</code>.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- D2 — Checkbox + Radio -->
+    <section class="section ds-section" aria-labelledby="ds-d2-checkbox-radio">
+      <div class="container">
+        <h2 id="ds-d2-checkbox-radio">D2 — Checkbox + Radio <span class="caption">🟡 Checkbox er kode-tilføjelse; radio kommer fra Figma's Symptom Section</span></h2>
+
         <div class="ds-row">
-          <h3>Checkbox</h3>
+          <h3>Checkbox <span class="caption">🔵 kode-tilføjelse</span></h3>
           <div class="ds-preview ds-preview--stacked">
             <label class="checkbox"><input type="checkbox"><span class="checkbox__mark"></span><span>Jeg er medlem af sygesikring Danmark</span></label>
             <label class="checkbox"><input type="checkbox" checked><span class="checkbox__mark"></span><span>Jeg accepterer privatlivspolitikken *</span></label>
           </div>
+          <p class="caption">Brug: <code>booking/trin-4.html:172</code> sygesikring + GDPR · Kilde: <code>css/styles.css:969+</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Radio (card-like, via Symptom Section) <span class="caption">🟢 Figma Symptom Section floating</span></h3>
+          <p>Radio-inputs er <code>.sr-only</code>; visuelle "card"-options vises som <code>&lt;span&gt;</code> ved siden af. Full preview i D4 nedenfor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- D3 — Switch -->
+    <section class="section section--white ds-section" aria-labelledby="ds-d3-switch">
+      <div class="container">
+        <h2 id="ds-d3-switch">D3 — Switch <span class="caption">🟢 Figma Toggle/Switch floating</span></h2>
+        <p>iOS-style toggle med fyldt accent-bg når on. Figma viser State=Off + State=On.</p>
+
+        <div class="ds-row">
+          <h3>Switch / Off (default)</h3>
+          <div class="ds-preview">
+            <label class="switch" aria-label="Slå akuttid til/fra — eksempel">
+              <input type="checkbox" name="akut-demo-off">
+              <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3>Switch / On (med label)</h3>
+          <div class="ds-preview">
+            <label class="switch" aria-label="Slå akuttid til/fra — eksempel on">
+              <input type="checkbox" name="akut-demo-on" checked>
+              <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+              <span class="switch__label">Jeg har brug for en akuttid <span class="caption">(+300 kr.)</span></span>
+            </label>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-3.html:142</code> akuttid-toggle + <code>klient/kalender.html:126</code> · Kilde: <code>css/styles.css:1638</code> · Note: <code>.switch__label</code> har ingen egen CSS — er en parent-flex-positionering.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- D4 — Symptom-grid + symptom-sub -->
+    <section class="section ds-section" aria-labelledby="ds-d4-symptom">
+      <div class="container">
+        <h2 id="ds-d4-symptom">D4 — Symptom-grid + symptom-sub <span class="caption">🟢 Figma Symptom Section floating</span></h2>
+        <p>6-option radio-grid + skjult sub-grid der vises når "Fod-problematikker" vælges (toggles af Louises JS via <code>.is-aktiv</code> state-class). Figma dokumenterer alle 6 valgte-states (hovedpine, skulder, knæ, ryg, fod, massage) — det er samme komponent, kun aria-checked forskellig.</p>
+
+        <div class="ds-row">
+          <h3>Symptom-grid (6 options)</h3>
+          <div class="ds-preview">
+            <fieldset class="symptom-grid" aria-labelledby="symptom-demo-legend" style="max-width: 640px;">
+              <legend id="symptom-demo-legend" class="sr-only">Vælg symptom-kategori (eksempel)</legend>
+              <label class="symptom-grid__option">
+                <input type="radio" name="symptom-demo" value="hovedpine">
+                <span>Hovedpine og kæbe</span>
+              </label>
+              <label class="symptom-grid__option">
+                <input type="radio" name="symptom-demo" value="skulder-nakke">
+                <span>Skulder og nakke</span>
+              </label>
+              <label class="symptom-grid__option">
+                <input type="radio" name="symptom-demo" value="knae-hofter">
+                <span>Knæ og hofter</span>
+              </label>
+              <label class="symptom-grid__option">
+                <input type="radio" name="symptom-demo" value="rygsmerter" checked>
+                <span>Rygsmerter</span>
+              </label>
+              <label class="symptom-grid__option">
+                <input type="radio" name="symptom-demo" value="fod">
+                <span>Fod-problematikker</span>
+              </label>
+              <label class="symptom-grid__option">
+                <input type="radio" name="symptom-demo" value="massage">
+                <span>Massage</span>
+              </label>
+            </fieldset>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-2.html:137</code> · Kilde: <code>css/styles.css:1850</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Symptom-sub (sub-grid, toggles via <code>.is-aktiv</code>)</h3>
+          <p class="caption">Når "Fod-problematikker" vælges i grid'et ovenfor, viser Louises JS <code>.symptom-sub</code> med 3 under-valg (Indlægssåler / Spenco sandaler / Generelt). Toggle: <code>sub.classList.toggle('is-aktiv', valgt === 'fod')</code> — <code>js/main.js:279</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- D5 — Filter-chip -->
+    <section class="section section--white ds-section" aria-labelledby="ds-d5-filter-chip">
+      <div class="container">
+        <h2 id="ds-d5-filter-chip">D5 — Filter-chip <span class="caption">🔵 Caroline/Louise landing-tilføjelse — ikke i Figma-designmanualen</span></h2>
+        <p>Pille-formede chips med radio-inputs til at filtrere indhold. Bruges på landing for at vise hvilken behandling der hører til hvilken smerte. Louises JS toggler <code>.info-card</code> body på change-event.</p>
+
+        <div class="ds-row">
+          <h3>Behandlinger-filter (6 chips)</h3>
+          <div class="ds-preview">
+            <fieldset class="behandlinger-filter" aria-describedby="filter-demo-hint" style="max-width: 640px;">
+              <legend class="sr-only">Vælg en behandlingstype (eksempel)</legend>
+              <p id="filter-demo-hint" class="behandlinger-filter__hint">Klik på det område hvor du mærker det.</p>
+              <div class="behandlinger-filter__chips">
+                <label class="filter-chip">
+                  <input type="radio" name="symptom-chip-demo" value="rygsmerter" class="sr-only" checked>
+                  <span>Rygsmerter</span>
+                </label>
+                <label class="filter-chip">
+                  <input type="radio" name="symptom-chip-demo" value="skulder-nakke" class="sr-only">
+                  <span>Skulder &amp; nakke</span>
+                </label>
+                <label class="filter-chip">
+                  <input type="radio" name="symptom-chip-demo" value="kaebe-hoved" class="sr-only">
+                  <span>Hovedpine &amp; kæbe</span>
+                </label>
+                <label class="filter-chip">
+                  <input type="radio" name="symptom-chip-demo" value="knae-hofter" class="sr-only">
+                  <span>Knæ &amp; hofter</span>
+                </label>
+                <label class="filter-chip">
+                  <input type="radio" name="symptom-chip-demo" value="fod" class="sr-only">
+                  <span>Fod-problematikker</span>
+                </label>
+                <label class="filter-chip">
+                  <input type="radio" name="symptom-chip-demo" value="massage" class="sr-only">
+                  <span>Massage</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+          <p class="caption">Brug: <code>index.html:283</code> "Mød din fysioterapeut"-sektion · Kilde: <code>css/styles.css:775+</code> · Radio-inputs er <code>.sr-only</code>; <code>&lt;span&gt;</code> er det visuelle chip.</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Info-card (vises efter chip-valg)</h3>
+          <div class="ds-preview" style="max-width: 640px;">
+            <div class="info-card" style="display: block;">
+              <p class="info-card__body">Jeg behandler rygsmerter ved at finde den underliggende årsag — ikke kun symptomet. Vi starter med en grundig undersøgelse, og lægger derefter en plan vi begge tror på.</p>
+            </div>
+          </div>
+          <p class="caption">Brug: <code>index.html:353</code> filter-chip target · Kilde: <code>css/styles.css:1917</code> · Default <code>hidden</code>-attribut; vises af Louises JS når en chip vælges</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- D6 — Form-card composition -->
+    <section class="section ds-section" aria-labelledby="ds-d6-form-card">
+      <div class="container">
+        <h2 id="ds-d6-form-card">D6 — Form-card composition <span class="caption">🔵 kode-tilføjelse — booking trin-4</span></h2>
+        <p>Container der grupperer flere <code>.field</code> + <code>.checkbox</code> i et hvidt card med subtle shadow. Figma-designmanualen viser individuelle field-states (section 04) men ikke deres komposition. Live-kompositionen tilføjer <code>.field__info-trigger</code> + <code>.cpr-info-box</code> til CPR-feltet.</p>
+
+        <div class="ds-row">
+          <h3>Form-card med 4 felter + info-trigger + info-box + 2 checkboxes</h3>
+          <div class="ds-preview" style="display: block;">
+            <form novalidate>
+              <div class="form-card" style="max-width: 560px;">
+                <div class="field">
+                  <label for="demo-navn">Fulde navn *</label>
+                  <input id="demo-navn" type="text" placeholder="Fornavn Efternavn">
+                </div>
+
+                <div class="field">
+                  <label for="demo-email">E-mail *</label>
+                  <input id="demo-email" type="email" placeholder="navn@eksempel.dk">
+                </div>
+
+                <div class="field">
+                  <label for="demo-cpr">CPR-nummer *</label>
+                  <input id="demo-cpr" type="password" placeholder="XXXXXX-XXXX" aria-describedby="demo-cpr-help">
+                  <button type="button" class="field__info-trigger" aria-controls="demo-cpr-info" aria-expanded="false" id="demo-cpr-help" onclick="return false;">
+                    <span aria-hidden="true">ⓘ</span>
+                    <span>Hvad bruges CPR-nummer til?</span>
+                  </button>
+                  <div class="cpr-info-box">
+                    <span class="cpr-info-box__icon" aria-hidden="true">💡</span>
+                    <p class="cpr-info-box__text">Dit CPR-nummer bruges til at oprette din patientjournal (krav fra Sundhedsstyrelsen). Deles aldrig med tredjepart.</p>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="demo-notes">Kommentar (valgfri)</label>
+                  <textarea id="demo-notes" rows="3" placeholder="Beskriv evt. dit problem kort"></textarea>
+                </div>
+
+                <label class="checkbox">
+                  <input type="checkbox" name="demo-sygesikring">
+                  <span class="checkbox__mark"></span>
+                  <span>Jeg er medlem af sygesikring Danmark</span>
+                </label>
+
+                <label class="checkbox">
+                  <input type="checkbox" name="demo-gdpr">
+                  <span class="checkbox__mark"></span>
+                  <span>Jeg accepterer privatlivspolitikken *</span>
+                </label>
+              </div>
+            </form>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-4.html:138-201</code> "Dine oplysninger"-trin · Kilde: <code>css/styles.css:1028+</code> (form-card), <code>:1064+</code> (info-trigger), <code>:1077+</code> (cpr-info-box)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- D7 — Modal/popover -->
+    <section class="section section--white ds-section" aria-labelledby="ds-d7-modal">
+      <div class="container">
+        <h2 id="ds-d7-modal">D7 — Modal/popover <span class="caption">🔵 kode-tilføjelse — ikke i Figma-designmanualen</span></h2>
+        <p>Native dialog-pattern med backdrop + card + close-button. Louises JS toggler <code>hidden</code>-attribut + <code>aria-expanded</code> på trigger. Canonical markup:</p>
+
+        <div class="ds-row">
+          <h3>Modal-struktur</h3>
+          <pre style="background: var(--bg-light); padding: var(--space-16); border-radius: var(--radius-card); overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>&lt;div id="cpr-modal" class="modal" role="dialog" aria-modal="true"
+     aria-labelledby="cpr-modal-title" hidden&gt;
+  &lt;div class="modal__backdrop" data-close&gt;&lt;/div&gt;
+  &lt;div class="modal__card"&gt;
+    &lt;button type="button" class="modal__close" data-close
+            aria-label="Luk"&gt;✕&lt;/button&gt;
+    &lt;h2 id="cpr-modal-title"&gt;Hvad bruges CPR-nummer til?&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Journalpligt jævnfør autorisationsloven § 22&lt;/li&gt;
+      &lt;li&gt;Sikker journalføring krypteret efter standard&lt;/li&gt;
+      &lt;li&gt;Deles ikke med tredjepart&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;a href="../stubs/privatlivspolitik.html"&gt;Læs privatlivspolitik →&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="ds-row">
+          <h3>Trigger-pattern (i form-card)</h3>
+          <pre style="background: var(--bg-light); padding: var(--space-16); border-radius: var(--radius-card); overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>&lt;button type="button" class="field__info-trigger"
+        aria-controls="cpr-modal" aria-expanded="false"
+        data-js-modal-trigger="cpr-info"&gt;
+  &lt;span aria-hidden="true"&gt;ⓘ&lt;/span&gt;
+  &lt;span&gt;Hvad bruges CPR-nummer til?&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+          <p class="caption">Brug: <code>booking/trin-4.html:204-217</code> CPR-info-modal · Kilde: <code>css/styles.css:1289+</code> · <code>data-close</code>-attribut markerer click-targets der lukker modal'en (backdrop + close-button)</p>
         </div>
       </div>
     </section>
