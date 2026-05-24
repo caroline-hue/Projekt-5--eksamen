@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive" />
   <meta name="description" content="Komponentbibliotek og design tokens for Grocott Fysioterapi sitet.">
   <title>Designsystem · Grocott Fysioterapi</title>
 
@@ -15,9 +16,9 @@
 <body>
   <a href="#main" class="skip-link">Spring til indhold</a>
 
-  <header class="nav" role="banner">
+  <header class="nav">
     <div class="nav__inner container">
-      <a href="/" class="nav__logo" aria-label="Grocott Fysioterapi forside">
+      <a href="./" class="nav__logo" aria-label="Grocott Fysioterapi forside">
         <picture>
           <source media="(max-width: 767px)" srcset="images/logo-mobile.png">
           <img src="images/logo-desktop.png" alt="Grocott Fysioterapi &amp; Sundhedshus" class="nav__logo-img">
@@ -120,22 +121,30 @@
                 <li><a href="#ds-a4-radius-shadow">A4. Radius + shadow</a></li>
               </ul>
             </li>
-            <li><strong>Kapitel B — Sektion-system</strong> 🔵 <span class="caption">(kommer i v2)</span></li>
-            <li><strong>Kapitel C — Komponenter</strong>
+            <li><strong><a href="#ds-kapitel-b">Kapitel B — Sektion-system</a></strong> 🔵
               <ul>
-                <li><a href="#ds-buttons">C1. Buttons</a> 🟡</li>
-                <li><a href="#ds-nav">C2. Navigation</a> 🟡</li>
-                <li><a href="#ds-cards">C3. Cards</a> 🟡</li>
+                <li><a href="#ds-b1-bgs">B1. Sektion-baggrunde</a></li>
+                <li><a href="#ds-b2-heroes">B2. Hero-sektioner</a></li>
+                <li><a href="#ds-b3-ctas">B3. CTA-sektioner</a></li>
+                <li><a href="#ds-b4-find">B4. Find vej</a></li>
+              </ul>
+            </li>
+            <li><strong><a href="#ds-kapitel-c">Kapitel C — Komponenter</a></strong>
+              <ul>
+                <li><a href="#ds-buttons">C1. Buttons (8 varianter)</a> 🟡</li>
+                <li><a href="#ds-nav">C2. Navigation (desktop + mobile + states)</a> 🟡</li>
+                <li><a href="#ds-cards">C3. Cards (13 + footer)</a> 🟡</li>
                 <li><a href="#ds-badge">C4. Badge</a> 🟢</li>
                 <li><a href="#ds-pris">C5. Pris</a> 🟡</li>
-                <li><a href="#ds-step">C6. Step</a> 🟡</li>
-                <li><a href="#ds-stepper">C6. Stepper</a> 🟢</li>
+                <li><a href="#ds-step">C6. Step + Stepper + Timeline</a> 🟡</li>
+                <li><a href="#ds-content-blocks">C7. Content-blocks</a> 🟡</li>
+                <li><a href="#ds-reviews-widget">C8. Reviews-widget</a> 🔵</li>
                 <li><a href="#ds-fab">C9. FAB</a> 🟢</li>
               </ul>
             </li>
             <li><strong>Kapitel D — Forms</strong>
               <ul>
-                <li><a href="#ds-forms">D1. Field-states</a> 🟢</li>
+                <li><a href="#ds-forms">D1. Field-states</a> 🟢 <span class="caption">(udvides i v4)</span></li>
               </ul>
             </li>
             <li><strong>Kapitel E — Flow-mønstre</strong> 🟡 <span class="caption">(kommer i v2)</span></li>
@@ -596,51 +605,169 @@
       </div>
     </section>
 
+    <!-- ================================================================
+         KAPITEL C — Komponenter
+         9 sektioner. Mapper Figma-designmanualens sektioner 01-11 +
+         floating-komponenter ind i logisk grupperet komponentbibliotek.
+         ================================================================ -->
+    <section class="section ds-section" aria-labelledby="ds-kapitel-c">
+      <div class="container">
+        <h2 id="ds-kapitel-c">Kapitel C — Komponenter</h2>
+        <p>Komponentbibliotek grupperet efter formål. Source-mærkat viser hvad der er fra Figma-designmanualen vs. tilføjet i kode (se TOC for legende).</p>
+      </div>
+    </section>
+
+    <!-- C1 — Buttons (8 varianter) -->
     <section class="section ds-section" aria-labelledby="ds-buttons">
       <div class="container">
-        <h2 id="ds-buttons">01 — Buttons</h2>
+        <h2 id="ds-buttons">C1 — Buttons <span class="caption">🟡 Figma + udvidet (4 ekstra varianter i kode)</span></h2>
+        <p>Figma-designmanualen (section 01) viser Primary + Secondary (light/dark). Live-koden tilføjer Ghost, Outline, Dark, Phone-accent og MitID til at dække alle CTA-kontekster.</p>
+
         <div class="ds-row">
-          <h3>Button / Primary</h3>
+          <h3>Button / Primary <span class="caption">🟢</span></h3>
           <div class="ds-preview">
-            <button class="btn btn--primary">Default</button>
-            <button class="btn btn--primary" data-state="hover">Hover</button>
+            <button class="btn btn--primary" type="button">Default</button>
+            <button class="btn btn--primary" data-state="hover" type="button">Hover</button>
           </div>
         </div>
+
         <div class="ds-row">
-          <h3>Button / Secondary (lys surface)</h3>
+          <h3>Button / Secondary (lys surface) <span class="caption">🟢</span></h3>
           <div class="ds-preview">
-            <button class="btn btn--secondary">Default</button>
-            <button class="btn btn--secondary" data-state="hover">Hover</button>
+            <button class="btn btn--secondary" type="button">Default</button>
+            <button class="btn btn--secondary" data-state="hover" type="button">Hover</button>
           </div>
         </div>
+
         <div class="ds-row ds-row--dark">
-          <h3>Button / Secondary (mørk surface)</h3>
+          <h3>Button / Secondary (mørk surface) <span class="caption">🟢</span></h3>
           <div class="ds-preview">
-            <button class="btn btn--secondary btn--on-dark">Default</button>
-            <button class="btn btn--secondary btn--on-dark" data-state="hover">Hover</button>
+            <button class="btn btn--secondary btn--on-dark" type="button">Default</button>
+            <button class="btn btn--secondary btn--on-dark" data-state="hover" type="button">Hover</button>
           </div>
         </div>
+
         <div class="ds-row">
-          <h3>Button / Ghost accent</h3>
+          <h3>Button / Ghost accent <span class="caption">🔵 kode-tilføjelse</span></h3>
           <div class="ds-preview">
-            <button class="btn btn--ghost">Modtag engangskode på SMS</button>
+            <button class="btn btn--ghost" type="button">Modtag engangskode på SMS</button>
           </div>
+          <p class="caption">Brug: <code>klient/login.html</code> · Kilde: <code>css/styles.css:319+</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Button / Outline <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <a href="#" class="btn btn--outline" onclick="return false;">Se alle priser →</a>
+            <a href="#" class="btn btn--outline" onclick="return false;">Få rutevejledning →</a>
+          </div>
+          <p class="caption">Brug: pris-grid + find-vej · Kilde: <code>css/styles.css:392</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Button / Dark (fyldt mørk på lys bg) <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <a href="#" class="btn btn--dark" onclick="return false;">Tjek din forsikringsdækning →</a>
+          </div>
+          <p class="caption">Brug: forsikring-card CTA · Kilde: <code>css/styles.css:404</code></p>
+        </div>
+
+        <div class="ds-row ds-row--dark">
+          <h3>Button / Phone-accent (på mørk surface) <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <a href="#" class="btn btn--phone-accent" onclick="return false;" aria-label="Eksempel">+45 60 86 67 70</a>
+          </div>
+          <p class="caption">Brug: <code>.section--cta-ring</code> CTA-band · Kilde: <code>css/styles.css:425</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Button / MitID-login <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <button class="btn btn--mitid" type="button">MitID</button>
+          </div>
+          <p class="caption">Brug: <code>klient/login.html</code> · Kilde: <code>css/styles.css:441</code></p>
         </div>
       </div>
     </section>
 
+    <!-- C2 — Navigation (3 sub-områder) -->
     <section class="section ds-section" aria-labelledby="ds-nav">
       <div class="container">
-        <h2 id="ds-nav">02 — Navigation</h2>
-        <p>Desktop nav (1440 bred) + Mobile nav (390 bred) er implementeret i <code>&lt;header class="nav"&gt;</code> på alle sider. Se denne sides nav for live-eksempel.</p>
+        <h2 id="ds-nav">C2 — Navigation <span class="caption">🟡 Figma section 02 + 11 + 3 open-states</span></h2>
+        <p>Figma-designmanualen dokumenterer navigation i to hoved-sektioner (Desktop, Mobile) plus tre open-states (Behandlinger-dropdown, Praktisk-dropdown, Mobile-menu).</p>
+
+        <div class="ds-row">
+          <h3>C2.1 — Desktop nav (1440 bred) <span class="caption">🟢 Figma section 02</span></h3>
+          <p>Se denne sides header for live-eksempel. Class-struktur:</p>
+          <pre style="background: var(--bg-light); padding: var(--space-16); border-radius: var(--radius-card); overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>&lt;header class="nav"&gt;
+  &lt;div class="nav__inner container"&gt;
+    &lt;a class="nav__logo"&gt;…&lt;/a&gt;
+    &lt;nav class="nav__links"&gt;
+      &lt;ul&gt;
+        &lt;li class="nav__item nav__item--dropdown"&gt;
+          &lt;button class="nav__link" aria-expanded="false"&gt;
+            Behandlinger &lt;span class="nav__chevron"&gt;▾&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;div class="nav__dropdown"&gt;…&lt;/div&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div class="nav__ctas"&gt;…&lt;/div&gt;
+    &lt;button class="nav__burger" aria-expanded="false"&gt;…&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+        </div>
+
+        <div class="ds-row">
+          <h3>C2.2 — Mobile nav (390 bred) <span class="caption">🟢 Figma section 11 — manglede i v1 af denne side</span></h3>
+          <p>På mobil (&lt;768px) skiftes desktop-nav ud med en burger-toggleret menu. Default: <code>hidden</code>-attribut sat, så menuen er skjult uden JS-fejl.</p>
+          <pre style="background: var(--bg-light); padding: var(--space-16); border-radius: var(--radius-card); overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>&lt;div id="mobile-nav" class="nav__mobile" hidden&gt;
+  &lt;button class="nav__close" aria-label="Luk menu"&gt;✕&lt;/button&gt;
+  &lt;nav aria-label="Mobilmenu"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;button class="nav__mobile-toggle" aria-expanded="false"&gt;
+          Behandlinger ▾
+        &lt;/button&gt;
+        &lt;ul&gt;…&lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+  &lt;a href="booking/trin-1.html" class="btn btn--primary"&gt;Book første tid&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+          <p class="caption">Brug: alle 21 sider · Kilde: <code>css/styles.css:469+</code> (mobile media query) · Live: resize browser til &lt;768px og klik burger-knappen</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>C2.3 — Tre open-states <span class="caption">🟢 Figma dokumenterer disse som separate symboler</span></h3>
+          <ol style="padding-left: var(--space-24);">
+            <li><strong>Desktop / Behandlinger dropdown open</strong> — <code>&lt;button class="nav__link" aria-expanded="true"&gt;</code> → <code>.nav__dropdown</code> bliver synlig. CSS-fallback via <code>.nav__item--dropdown:hover</code> + <code>:focus-within</code>.</li>
+            <li><strong>Desktop / Praktisk dropdown open</strong> — samme pattern, anden trigger (<code>id="dd-praktisk"</code>).</li>
+            <li><strong>Mobile / Menu open</strong> — <code>.nav__mobile</code> får fjernet sin <code>hidden</code>-attribut + <code>.nav__burger</code> får <code>aria-expanded="true"</code>.</li>
+          </ol>
+        </div>
+
+        <div class="ds-row">
+          <h3>C2.4 — Tilgængelighed + JS-fallback</h3>
+          <ul style="padding-left: var(--space-24);">
+            <li>Burger-menuen har en <strong>CSS-only <code>:focus-within</code>-fallback</strong> i mobile media query — menuen virker selv uden JS.</li>
+            <li><code>!important</code> bruges bevidst som Chromium-workaround (<code>[hidden]</code> overstyres af author-CSS). <strong>Må ikke fjernes.</strong></li>
+            <li>Louises JS toggler <code>hidden</code>-attribut + <code>aria-expanded</code> (ikke klasser) på alle 3 togglere: <code>.nav__burger</code>, <code>.nav__link[aria-controls]</code>, <code>.nav__mobile-toggle</code>.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section ds-section" aria-labelledby="ds-cards">
+    <!-- C3 — Cards (13 varianter + footer-column) -->
+    <section class="section section--white ds-section" aria-labelledby="ds-cards">
       <div class="container">
-        <h2 id="ds-cards">03 — Cards</h2>
+        <h2 id="ds-cards">C3 — Cards <span class="caption">🟡 Figma: 2 cards; kode tilføjer 11 + footer column</span></h2>
+        <p>13 card-varianter klassificeret efter formål: indhold-cards, review-cards og pris/forsikring/summary-cards. Plus footer column som relateret pattern.</p>
+
+        <h3 style="margin-top: var(--space-32); font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">Indhold-cards (8)</h3>
+
         <div class="ds-row">
-          <h3>Card / Treatment (320 bred)</h3>
+          <h3>Card / Treatment (320 bred) <span class="caption">🟢 Figma section 03</span></h3>
           <div class="ds-preview">
             <article class="card card--treatment" style="max-width:320px">
               <img src="images/behandling-rygmassage.jpg" alt="" class="card__image">
@@ -649,13 +776,15 @@
                 <h4 class="card__title">Rygsmerter</h4>
                 <p>Jeg finder årsagen — ikke bare symptomet.</p>
                 <p class="caption">Fra 400 kr.</p>
-                <a href="#" class="card__link">Læs mere <span aria-hidden="true">→</span></a>
+                <a href="#" class="card__link" onclick="return false;">Læs mere <span aria-hidden="true">→</span></a>
               </div>
             </article>
           </div>
+          <p class="caption">Brug: <code>index.html</code> Behandlinger-scroll · Kilde: <code>css/styles.css:721+</code></p>
         </div>
+
         <div class="ds-row">
-          <h3>Card / Testimonial (420 bred)</h3>
+          <h3>Card / Testimonial (420 bred) <span class="caption">🟢 Figma section 07</span></h3>
           <div class="ds-preview">
             <figure class="card card--testimonial" style="max-width:420px">
               <div class="card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★★★★★</span></div>
@@ -663,13 +792,381 @@
               <figcaption><strong>Mette K.</strong><span class="caption">Google-anmeldelse</span></figcaption>
             </figure>
           </div>
+          <p class="caption">Status: original canonical fra Figma, stadig i CSS, men erstattet på landing af <code>.review-card</code> (se C3 Review-cards)</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Approach-card <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <article class="approach-card" style="max-width: 320px;">
+              <span class="approach-card__icon" aria-hidden="true">◎</span>
+              <h3>Tid til dig</h3>
+              <p>Du er mere end dine rygsmerter. Vi taler om hverdagen og dine mål.</p>
+            </article>
+          </div>
+          <p class="caption">Brug: <code>om-nikolai.html:137</code> (3-col grid "Min tilgang") · Kilde: <code>css/styles.css:2181</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Quote-card <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <blockquote class="quote-card quote-card--light" style="max-width: 480px;">
+              <p class="quote-card__quote">"Jeg ser aldrig isoleret på ryggen. Vi kigger på hele kroppen — din holdning, dine bevægemønstre og din hverdag."</p>
+            </blockquote>
+          </div>
+          <p class="caption">Brug: <code>behandlinger/rygsmerter.html:162</code> "Min tilgang"-sektion · Kilde: <code>css/styles.css:185</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Cross-link-card <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <a href="#" class="cross-link-card" onclick="return false;" style="max-width: 480px;">
+              <h3 class="cross-link-card__title">→ Skulder og nakke</h3>
+              <p class="cross-link-card__desc">Spændinger i ryggen breder sig ofte op i nakke og skuldre — eller den anden vej.</p>
+            </a>
+          </div>
+          <p class="caption">Brug: <code>behandlinger/*.html</code> "Hænger smerterne sammen med andet?" · Kilde: <code>css/styles.css:2738</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Min-tilgang-card <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <article class="min-tilgang-card" style="max-width: 640px;">
+              <div class="min-tilgang-card__text">
+                <h2>Min tilgang</h2>
+                <p>Jeg finder årsagen til dine smerter og laver en plan vi begge tror på.</p>
+              </div>
+              <div class="min-tilgang-card__photo" aria-hidden="true" style="background: var(--border-light); min-height: 80px; border-radius: var(--radius-card); display: flex; align-items: center; justify-content: center; color: var(--text-dark); font-size: 12px;">[foto]</div>
+            </article>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-1.html:137</code> intro-card · Kilde: <code>css/styles.css</code> (se grep)</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Visit-card (nummereret) <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <li class="visit-card" style="list-style: none; max-width: 280px;">
+              <span class="visit-card__number" aria-hidden="true">1</span>
+              <h3>Vi taler om din situation</h3>
+              <p>Du fortæller om dine symptomer og din hverdag. Jeg lytter.</p>
+            </li>
+          </div>
+          <p class="caption">Brug: <code>om-nikolai.html:161</code> "Dit første besøg" 3-col grid · Kilde: <code>css/styles.css</code> (se grep)</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Product-info-card <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <article class="product-info-card" style="max-width: 360px;">
+              <h3>Formthotics — indlægssåler tilpasset dig</h3>
+              <p>Jeg laver Formthotics-indlæg i klinikken: de varmes op i dine egne sko og formes mens du har dem på.</p>
+              <div class="product-info-card__media" role="img" aria-label="Foto: Formthotics-indlæg (kommer)"><span>[ Foto: Formthotics-indlæg ]</span></div>
+              <p class="product-info-card__price">Fra 1.500 kr.</p>
+            </article>
+          </div>
+          <p class="caption">Brug: <code>behandlinger/fod.html:189</code> "Indlægssåler"-sektion · Kilde: <code>css/styles.css</code> (se grep)</p>
+        </div>
+
+        <h3 style="margin-top: var(--space-32); font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">Review-cards (2)</h3>
+
+        <div class="ds-row">
+          <h3>Review-card (standard) <span class="caption">🔵 Caroline JS — render-output fra <code>initReviewsWidget()</code></span></h3>
+          <div class="ds-preview">
+            <figure class="review-card" style="max-width: 360px;">
+              <div class="review-card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
+              <blockquote><p>"Nicolai forstod mit problem på 5 minutter. Efter 3 behandlinger var smerterne væk."</p></blockquote>
+              <figcaption>
+                <span class="review-card__name">Mette K.</span>
+                <span class="review-card__source">Google · maj 2026</span>
+              </figcaption>
+            </figure>
+          </div>
+          <p class="caption">Genereret af <code>js/main.js:156</code> fra <code>data/reviews.json</code> · CSS: <code>css/styles.css:919</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Review-card / Google (statisk) <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <figure class="review-card--google" style="max-width: 360px;">
+              <header class="review-card__author">
+                <span class="review-card__avatar" aria-hidden="true">J</span>
+                <span class="review-card__author-info">
+                  <span class="review-card__author-name">Jacob Asmussen</span>
+                  <span class="review-card__author-date">for 2 måneder siden</span>
+                </span>
+              </header>
+              <div class="review-card__stars" aria-label="5 ud af 5 stjerner"><span aria-hidden="true">★ ★ ★ ★ ★</span></div>
+              <blockquote><p>Allerede efter én behandling mærkede jeg en tydelig forskel.</p></blockquote>
+              <p class="review-card__source-label">Posted on Google</p>
+            </figure>
+          </div>
+          <p class="caption">Brug: <code>om-nikolai.html:304+</code> 3-col grid · Kilde: <code>css/styles.css:2315</code></p>
+        </div>
+
+        <h3 style="margin-top: var(--space-32); font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">Pris / forsikring / summary-cards (3)</h3>
+
+        <div class="ds-row">
+          <h3>Pris-card <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <ul class="pris-list" style="list-style: none; padding: 0; max-width: 320px; margin: 0;">
+              <li class="pris-card">
+                <span class="pris-card__label">30 minutter</span>
+                <span class="pris-card__amount">400 kr.</span>
+              </li>
+              <li class="pris-card">
+                <span class="pris-card__label">60 minutter</span>
+                <span class="pris-card__amount">650 kr.</span>
+              </li>
+            </ul>
+          </div>
+          <p class="caption">Brug: <code>index.html:553</code> pris-grid (se også C5) · Kilde: <code>css/styles.css</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Forsikring-card <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <aside class="forsikring-card" style="max-width: 360px;">
+              <h3>Du betaler måske ikke selv</h3>
+              <p>De fleste private sundhedsforsikringer dækker behandling hos en autoriseret fysioterapeut.</p>
+              <a href="#" class="btn btn--dark" onclick="return false;">Tjek din forsikringsdækning →</a>
+            </aside>
+          </div>
+          <p class="caption">Brug: <code>index.html:571</code> pris-grid højre kolonne · Kilde: <code>css/styles.css</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Summary-card <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <section class="summary-card" style="max-width: 480px;">
+              <h2 class="summary-card__title">Opsummering</h2>
+              <hr class="summary-card__divider">
+              <div class="summary-row">
+                <p class="summary-row__label">Behandling</p>
+                <p class="summary-row__value">60 min konsultation</p>
+              </div>
+              <div class="summary-row">
+                <p class="summary-row__label">Dato og tid</p>
+                <p class="summary-row__value">Tirsdag 5. maj kl. 10:00</p>
+              </div>
+              <div class="summary-row">
+                <p class="summary-row__label">Behandler</p>
+                <p class="summary-row__value">Nicolai Grocott</p>
+              </div>
+            </section>
+          </div>
+          <p class="caption">Brug: <code>booking/trin-5.html:131</code> bekræftelse · Kilde: <code>css/styles.css</code></p>
+        </div>
+
+        <h3 style="margin-top: var(--space-32); font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">Relateret: Footer Column</h3>
+      </div>
+    </section>
+
+    <section class="section ds-section ds-section--dark" aria-labelledby="ds-footer-col">
+      <div class="container">
+        <h2 id="ds-footer-col">Footer Column (220 bred, mørk surface) <span class="caption" style="color: var(--text-secondary);">🟢 Figma section 09</span></h2>
+        <div class="ds-preview">
+          <div class="footer__col" style="max-width:220px">
+            <h3 class="footer__heading">Kontakt</h3>
+            <address>Langeskov Centret 1<br>5550 Langeskov<br>+45 60 86 67 70</address>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section ds-section" aria-labelledby="ds-forms">
+    <!-- C4 — Badge -->
+    <section class="section section--white ds-section" aria-labelledby="ds-badge">
       <div class="container">
-        <h2 id="ds-forms">04 — Forms</h2>
+        <h2 id="ds-badge">C4 — Badge <span class="caption">🟢 Figma section 06</span></h2>
+        <div class="ds-preview">
+          <span class="badge badge--outline">Outline (kategori)</span>
+          <span class="badge badge--filled">★ Anbefalet</span>
+        </div>
+        <p class="caption">Relateret pattern: <code>.consult-toggle__pill</code> (booking trin-3) — kompakt pill brugt i <code>.consult-toggle--inline</code>. Vises i Kapitel E.</p>
+      </div>
+    </section>
+
+    <!-- C5 — Pris (4 patterns) -->
+    <section class="section ds-section" aria-labelledby="ds-pris">
+      <div class="container">
+        <h2 id="ds-pris">C5 — Pris <span class="caption">🟡 Figma pris-row + kode pris-grid/--card/--col/--list</span></h2>
+
+        <div class="ds-row">
+          <h3>Pris-row (canonical) <span class="caption">🟢 Figma section 08</span></h3>
+          <div class="ds-preview ds-preview--stacked" style="max-width:560px">
+            <div class="pris-row"><span>30 min konsultation</span><span>400 kr.</span></div>
+            <div class="pris-row"><span>60 min konsultation</span><span>650 kr.</span></div>
+            <div class="pris-row"><span>90 min konsultation</span><span>850 kr.</span></div>
+            <div class="pris-row"><span>Akuttillæg</span><span>+300 kr.</span></div>
+          </div>
+          <p class="caption">Brug: <code>behandlinger/*.html</code> pris-sektion · Kilde: <code>css/styles.css:1386</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Pris-grid (2-kol komposition) <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <p class="caption">Combination: <code>.pris-grid</code> → <code>.pris-col</code> + <code>.forsikring-card</code>. <code>.pris-col</code> indeholder <code>.pris-list</code> med <code>.pris-card</code>'er + <code>.pris-note</code> + <code>.pris-cta</code>.</p>
+          <div class="ds-preview ds-preview--stacked">
+            <p><code>.pris-cta</code> = <code>.btn.btn--outline</code> "Se alle priser →" placeret under <code>.pris-list</code></p>
+            <p><code>.pris-note</code> = small print, fx "* Alle priser er inkl. moms"</p>
+          </div>
+          <p class="caption">Brug: <code>index.html:550</code> "Pris &amp; forsikring"-sektion · Kilde: <code>css/styles.css</code> (se grep)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- C6 — Step + Stepper + Step-list + Timeline -->
+    <section class="section section--white ds-section" aria-labelledby="ds-step">
+      <div class="container">
+        <h2 id="ds-step">C6 — Step + Stepper + Step-list + Timeline <span class="caption">🟡 Figma step + 5-trin stepper; kode tilføjer step-list/timeline</span></h2>
+        <p>Samlet sektion for alle "fremgangs"-mønstre på sitet.</p>
+
+        <div class="ds-row">
+          <h3>Step (timeline-element) <span class="caption">🟢 Figma section 10</span></h3>
+          <div class="ds-preview" style="max-width:180px">
+            <div class="step"><span class="step__number">1</span><h3>Første besøg</h3><p>Nicolai lytter til dine symptomer.</p></div>
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3 id="ds-stepper">Stepper (5 trin) <span class="caption">🟢 Figma Stepper 5 Steps floating</span></h3>
+          <p class="caption">Figma viser 6 active-states (1, 2, 3, 4, 5, Complete). Modifiers: <code>.stepper__step--done</code>, <code>.stepper__step--active</code>, default.</p>
+          <ol class="stepper" aria-label="Booking trin demo">
+            <li class="stepper__step stepper__step--done"><span class="stepper__circle" aria-hidden="true">✓</span><span class="stepper__label">Intro</span></li>
+            <li class="stepper__step stepper__step--done"><span class="stepper__circle" aria-hidden="true">✓</span><span class="stepper__label">Symptom</span></li>
+            <li class="stepper__step stepper__step--active" aria-current="step"><span class="stepper__circle" aria-hidden="true">3</span><span class="stepper__label">Tid</span></li>
+            <li class="stepper__step"><span class="stepper__circle" aria-hidden="true">4</span><span class="stepper__label">Oplysninger</span></li>
+            <li class="stepper__step"><span class="stepper__circle" aria-hidden="true">5</span><span class="stepper__label">Bekræft</span></li>
+          </ol>
+        </div>
+
+        <div class="ds-row">
+          <h3>Step-list (horisontal) <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <ol class="step-list step-list--horizontal" style="list-style: none; padding: 0;">
+            <li class="step"><span class="step__number">1</span><h3>Undersøgelse</h3><p>Funktionel test og bevægelsesanalyse.</p></li>
+            <li class="step"><span class="step__number">2</span><h3>Behandling</h3><p>Manuelle teknikker, dry needling.</p></li>
+            <li class="step"><span class="step__number">3</span><h3>Selvhjælp</h3><p>Hjemmeprogram du faktisk kan følge.</p></li>
+          </ol>
+          <p class="caption">Brug: <code>behandlinger/*.html</code> "Fra første besøg til..."-sektion · Default <code>.step-list</code> er vertikal · Kilde: <code>css/styles.css:1497</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Timeline (horisontal scroll) <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <p class="caption">Class-struktur: <code>.timeline-scroll</code> wrapper → <code>.timeline</code> (ul) → <code>.timeline-event</code> med <code>__year</code> + <code>__dot</code> + <code>__desc</code>. Bruges på <code>om-nikolai.html:191</code> karriere-tidslinje.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- C7 — Content-blocks -->
+    <section class="section ds-section" aria-labelledby="ds-content-blocks">
+      <div class="container">
+        <h2 id="ds-content-blocks">C7 — Content-blocks</h2>
+        <p>Genbrugelige indholds-blokke der kan placeres i forskellige sektioner.</p>
+
+        <div class="ds-row">
+          <h3>Video-block <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <div class="ds-preview">
+            <div class="video-block" style="max-width: 480px; position: relative;">
+              <img src="images/hero-rygmassage.jpg" alt="" style="display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover;">
+              <button class="video-block__play" aria-label="Afspil video — eksempel" type="button" onclick="return false;">
+                <span aria-hidden="true">▶</span>
+              </button>
+            </div>
+          </div>
+          <p class="caption">Brug: <code>om-nikolai.html:123</code>, <code>index.html:226</code> · Kilde: <code>css/styles.css:2627</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Map-block <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <p class="caption">Class-struktur: <code>.map-block</code> indeholder en <code>&lt;img&gt;</code> med kort-billede. Bruges inde i <code>.find-map</code> wrapper (se Kapitel B4). Kilde: <code>css/styles.css:2551</code></p>
+        </div>
+
+        <div class="ds-row">
+          <h3>CTA-band <span class="caption">🔵 kode-tilføjelse</span></h3>
+          <p class="caption">Container-klasse brugt i <code>.section--cta-ring</code> + <code>.section--cta-bund</code> til at centrere heading + paragraph + phone-pill. Vises live i Kapitel B3 ovenfor.</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>Accordion <span class="caption">🟢 Figma Accordion + FAQ Accordion floating</span></h3>
+          <p>Bruger native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> for CSS-only accordion uden JS:</p>
+          <div class="ds-preview ds-preview--stacked" style="max-width: 600px;">
+            <div class="accordion">
+              <details class="accordion__item">
+                <summary class="accordion__head"><span>Hvornår skal jeg søge hjælp?</span><span class="accordion__icon" aria-hidden="true">+</span></summary>
+                <div class="accordion__body"><p>Hvis smerterne har varet mere end 2-3 uger, eller hvis du har udstråling til ben — så er det tid til en undersøgelse.</p></div>
+              </details>
+              <details class="accordion__item">
+                <summary class="accordion__head"><span>Hvor mange behandlinger skal jeg bruge?</span><span class="accordion__icon" aria-hidden="true">+</span></summary>
+                <div class="accordion__body"><p>Typisk 3-6 behandlinger. Vi lægger en plan efter første besøg.</p></div>
+              </details>
+            </div>
+          </div>
+          <p class="caption">Brug: <code>behandlinger/*.html</code> FAQ-sektion · Kilde: <code>css/styles.css:1220</code> · CSS-only toggle: <code>.accordion__item[open] .accordion__icon</code> roterer 45°</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- C8 — Reviews-widget -->
+    <section class="section section--white ds-section" aria-labelledby="ds-reviews-widget">
+      <div class="container">
+        <h2 id="ds-reviews-widget">C8 — Reviews-widget <span class="caption">🔵 Caroline JS (2026-05-22)</span></h2>
+        <p>Renderes dynamisk fra <code>data/reviews.json</code> af <code>initReviewsWidget()</code> i <code>js/main.js:97+</code>. Container har <code>aria-busy="true"</code> + <code>aria-live="polite"</code>. ⚠️ <strong>Kun via Live Server</strong> — <code>fetch</code> fejler på <code>file://</code>.</p>
+
+        <div class="ds-row">
+          <h3>Header (rating + meta)</h3>
+          <div class="ds-preview ds-preview--stacked" style="max-width: 560px;">
+            <div class="reviews-header">
+              <h2 style="margin: 0;">Rigtige klienter. Rigtige resultater.</h2>
+              <p class="reviews-rating">
+                <span class="stars" aria-hidden="true">★ ★ ★ ★ ★</span>
+                <span class="rating-meta">4,8 ud af 5 · 30 anmeldelser på Google</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3>State 1 — Loading (placeholder)</h3>
+          <div class="ds-preview" style="max-width: 560px;">
+            <p class="reviews-loading">Henter anmeldelser…</p>
+          </div>
+          <p class="caption">Statisk i HTML; fjernes af JS når data er hentet.</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>State 2 — Error (fetch failed)</h3>
+          <div class="ds-preview" style="max-width: 560px;">
+            <div class="reviews-grid has-error" style="display: block;">
+              <p class="reviews-error" role="alert">Kunne ikke indlæse anmeldelser lige nu. <a href="https://www.google.com/maps">Se dem på Google</a></p>
+            </div>
+          </div>
+          <p class="caption">Caroline JS sætter <code>.has-error</code> på grid + indsætter error-template (<code>js/main.js:131-135</code>).</p>
+        </div>
+
+        <div class="ds-row">
+          <h3>State 3 — Success (1 review-card pr. anmeldelse)</h3>
+          <p class="caption">Se Review-card-eksemplet i C3 ovenfor.</p>
+        </div>
+
+        <p class="caption">Kilde: <code>css/styles.css:898</code> (header), <code>css/styles.css:3677+</code> (loading/error states i sektion 25)</p>
+      </div>
+    </section>
+
+    <!-- C9 — FAB -->
+    <section class="section ds-section" aria-labelledby="ds-fab">
+      <div class="container">
+        <h2 id="ds-fab">C9 — FAB / Phone (Mobile 56×56) <span class="caption">🟢 Figma section 05</span></h2>
+        <p>FAB er <code>position: fixed</code> + bg <code>--accent</code> — kun synlig &lt;768px i nederste højre hjørne. Figma viser Default + Hover state.</p>
+        <p class="caption">FAB-knappen er aktiv på denne side. Scroll til mobil-view (&lt;768px) for at se den.</p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         KAPITEL D — Forms (kun D1 i denne commit; commit 4 udvider med
+         D2-D7: radio, switch, symptom-grid, filter-chip, form-card, modal)
+         ================================================================ -->
+    <section class="section section--white ds-section" aria-labelledby="ds-forms">
+      <div class="container">
+        <h2 id="ds-forms">04 — Forms <span class="caption">🟢 Figma section 04</span></h2>
+        <p class="caption">⚠️ Bliver Kapitel D i næste commit (4/5) — udvides med radio, switch, symptom-grid, filter-chip, form-card og modal.</p>
         <div class="ds-row">
           <h3>Input / Text Field — 4 states</h3>
           <div class="ds-preview ds-preview--stacked">
@@ -689,71 +1186,9 @@
       </div>
     </section>
 
-    <section class="section ds-section" aria-labelledby="ds-fab">
-      <div class="container">
-        <h2 id="ds-fab">05 — FAB / Phone (Mobile 56×56)</h2>
-        <p>FAB-knappen vises kun på mobile breakpoint (&lt;768px) i nederste højre hjørne — den er aktiv på denne side, scroll til mobil-view for at se.</p>
-      </div>
-    </section>
-
-    <section class="section ds-section" aria-labelledby="ds-badge">
-      <div class="container">
-        <h2 id="ds-badge">06 — Badge</h2>
-        <div class="ds-preview">
-          <span class="badge badge--outline">Outline (kategori)</span>
-          <span class="badge badge--filled">★ Anbefalet</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section ds-section" aria-labelledby="ds-pris">
-      <div class="container">
-        <h2 id="ds-pris">07 — Pris Row</h2>
-        <div class="ds-preview ds-preview--stacked" style="max-width:560px">
-          <div class="pris-row"><span>30 min konsultation</span><span>400 kr.</span></div>
-          <div class="pris-row"><span>60 min konsultation</span><span>650 kr.</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section ds-section ds-section--dark" aria-labelledby="ds-footer-col">
-      <div class="container">
-        <h2 id="ds-footer-col">08 — Footer Column (220 bred, mørk surface)</h2>
-        <div class="ds-preview">
-          <div class="footer__col" style="max-width:220px">
-            <h3 class="footer__heading">Kontakt</h3>
-            <address>Langeskov Centret 1<br>5550 Langeskov<br>+45 60 86 67 70</address>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section ds-section" aria-labelledby="ds-step">
-      <div class="container">
-        <h2 id="ds-step">09 — Step (timeline-element)</h2>
-        <div class="ds-preview" style="max-width:180px">
-          <div class="step"><span class="step__number">1</span><h3>Første besøg</h3><p>Nicolai lytter til dine symptomer.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section ds-section" aria-labelledby="ds-stepper">
-      <div class="container">
-        <h2 id="ds-stepper">10 — Stepper</h2>
-        <h3>Booking-flow (5 trin)</h3>
-        <ol class="stepper" aria-label="Booking trin demo">
-          <li class="stepper__step stepper__step--done"><span class="stepper__circle" aria-hidden="true">✓</span><span class="stepper__label">Intro</span></li>
-          <li class="stepper__step stepper__step--done"><span class="stepper__circle" aria-hidden="true">✓</span><span class="stepper__label">Symptom</span></li>
-          <li class="stepper__step stepper__step--active" aria-current="step"><span class="stepper__circle" aria-hidden="true">3</span><span class="stepper__label">Tid</span></li>
-          <li class="stepper__step"><span class="stepper__circle" aria-hidden="true">4</span><span class="stepper__label">Oplysninger</span></li>
-          <li class="stepper__step"><span class="stepper__circle" aria-hidden="true">5</span><span class="stepper__label">Bekræft</span></li>
-        </ol>
-      </div>
-    </section>
-
   </main>
 
-  <footer class="footer" role="contentinfo">
+  <footer class="footer">
     <div class="container footer__grid">
       <div class="footer__col footer__col--brand">
         <span class="footer__logo-pill">Grocott Fysioterapi</span>
