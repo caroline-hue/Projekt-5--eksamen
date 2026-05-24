@@ -99,7 +99,348 @@
     <section class="section section--light">
       <div class="container">
         <h1>Grocott Fysioterapi — Designsystem</h1>
-        <p class="hero__lead">Komponentbibliotek bygget med CSS custom properties. Alle komponenter henter farve, typografi og spacing fra tokens i <code>:root</code>, så ændringer i tokens automatisk propagerer.</p>
+        <p class="hero__lead">Komponentbibliotek bygget med CSS custom properties. Alle komponenter henter farve, typografi og spacing fra tokens i <code>:root</code>, så ændringer i tokens automatisk propagerer. Tokens stammer fra Dennis' Figma-designmanual (<em>Prototype-og-Designmanual</em>) — med 4 bevidste WCAG&nbsp;2.2&nbsp;AA-fixede afvigelser dokumenteret nedenfor.</p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         00 — Indhold (table of contents)
+         ================================================================ -->
+    <section class="section section--white ds-section" aria-labelledby="ds-toc">
+      <div class="container">
+        <h2 id="ds-toc">Indhold</h2>
+        <p>Designsystemet er organiseret i syv kapitler. Komponent-source er mærket: <strong>🟢 Dennis' Figma</strong>, <strong>🟡 Dennis + udvidet i kode</strong>, <strong>🔵 kode-tilføjelse udover Figma</strong>.</p>
+        <nav aria-label="Designsystem-navigation">
+          <ol style="columns: 2; column-gap: var(--space-32); list-style: none; padding: 0;">
+            <li><strong>Kapitel A — Foundations</strong> 🔵
+              <ul>
+                <li><a href="#ds-a1-farver">A1. Farver</a></li>
+                <li><a href="#ds-a2-typografi">A2. Typografi</a></li>
+                <li><a href="#ds-a3-spacing">A3. Spacing + layout</a></li>
+                <li><a href="#ds-a4-radius-shadow">A4. Radius + shadow</a></li>
+              </ul>
+            </li>
+            <li><strong>Kapitel B — Sektion-system</strong> 🔵 <span class="caption">(kommer i v2)</span></li>
+            <li><strong>Kapitel C — Komponenter</strong>
+              <ul>
+                <li><a href="#ds-buttons">C1. Buttons</a> 🟡</li>
+                <li><a href="#ds-nav">C2. Navigation</a> 🟡</li>
+                <li><a href="#ds-cards">C3. Cards</a> 🟡</li>
+                <li><a href="#ds-badge">C4. Badge</a> 🟢</li>
+                <li><a href="#ds-pris">C5. Pris</a> 🟡</li>
+                <li><a href="#ds-step">C6. Step</a> 🟡</li>
+                <li><a href="#ds-stepper">C6. Stepper</a> 🟢</li>
+                <li><a href="#ds-fab">C9. FAB</a> 🟢</li>
+              </ul>
+            </li>
+            <li><strong>Kapitel D — Forms</strong>
+              <ul>
+                <li><a href="#ds-forms">D1. Field-states</a> 🟢</li>
+              </ul>
+            </li>
+            <li><strong>Kapitel E — Flow-mønstre</strong> 🟡 <span class="caption">(kommer i v2)</span></li>
+            <li><strong>Kapitel F — JS state-klasser</strong> 🔵 <span class="caption">(kommer i v2)</span></li>
+            <li><strong>Kapitel G — Konventioner</strong> 🔵 <span class="caption">(kommer i v2)</span></li>
+          </ol>
+        </nav>
+        <p class="caption">📋 Spec: <code>docs/superpowers/specs/2026-05-24-design-system-update-design.md</code></p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         KAPITEL A — Foundations
+         Tokens visualiseret som swatches, typografi-prøver, spacing-skala,
+         radius og shadow. Kilde: css/styles.css linje 35-86 (:root).
+         ================================================================ -->
+    <section class="section ds-section" aria-labelledby="ds-kapitel-a">
+      <div class="container">
+        <h2 id="ds-kapitel-a">Kapitel A — Foundations <span class="caption">🔵 kode-tilføjelse</span></h2>
+        <p>Designsystemets fundamenter: farver, typografi, spacing, radius og shadow. Alle 13 grund-tokens matcher Dennis' Figma Variables 1:1. CSS udvider med 4 WCAG-fixede varianter, 3 ekstra spacing-trin og 4 layout-constraints.</p>
+      </div>
+    </section>
+
+    <!-- A1. Farver -->
+    <section class="section ds-section" aria-labelledby="ds-a1-farver">
+      <div class="container">
+        <h2 id="ds-a1-farver">A1 — Farver</h2>
+
+        <div class="ds-row">
+          <h3>Figma Variables (13 tokens) <span class="caption">🟢 fra Dennis' designmanual</span></h3>
+          <div class="ds-preview" style="align-items: flex-start;">
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--bg-dark); width: 100%; height: 88px; border-radius: var(--radius-card); border: 1px solid var(--border-light);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--bg-dark</code><br><span class="caption">#17212E · Mørk surface (hero, footer, CTA-ring)</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--bg-light); width: 100%; height: 88px; border-radius: var(--radius-card); border: 1px solid var(--border-light);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--bg-light</code><br><span class="caption">#F8F4EE · Cream — body default + .section--light</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--bg-photo); width: 100%; height: 88px; border-radius: var(--radius-card); border: 1px solid var(--border-light);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--bg-photo</code><br><span class="caption">#1C0C06 · Foto-overlay (rygsmerter hero)</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--white); width: 100%; height: 88px; border-radius: var(--radius-card); border: 1px solid var(--border-light);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--white</code><br><span class="caption">#FFFFFF · .section--white + cards på cream</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--accent); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--accent</code><br><span class="caption">#E06820 · KUN til knap-fyld + active states</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--accent-hover); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--accent-hover</code><br><span class="caption">#B84E10 · Knap-hover + tekst-links på lys bg</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--text-primary); width: 100%; height: 88px; border-radius: var(--radius-card); border: 1px solid var(--border-light);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--text-primary</code><br><span class="caption">#F4EEE8 · Tekst på mørk bg</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--text-secondary); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--text-secondary</code><br><span class="caption">#8A9EAD · Sekundær tekst på mørk bg</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--text-dark); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--text-dark</code><br><span class="caption">#1C2630 · Primær tekst på cream/hvid</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--text-on-accent); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--text-on-accent</code><br><span class="caption">#1C2630 · Tekst på --accent-fyld</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--border-light-figma); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--border-light-figma</code><br><span class="caption">#E2D8CC · KUN dekorativ på lys bg</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--border-dark-figma); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--border-dark-figma</code><br><span class="caption">#2A3A4A · KUN dekorativ på mørk bg</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 180px;">
+              <div style="background: var(--star); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--star</code><br><span class="caption">#E8960E · KUN stjerne på mørk bg</span></figcaption>
+            </figure>
+
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3>WCAG 2.2 AA-fixede varianter (4 tokens) <span class="caption">🔵 kode-tilføjelse — bevidste afvigelser fra Figma</span></h3>
+          <p>Figma's farvepalet er optimeret til æstetik, ikke til WCAG 2.2 AA. Hvor Figma's tokens fejler AA på interaktive elementer, er der defineret WCAG-fixede varianter med dokumenterede kontrastværdier:</p>
+          <div class="ds-preview" style="align-items: flex-start;">
+
+            <figure style="margin: 0; flex: 0 0 200px;">
+              <div style="background: var(--accent-text-on-light); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--accent-text-on-light</code><br><span class="caption">#B84E10 · <strong>5.08:1</strong> · tekst/eyebrow på lys bg<br>(Figma's --accent rammer kun 3.2:1)</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 200px;">
+              <div style="background: var(--star-on-light); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--star-on-light</code><br><span class="caption">#C77B0A · <strong>4.5:1</strong> · stjerne på lys bg<br>(Figma's --star rammer kun 2.6:1)</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 200px;">
+              <div style="background: var(--border-light); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--border-light</code><br><span class="caption">#C5B8A8 · <strong>3:1</strong> · UI-borders på lys bg<br>(form-felter, filter-chip)</span></figcaption>
+            </figure>
+
+            <figure style="margin: 0; flex: 0 0 200px;">
+              <div style="background: var(--border-dark); width: 100%; height: 88px; border-radius: var(--radius-card);" aria-hidden="true"></div>
+              <figcaption style="margin-top: var(--space-8);"><code>--border-dark</code><br><span class="caption">#5A6E80 · <strong>3:1</strong> · UI-borders på mørk bg</span></figcaption>
+            </figure>
+
+          </div>
+          <p class="caption">⚠️ <strong>Naming-konflikt:</strong> Dennis kalder borders <code>border/light</code> / <code>border/dark</code>. CSS har omdøbt dem til <code>--border-light-figma</code> / <code>--border-dark-figma</code> for at frigøre hovednavnet til de WCAG-fixede versioner.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- A2. Typografi -->
+    <section class="section section--white ds-section" aria-labelledby="ds-a2-typografi">
+      <div class="container">
+        <h2 id="ds-a2-typografi">A2 — Typografi</h2>
+        <p>To familier: <strong>Sen</strong> til overskrifter, <strong>Mulish</strong> til brødtekst, captions og button-labels. Figma Variables eksponerer 9 navngivne typografi-tokens; CSS implementerer dem som almindelige <code>font-size</code>/<code>font-weight</code>-deklarationer på semantiske elementer.</p>
+
+        <div class="ds-row">
+          <h3>Overskrifter (Sen)</h3>
+          <div class="ds-preview ds-preview--stacked" style="background: var(--white); border: 1px solid var(--border-light);">
+            <div>
+              <h1 style="margin: 0;">Den store overskrift — H1</h1>
+              <p class="caption" style="margin-top: var(--space-8);"><code>Heading/H1</code> · Sen ExtraBold · 42px · line-height 1.4</p>
+            </div>
+            <div>
+              <h2 style="margin: 0;">Sektion-overskrift — H2</h2>
+              <p class="caption" style="margin-top: var(--space-8);"><code>Heading/H2</code> · Sen Bold · 34px · line-height 1.4</p>
+            </div>
+            <div>
+              <h3 style="margin: 0;">Under-overskrift — H3</h3>
+              <p class="caption" style="margin-top: var(--space-8);"><code>Heading/H3</code> · Sen Bold · 24px · line-height 1.4</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3>Brødtekst (Mulish)</h3>
+          <div class="ds-preview ds-preview--stacked" style="background: var(--white); border: 1px solid var(--border-light);">
+            <div>
+              <p style="margin: 0; font-weight: 400;">Body Regular — fysioterapi handler om at finde årsagen, ikke bare symptomet. Standard brødtekst på alle sider.</p>
+              <p class="caption" style="margin-top: var(--space-8);"><code>Body/Regular</code> · Mulish 400 · 18px · line-height 1.8</p>
+            </div>
+            <div>
+              <p style="margin: 0; font-weight: 500;">Body Medium — bruges til lette fremhævelser i brødtekst.</p>
+              <p class="caption" style="margin-top: var(--space-8);"><code>Body/Medium</code> · Mulish 500 · 18px · line-height 1.8</p>
+            </div>
+            <div>
+              <p style="margin: 0; font-weight: 700;">Body Bold — bruges til navne, priser og kontrast-vægt i bløde sætninger.</p>
+              <p class="caption" style="margin-top: var(--space-8);"><code>Body/Bold</code> · Mulish 700 · 18px · line-height 1.8</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3>Captions, eyebrow + button-label</h3>
+          <div class="ds-preview ds-preview--stacked" style="background: var(--white); border: 1px solid var(--border-light);">
+            <div>
+              <p class="caption" style="margin: 0;">Caption Regular — Fra 400 kr.</p>
+              <p class="caption" style="margin-top: var(--space-8);"><code>Caption/Regular</code> · Mulish 400 · 13px · line-height 1.8</p>
+            </div>
+            <div>
+              <p class="caption" style="margin: 0; font-weight: 700;">Caption Bold — Google-anmeldelse</p>
+              <p class="caption" style="margin-top: var(--space-8);"><code>Caption/Bold</code> · Mulish 700 · 13px · line-height 1.8</p>
+            </div>
+            <div>
+              <span class="eyebrow">Eyebrow — small caps over H1</span>
+              <p class="caption" style="margin-top: var(--space-8);"><code>.eyebrow</code> · uppercase · letter-spacing 0.05em · farve <code>--accent-text-on-light</code> på lys bg</p>
+            </div>
+            <div>
+              <button class="btn btn--primary" type="button">Button Label på knap</button>
+              <p class="caption" style="margin-top: var(--space-8);"><code>Button/Label</code> · Mulish 700 · 16px · line-height 1.4</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A3. Spacing + layout -->
+    <section class="section ds-section" aria-labelledby="ds-a3-spacing">
+      <div class="container">
+        <h2 id="ds-a3-spacing">A3 — Spacing + layout</h2>
+
+        <div class="ds-row">
+          <h3>Spacing-skala (8-baseret)</h3>
+          <p>Dennis' Figma har <code>space/8</code>, <code>space/16</code>, <code>space/24</code>, <code>space/32</code>. CSS udvider med 3 ekstra trin (<code>--space-4</code>, <code>--space-48</code>, <code>--space-64</code>) til at dække alle layout-behov.</p>
+          <div class="ds-preview" style="align-items: flex-end;">
+
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--accent); width: 4px; height: 64px; margin: 0 auto;" aria-hidden="true"></div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--space-4</code><br>4px 🔵</figcaption>
+            </figure>
+
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--accent); width: 8px; height: 64px; margin: 0 auto;" aria-hidden="true"></div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--space-8</code><br>8px 🟢</figcaption>
+            </figure>
+
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--accent); width: 16px; height: 64px; margin: 0 auto;" aria-hidden="true"></div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--space-16</code><br>16px 🟢</figcaption>
+            </figure>
+
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--accent); width: 24px; height: 64px; margin: 0 auto;" aria-hidden="true"></div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--space-24</code><br>24px 🟢</figcaption>
+            </figure>
+
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--accent); width: 32px; height: 64px; margin: 0 auto;" aria-hidden="true"></div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--space-32</code><br>32px 🟢</figcaption>
+            </figure>
+
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--accent); width: 48px; height: 64px; margin: 0 auto;" aria-hidden="true"></div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--space-48</code><br>48px 🔵</figcaption>
+            </figure>
+
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--accent); width: 64px; height: 64px; margin: 0 auto;" aria-hidden="true"></div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--space-64</code><br>64px 🔵</figcaption>
+            </figure>
+
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3>Sektion-spacing (semantiske aliaser) 🔵</h3>
+          <div class="ds-preview ds-preview--stacked">
+            <p><code>--section-py</code> = <code>var(--space-64)</code> = <strong>64px</strong> — vertikal padding på alle <code>.section</code></p>
+            <p><code>--section-py-tight</code> = <code>var(--space-48)</code> = <strong>48px</strong> — bruges på kompakte sektioner (fx find-block)</p>
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3>Layout-constraints 🔵</h3>
+          <div class="ds-preview" style="display: block; padding: 0; background: transparent;">
+            <table style="width: 100%; border-collapse: collapse; background: var(--bg-light); border-radius: var(--radius-card); overflow: hidden;">
+              <thead>
+                <tr style="background: var(--text-dark); color: var(--text-primary);">
+                  <th style="padding: var(--space-16); text-align: left;">Token</th>
+                  <th style="padding: var(--space-16); text-align: left;">Værdi</th>
+                  <th style="padding: var(--space-16); text-align: left;">Brug</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--max-width</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">1440px</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Maksimal sidebredde (Figma desktop-canvas)</td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--content-width</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">1200px</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Indholds-container (<code>.container</code>) bredde</td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--mobile-width</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">390px</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Mobile-canvas (iPhone 14-class)</td></tr>
+                <tr><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);"><code>--nav-height</code></td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">86px</td><td style="padding: var(--space-16); border-top: 1px solid var(--border-light);">Fixed header-højde + <code>scroll-padding-top</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A4. Radius + shadow -->
+    <section class="section section--white ds-section" aria-labelledby="ds-a4-radius-shadow">
+      <div class="container">
+        <h2 id="ds-a4-radius-shadow">A4 — Radius + shadow</h2>
+
+        <div class="ds-row">
+          <h3>Radius (2 tokens) 🟢</h3>
+          <div class="ds-preview">
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--bg-light); width: 160px; height: 100px; border-radius: var(--radius-card); border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; font-weight: 700;" aria-hidden="true">8px</div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--radius-card</code> · 8px<br>Cards, form-felter, info-boxes</figcaption>
+            </figure>
+
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--accent); color: var(--text-on-accent); width: 200px; height: 54px; border-radius: var(--radius-btn); display: flex; align-items: center; justify-content: center; font-weight: 700;" aria-hidden="true">50px (pill)</div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--radius-btn</code> · 50px<br>Alle <code>.btn</code>-varianter (fuldt pill-formet)</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="ds-row">
+          <h3>Shadow (1 token) 🟢</h3>
+          <div class="ds-preview">
+            <figure style="margin: 0; text-align: center;">
+              <div style="background: var(--white); width: 240px; height: 140px; border-radius: var(--radius-card); box-shadow: var(--shadow-card); display: flex; align-items: center; justify-content: center; font-weight: 700;" aria-hidden="true">Card med shadow</div>
+              <figcaption class="caption" style="margin-top: var(--space-8);"><code>--shadow-card</code><br>0 6px 16px rgba(28,38,48,0.14)<br>Bruges på testimonial-cards, modaler, form-card</figcaption>
+            </figure>
+          </div>
+        </div>
       </div>
     </section>
 
